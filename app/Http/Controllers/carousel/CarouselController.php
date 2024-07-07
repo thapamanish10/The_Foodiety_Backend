@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Carousel;
+namespace App\Http\Controllers\carousel;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
