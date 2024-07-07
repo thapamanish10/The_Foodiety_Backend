@@ -1,0 +1,108 @@
+.productsContainer {
+    flex: 1;
+    width: 1200px;
+    margin: auto;
+    padding: 10px 0;
+}
+.productsContent {
+    flex: 1;
+    height: fit-content;
+}
+.productsContent table {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border);
+    border-collapse: collapse;
+}
+.productsContent table thead tr td {
+    flex: 1;
+    padding: 3px 5px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+}
+.productsContent table tbody tr td {
+    flex: 1;
+    padding: 3px 5px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    color: rgb(88, 87, 87);
+}
+.productsContent table tbody tr td a {
+    color: rgb(88, 87, 87);
+}
+.productsContent table tbody tr td .companyLogo {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+}
+.productsContent table tbody tr td .blogLogo {
+    width: 35px;
+    height: 24px;
+    object-fit: cover;
+}
+.productsContent table tbody tr td input {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+.productsContent table tbody tr td div {
+    display: flex;
+    align-items: center;
+}
+.productsContent table tbody tr td .ratingLogo {
+    width: 18px;
+    height: 18px;
+    object-fit: cover;
+    margin-left: 10px;
+}
+.productsContent table tfoot tr {
+    display: flex;
+}
+.productsContent .tfoot {
+    flex: 1;
+    padding: 7px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 13px;
+}
+.productsContent .tfoot span {
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+.productsContent .tfoot ion-icon {
+    width: 14px;
+    height: 14px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: var(--main);
+    cursor: pointer;
+}
+
+.navigation_a_tag:hover {
+    text-decoration: underline;
+}
+.disabled {
+    opacity: 0.5;
+}
+
+.totelItems {
+    flex: 1;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.totelItems h3 {
+    font-size: 14px;
+    font-weight: 700;
+}
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+    border: transparent;
+}

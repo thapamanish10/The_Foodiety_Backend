@@ -1,0 +1,442 @@
+.singlePageInfo {
+    width: 1200px;
+    margin: auto;
+    flex: 1;
+    padding: 1rem 0;
+}
+.singlePageInfo h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.2rem;
+}
+.rNameRating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.resturantDetails {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.detailItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 0;
+    border-right: 1px solid var(--border);
+    padding-right: 10px;
+}
+.detailItem span {
+    font-size: 12px;
+    font-weight: 500;
+}
+.detailItem ion-icon {
+    width: 16px;
+    height: 16px;
+    aspect-ratio: 1/1;
+    color: var(--iconColor);
+}
+.resturantPhotosAndVideos {
+    flex: 1;
+}
+.photosHeading {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.photosHeading ion-icon {
+    width: 16px;
+    height: 16px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+.photosHeading h3 {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.resturantDetail {
+    flex: 1;
+    margin: 1rem 0;
+}
+.detailHeading {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.detailHeading ion-icon {
+    width: 16px;
+    height: 16px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+.detailHeading h3 {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.resturantAbout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.resturantAbout .aboutItme h3 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.resturantAbout .aboutItme p {
+    font-size: 12px;
+    opacity: 0.95;
+    text-align: justify;
+}
+.editDetail {
+    cursor: pointer;
+}
+.resturantReviews {
+    flex: 1;
+}
+.reviewsHeading {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.reviewsHeading ion-icon {
+    width: 16px;
+    height: 16px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+.reviewsHeading h3 {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.reviewsBody {
+    flex: 1;
+}
+.reviewStar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.reviewStar p {
+    font-size: 12px;
+    font-weight: 700;
+}
+.reviewStar img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+.reviewBar {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+.reviewBar .reviewBarItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 0;
+}
+.reviewItemIcon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.reviewItemIcon span {
+    font-size: 12px;
+}
+.reviewItemIcon ion-icon {
+    width: 16px;
+    height: 16px;
+    aspect-ratio: 1 /1;
+}
+.reviewBarItem ion-icon {
+    width: 14px;
+    height: 14px;
+    aspect-ratio: 1 / 1;
+    transform: rotate(10deg);
+    color: #008000;
+}
+.noOfReviews {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.noOfReviews h3 {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.review {
+    flex: 1;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+}
+.reviewerProfile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+.reviewerProfile img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.reviewerName h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: -5px;
+}
+.reviewerName span {
+    font-size: 12px;
+}
+.reviewerName span b {
+    font-weight: 500;
+}
+.reviewOption {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+.reviewOption ion-icon {
+    width: 18px;
+    height: 18px;
+    aspect-ratio: 1/1;
+}
+
+.addReview {
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    outline: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.manage {
+    background: transparent;
+    border: 1px solid var(--border);
+}
+.addReview span {
+    background: none;
+    font-size: 12px;
+    font-weight: 500;
+}
+.addReview ion-icon {
+    width: 14px;
+    height: 14px;
+    background: none;
+}
+.add {
+    border: 0;
+    background: var(--main);
+}
+.add:active {
+    opacity: 0.8;
+}
+
+.reviewDetails h2 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.reviewDetails h5 {
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.7;
+}
+.reviewDetails p {
+    font-size: 12px;
+    padding: 7px 0;
+    text-align: justify;
+    opacity: 0.8;
+}
+.reviewDetails span {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.photosBody {
+    flex: 1;
+    user-select: none;
+}
+.photoImages {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.imageCard {
+    width: 100px;
+    height: 150px;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+}
+.imageCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+    transition: 1s ease;
+    filter: blur(2px);
+}
+.imageText {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #86818115;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transform: scale(1);
+    transition: 0.6s ease;
+    padding: 0 10%;
+}
+.imageText h3 {
+    font-size: 7px;
+    color: var(--white);
+    transform: scale(1);
+    transition: 1s ease;
+    text-align: center;
+}
+.imageText span {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--white);
+    text-align: center;
+    transform: scale(1);
+    transition: 1s ease;
+    margin-top: 10px;
+}
+.imageOptions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+}
+.imageOptions ion-icon {
+    padding: 5px;
+    width: 14px;
+    height: 14px;
+    color: var(--black);
+    background: var(--main);
+    border-radius: 3px;
+}
+.imageCard:hover img {
+    filter: blur(0);
+}
+.imageCard:hover .imageText {
+    transform: scale(0);
+}
+.imageCard:hover .imageText h3 {
+    transform: scale(0);
+}
+.imageCard:hover .imageText span {
+    transform: scale(0);
+}
+
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 200px; /* Adjust width as needed */
+}
+
+.custom-select {
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+    padding: 5px 20px;
+    font-family: "Ubuntu Sans", sans-serif;
+    font-size: 12px;
+    color: var(--black);
+    background: var(--white);
+    border: 1px solid #ccced1;
+    border-radius: 5px;
+    appearance: none; /* Removes default dropdown arrow */
+    -webkit-appearance: none; /* Removes default dropdown arrow in Safari */
+    -moz-appearance: none; /* Removes default dropdown arrow in Firefox */
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.custom-select:hover,
+.custom-select:focus {
+    border-color: #2977ff;
+    outline: none;
+}
+
+.custom-select::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--black);
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevents arrow from blocking select interaction */
+}
+
+.custom-select-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--black);
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevents arrow from blocking select interaction */
+}
+.imageCarouselButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.imageCarouselButton ion-icon {
+    width: 14px;
+    height: 14px;
+    padding: 5px;
+    border-radius: 5px;
+    background: var(--iconBg);
+    cursor: pointer;
+}

@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+.authContainer {
+    width: 1200px;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Noto Sans", sans-serif;
+}
+.authContainerCard {
+    width: 360px;
+    height: max-content;
+    box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
+        rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
+        rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
+        rgba(42, 51, 70, 0.04) 0px 6px 6px -3px,
+        rgba(14, 63, 126, 0.04) 0px 12px 12px -6px,
+        rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+    padding: 2rem;
+    border-radius: 0.4rem;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+.authHeading {
+    flex: 1;
+}
+.authHeading .authLogo {
+    width: 130px;
+}
+.authHeading {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+.authHeadingText {
+    font-size: 25px;
+    font-weight: 500;
+}
+.authFormContainer {
+    width: 100%;
+}
+.authForm {
+    width: 100%;
+}
+.authFormGroup {
+    width: 100%;
+    margin: 0.6rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.authFormGroup label {
+    width: 100%;
+    font-size: 13px;
+}
+.authFormGroup input {
+    font-size: 14px;
+    border: 1px solid #dddddd7a;
+    outline: 0;
+    height: 33px;
+    border-radius: 3px;
+    padding: 0 15px;
+}
+/* .authFormGroup input:focus {
+} */
+.authFormRememberME {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+}
+.remember_me {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.authFormGroupButton {
+    width: 100%;
+    margin: 2rem 0;
+}
+.authFormGroupButton button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 33px;
+    font-size: 12px;
+    border-radius: 3px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background: #ffde59;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+.authFormGroupButton button:active {
+    opacity: 0.7;
+}

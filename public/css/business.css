@@ -1,0 +1,85 @@
+.companyContainer {
+    width: 1200px;
+    height: max-content;
+    min-height: 100vh;
+    margin: auto;
+}
+
+.companyHeading {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+.companyTitle {
+    font-size: 16px;
+    font-weight: 500;
+    border-left: 2px solid #ffde59;
+    padding-left: 10px;
+    margin: 0.5rem 0;
+}
+.companyText {
+    text-align: justify;
+    padding: 0.5rem 0;
+}
+.companyText p {
+    font-size: 12px;
+}
+.companyContactItemText {
+    font-size: 12px;
+    padding: 0.5rem 0;
+}
+.companyHeadingButtons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.companyContactItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0.5rem 0;
+}
+.companyContactItem img {
+    height: 18px;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+.carousel-item img {
+    width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}

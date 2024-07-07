@@ -1,0 +1,74 @@
+.userInfo {
+    width: 55%;
+    height: fit-content;
+}
+.userInfo .userImage {
+    /* background: var(--white); */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 30px;
+    margin-top: 30px;
+    border-radius: 0.4rem;
+    position: relative;
+    padding-bottom: 40px;
+    border: 1px solid var(--border);
+}
+.userInfo .userImage img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+.userName {
+    background: none;
+}
+.userName h3 {
+    font-size: 20px;
+    font-weight: 700;
+    background: none;
+}
+.userName span {
+    font-size: 13px;
+    font-weight: 500;
+    background: none;
+}
+.editBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background: none;
+}
+.editBtn ion-icon {
+    width: 20px;
+    height: 20px;
+    background: none;
+}
+.logoutBtn {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    padding: 8px 30px;
+    border-radius: 5px;
+    background: var(--main);
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.logoutBtn ion-icon {
+    width: 20px;
+    height: 20px;
+    background: none;
+}
+.logoutBtn span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black);
+    background: none;
+}

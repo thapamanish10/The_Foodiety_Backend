@@ -1,0 +1,57 @@
+.FormHeading{
+    flex: 1;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.FormHeading .FormHeadingLeft h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+.FormHeading .FormHeadingLeft p{
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+.FormHeading .buttonDiv{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.FormHeading .buttonDiv .formBtn{
+    flex: 1;
+    outline: 0;
+    border-radius: 5px;
+    height: 45px;
+    font-weight:800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px;
+}
+.formBtn span{
+    background: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.formBtn ion-icon{
+    width: 18px;
+    height: 18px;
+    background: none;
+}
+.cancle{
+    border: 1px solid var(--border);
+}
+.update{
+    border: 0;
+    background: var(--main);
+}
+.update:active, .cancle:active{
+    opacity: 0.8;
+}
+/* .formBtn:active{
+    background-color: #ffde59c0;
+} */

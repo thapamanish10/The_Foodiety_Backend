@@ -1,0 +1,100 @@
+.locationformBody {
+    padding: 20px 0;
+}
+.locationformBody .formHeading {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.locationformBody .formHeading .formHeadingLeft h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+.locationformBody .formHeading .formHeadingLeft p {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+.locationformBody .formHeading .buttonDiv {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.locationformBody .formHeading .buttonDiv .formBtn {
+    flex: 1;
+    outline: 0;
+    border-radius: 5px;
+    height: 45px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px;
+}
+.formBtn span {
+    background: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.formBtn ion-icon {
+    width: 18px;
+    height: 18px;
+    background: none;
+}
+.cancle {
+    border: 1px solid var(--border);
+}
+.update {
+    border: 0;
+    background: var(--main);
+}
+.update:active,
+.cancle:active {
+    opacity: 0.8;
+}
+
+.formBody {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.formBody .formGroup {
+    flex: 1;
+    /* border: 1px solid var(--border); */
+    display: flex;
+    flex-direction: column;
+}
+.form .formGroup .labelIcon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.form .formGroup .labelIcon label {
+    font-size: 11px;
+    margin: 10px 0;
+    text-transform: uppercase;
+}
+.form .formGroup .labelIcon ion-icon {
+    width: 15px;
+    height: 15px;
+    aspect-ratio: 1/1;
+}
+.form .formGroup input {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid #ccced1;
+    outline: 0;
+    height: 45px;
+    padding: 5px 20px;
+    font-size: 16px;
+    padding: 7px 10px;
+    border-radius: 3px;
+}
+.form .formGroup input:focus-within {
+    border-color: #2977ff;
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}

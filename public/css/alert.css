@@ -1,0 +1,70 @@
+.alert {
+    background: var(--white);
+    border-radius: 5px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 30px;
+    animation: slideIn 1s ease forwards;
+    opacity: 0;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    z-index: 1000;
+}
+
+.alert.hide {
+    animation: slideOut 1s ease forwards;
+}
+.success {
+    border: 1px solid var(--success);
+}
+.danger {
+    border: 1px solid var(--danger);
+}
+.alert ion-icon {
+    width: 18px;
+    height: 18px;
+    padding: 6px;
+    border-radius: 3px;
+}
+.success ion-icon {
+    color: var(--success);
+    background: var(--lightSuccess);
+}
+.danger ion-icon {
+    color: var(--danger);
+    background: var(--lightDanger);
+}
+.alertMessage h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: -3px;
+}
+.alertMessage span {
+    font-size: 12px;
+    font-weight: 500;
+}
+@keyframes slideIn {
+    from {
+        bottom: -30px;
+        opacity: 0;
+    }
+    to {
+        bottom: 18px;
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        bottom: 18px;
+        opacity: 1;
+    }
+    to {
+        bottom: -30px;
+        opacity: 0;
+    }
+}

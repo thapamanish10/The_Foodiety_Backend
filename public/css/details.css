@@ -1,0 +1,151 @@
+.detailsformBody {
+    padding: 20px 0;
+    width: 1200px;
+    margin: auto;
+}
+.detailsformBody .formHeading {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.detailsformBody .formHeading .formHeadingLeft h3 {
+    font-size: 14px;
+    font-weight: 500;
+}
+.detailsformBody .formHeading .formHeadingLeft p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+.detailsformBody .formHeading .buttonDiv {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.detailsformBody .formHeading .buttonDiv .formBtn {
+    flex: 1;
+    outline: 0;
+    border-radius: 5px;
+    height: 32px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 10px;
+}
+.formBtn span {
+    background: none;
+    font-size: 12px;
+    font-weight: 500;
+}
+.formBtn ion-icon {
+    width: 14px;
+    height: 14px;
+    background: none;
+}
+.cancle {
+    border: 1px solid var(--border);
+}
+.update {
+    border: 0;
+    background: var(--main);
+}
+.update:active,
+.cancle:active {
+    opacity: 0.8;
+}
+
+.formBody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.formBody .formGroup {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.form .formGroup label {
+    font-size: 11px;
+    font-weight: 500;
+    margin: 5px 0;
+}
+.form .formGroup input {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid #ccced1;
+    outline: 0;
+    height: 32px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.form .formGroup input:focus-within {
+    border-color: #2977ff;
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+.ck-editor__editable[role="textbox"] {
+    min-height: 100px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.ck-content .image {
+    max-width: 80%;
+    margin: 5px auto;
+}
+.formGroupImage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    border: 1px dashed #ccced1;
+    border-radius: 3px;
+    cursor: pointer;
+    gap: 5px;
+}
+.uploadimage {
+    width: 70px;
+    height: 70px;
+}
+.formGroupImage span {
+    font-size: 12px;
+    opacity: 0.8;
+}
+.formGroupImage small {
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.5;
+}
+
+label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase !important;
+}
+.formGroupImage input {
+    width: 100%;
+    height: 100%;
+}
+
+.formGroupImage input[type="file"] {
+    display: none;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.minReq {
+    margin-top: 10px;
+    text-align: right;
+    text-transform: capitalize;
+}
+.formGroup[hidden] {
+    display: none;
+}
