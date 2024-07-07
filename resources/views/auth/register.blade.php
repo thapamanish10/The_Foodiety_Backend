@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Foodiety/Register</title>
         <link rel="stylesheet" href="{{ asset('./css/auth.css') }}">
-    @vite('resources/css/app.css')
 </head>
 <body>
     <div class="authContainer">
