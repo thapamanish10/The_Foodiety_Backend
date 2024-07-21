@@ -63,12 +63,11 @@ class BlogController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
-            'blog_title' => 'nullable|string|max:255',
-            'company_logo' => 'nullable|image|mimes:jpg,jpeg,png|max:5048',
-            'publish_date' => 'nullable|string|',
-            'blog_type' => 'nullable|string|max:20',
-            'blog_text' => 'nullable|string|',
+         $request->validate([
+            'blog_title' => 'required|string|max:255',
+            'publish_date' => 'required|nullable|date',
+            'blog_type' => 'required|string|max:20',
+            'blog_text' => 'required|string',
         ]);
 
         $blog = new Blog();
@@ -76,19 +75,11 @@ class BlogController extends Controller
         $blog->publish_date = $request->publish_date;
         $blog->blog_type = $request->blog_type;
         $blog->blog_text = $request->blog_text;
-
-        if ($request->hasFile('blog_image')) {
-            $file = $request->file('blog_image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $destinationPath = public_path('blogImage');
-            $file->move($destinationPath, $filename);
-            $blog->blog_image = 'blogImage/' . $filename;
-        }
-
         $blog->save();
 
         return redirect()->route('blog')->with('success', 'Blog added successfully.');
     }
+
 
     // BLOG EDIT
     public function edit($id)
@@ -100,11 +91,10 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'blog_title' => 'nullable|string|max:255',
-            'company_logo' => 'nullable|image|mimes:jpg,jpeg,png|max:5048',
-            'publish_date' => 'nullable|string|',
-            'blog_type' => 'nullable|string|max:20',
-            'blog_text' => 'nullable|string|',
+            'blog_title' => 'required|string|max:255',
+            'publish_date' => 'nullable|date',
+            'blog_type' => 'required|string|max:20',
+            'blog_text' => 'required|string',
         ]);
 
         $blog = Blog::findOrFail($id);
@@ -112,11 +102,11 @@ class BlogController extends Controller
         $blog->publish_date = $request->publish_date;
         $blog->blog_type = $request->blog_type;
         $blog->blog_text = $request->blog_text;
-
         $blog->save();
 
         return redirect()->route('blog.detail', $blog->id)->with('success', 'Blog updated successfully.');
     }
+
 
     // BLOG DELETE
     public function delete($id)
@@ -134,9 +124,9 @@ class BlogController extends Controller
     }
     public function storeBlogImage(Request $request, $id)
     {
-         $request->validate([
-            'company_logo' => 'nullable|image|mimes:jpg,jpeg,png|max:5048',
-            'image_name' => 'nullable|string|',
+        $request->validate([
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:5048',
+            'image_name' => 'required|string',
             'image_type' => 'nullable|string|max:20',
         ]);
 
@@ -157,6 +147,7 @@ class BlogController extends Controller
 
         return redirect()->route('blog.detail', $blog->blog_id)->with('success', 'Blog image added successfully.');
     }
+
     public function manageBlogImage($id)
     {
         $data = Blog::with(['images'])->findOrFail($id);

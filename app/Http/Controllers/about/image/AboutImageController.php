@@ -30,6 +30,11 @@ class AboutImageController extends Controller
     // STORE & UPDATE THE PRODUCT IMAGE CREATE FORM
     public function store(Request $request, $id)
     {
+        $request->validate([
+            'image_name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:5048',
+        ]);
+        
         $image = new AboutImage();
         $image->about_id = $request->about_id;
         $image->image_name = $request->image_name;

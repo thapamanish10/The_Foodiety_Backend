@@ -71,15 +71,15 @@
                     </div>
                     <div class="row">
                         <div class="formGroup">
-                            <label for="facebook_link">FACEBOOK LINK:</label>
+                            <label for="facebook_link">FACEBOOK LINK:<span class="imp">*</span></label>
                             <input type="text" name="facebook_link" id="facebook_link" value="{{ old('facebook_link') }}">
                         </div>
                         <div class="formGroup">
-                            <label for="instagram_link">INSTAGRAM LINK:</label>
+                            <label for="instagram_link">INSTAGRAM LINK:<span class="imp">*</span></label>
                             <input type="text" name="instagram_link" id="instagram_link" value="{{ old('instagram_link') }}">
                         </div>
                         <div class="formGroup">
-                            <label for="youtube_link">YOUTUBE LINK:</label>
+                            <label for="youtube_link">YOUTUBE LINK:<span class="imp">*</span></label>
                             <input type="text" name="youtube_link" id="youtube_link" value="{{ old('youtube_link') }}">
                         </div>
                     </div>
@@ -89,16 +89,6 @@
                     </div>
                 </div>
             </form>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}

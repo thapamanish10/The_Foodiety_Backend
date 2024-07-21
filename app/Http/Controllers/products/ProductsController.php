@@ -12,13 +12,15 @@ use Illuminate\Http\JsonResponse;
 
 class ProductsController extends Controller
 {
-    //DISPLAY PRODUCT PAGE
-    public function index() {
+    // DISPLAY PRODUCT PAGE
+    public function index()
+    {
         $datas = Product::paginate(10);
         $totalDatas = Product::count();
         return view('pages.product.product', compact('datas', 'totalDatas'));
     }
-    //PRODUCT API FUNCTION
+
+    // PRODUCT API FUNCTION
     public function productAPI()
     {
         try {
@@ -31,6 +33,7 @@ class ProductsController extends Controller
             ], 500);
         }
     }
+
     public function productDetailAPI($id)
     {
         try {
@@ -45,7 +48,8 @@ class ProductsController extends Controller
     }
 
     // DISPLAY CREATE PRODUCT FORM PAGE
-    public function create(){
+    public function create()
+    {
         return view('pages.product.create.create');
     }
 
@@ -53,24 +57,22 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
             'company_logo' => 'nullable|image|mimes:jpg,jpeg,png|max:5048',
-            'location' => 'nullable|string|',
-
+            'location' => 'nullable|string',
             'phone_number' => 'nullable|string|max:20',
-            'about_us' => 'nullable|string|',
-            'features' => 'nullable|string|',
-            'rating' => 'nullable|string|',
+            'about_us' => 'nullable|string',
+            'features' => 'nullable|string',
+            'rating' => 'nullable|numeric|min:1|max:5',
         ]);
 
         $product = new Product();
         $product->name = $request->name;
         $product->location = $request->location;
-
         $product->phone_number = $request->phone_number;
         $product->about_us = $request->about_us;
         $product->features = $request->features;
-        $product->rating = $request->rating;
+        $product->rating = $request->rating ?? null;
 
         if ($request->hasFile('company_logo')) {
             $file = $request->file('company_logo');
@@ -78,40 +80,52 @@ class ProductsController extends Controller
             $destinationPath = public_path('companyLogo');
             $file->move($destinationPath, $filename);
             $product->company_logo = 'companyLogo/' . $filename;
+        } else {
+            $product->company_logo = '/asset/foodiety.png'; // Default image path
         }
 
         $product->save();
 
         return redirect()->route('product')->with('success', 'Product added successfully.');
     }
+
     // DISPLAY PRODUCT SINGLE DETAILS PAGE
     public function detail($id)
     {
         $data = Product::with(['reviews', 'images'])->findOrFail($id);
         return view('pages.single.single', compact('data'));
     }
-    public function manageImage($id){
+
+    public function manageImage($id)
+    {
         $data = Product::with(['images', 'videos'])->findOrFail($id);
-        return view('pages.single.manage.manage' , compact('data'));
+        return view('pages.single.manage.manage', compact('data'));
     }
-    public function deleteImage($id) {
+
+    public function deleteImage($id)
+    {
         $data = Image::findOrFail($id);
         $data->delete();
         return redirect()->route('product', $data->id)->with('success', 'Image deleted successfully.');
     }
+
     public function delete($id)
     {
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->route('product')->with('success', 'Product deleted successfully.');
     }
+
     // DISPLAY PRODUCT LOCATION UPDATE FORM PAGE
-    public function location($id){
+    public function location($id)
+    {
         $data = Product::findOrFail($id);
         return view('pages.single.forms.location', compact('data'));
     }
+
     // STORE & UPDATE THE PRODUCT LOCATION UPDATE FORM
-    public function locationStore(Request $request, $id){
+    public function locationStore(Request $request, $id)
+    {
         $request->validate([
             'location' => 'nullable|string',
             'latitude' => 'nullable',
@@ -129,24 +143,22 @@ class ProductsController extends Controller
         $product->website_link = $request->website_link;
         $product->menu = $request->menu;
         $product->opening_time = $request->opening_time;
-        
 
         $product->save();
 
         return redirect()->route('product.detail', $product->id)->with('success', 'Product updated successfully.');
     }
 
-
-
-
-
     // DISPLAY PRODUCT DETAILS FORM PAGE
-    public function about($id){
+    public function about($id)
+    {
         $data = Product::findOrFail($id);
         return view('pages.single.forms.details', compact('data'));
     }
+
     // STORE & UPDATE THE PRODUCT DETAILS UPDATE FORM
-    public function aboutStore(Request $request, $id){
+    public function aboutStore(Request $request, $id)
+    {
         $request->validate([
             'price_range' => 'nullable|string|max:100',
             'cuisines' => 'nullable|string',
@@ -169,20 +181,28 @@ class ProductsController extends Controller
         return redirect()->route('product.detail', $product->id)->with('success', 'Product updated successfully.');
     }
 
-
-
-
     // DISPLAY PRODUCT REVIEW FORM PAGE
-    public function review($id){
+    public function review($id)
+    {
         $data = Product::findOrFail($id);
         return view('pages.single.forms.review', compact('data'));
     }
+
     // STORE & UPDATE THE PRODUCT REVIEW CREATE FORM
     public function reviewCreate(Request $request)
     {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'review_title' => 'required|string|max:255',
+            'visit_date' => 'nullable|date',
+            'visit_with' => 'nullable|string|max:255',
+            'review_text' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5048',
+        ]);
+
         $review = new Review();
         $review->product_id = $request->product_id;
-        $review->username = "Foodiety";
+        $review->username = "Foodiety"; // Assuming a default username
         $review->review_title = $request->review_title;
         $review->visit_date = $request->visit_date;
         $review->visit_with = $request->visit_with;
@@ -193,7 +213,7 @@ class ProductsController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $destinationPath = public_path('reviewImage');
             $file->move($destinationPath, $filename);
-            $product->image = 'reviewImage/' . $filename;
+            $review->image = 'reviewImage/' . $filename;
         }
 
         $review->save();
@@ -212,9 +232,15 @@ class ProductsController extends Controller
     // STORE & UPDATE THE PRODUCT REVIEW UPDATE FORM
     public function reviewUpdate(Request $request, $id)
     {
+        $request->validate([
+            'review_title' => 'required|string|max:255',
+            'visit_date' => 'nullable|date',
+            'visit_with' => 'nullable|string|max:255',
+            'review_text' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5048',
+        ]);
+
         $review = Review::findOrFail($id);
-        $review->product_id = $request->product_id;
-        $review->username = "Foodiety";
         $review->review_title = $request->review_title;
         $review->visit_date = $request->visit_date;
         $review->visit_with = $request->visit_with;
@@ -225,12 +251,11 @@ class ProductsController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $destinationPath = public_path('reviewImage');
             $file->move($destinationPath, $filename);
-            $product->image = 'reviewImage/' . $filename;
+            $review->image = 'reviewImage/' . $filename;
         }
+
         $review->save();
 
         return redirect()->route('product.detail', $review->product_id)->with('success', 'Product review updated successfully.');
     }
-
-
 }

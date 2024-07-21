@@ -61,9 +61,9 @@ class CarouselController extends Controller
 
     private function validateRequest(Request $request) {
         $request->validate([
-            'carousel_title' => 'string|max:255',
-            'carousel_Image' => 'image|mimes:jpg,jpeg,png|max:5048',
-            'carousel_status' => 'string|max:20',
+            'carousel_title' => 'required|string|max:255',
+            'carousel_Image' => 'required|image|mimes:jpg,jpeg,png|max:5048',
+            'carousel_status' => 'required|string|max:20',
         ]);
     }
 

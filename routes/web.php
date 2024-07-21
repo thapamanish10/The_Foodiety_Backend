@@ -13,9 +13,12 @@ use App\Http\Controllers\about\image\AboutImageController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function(){
-    return view('auth.login');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return view('auth.login');
+    });
 });
+
 // Ensure the '/dashboard' route is only defined once and uses the appropriate middleware
 Route::middleware(['auth', 'verified'])->group(function () {
     // Route to display the dashboard page

@@ -11,20 +11,20 @@
             <ion-icon name="chevron-forward-outline"></ion-icon>
         </div>
         <div class="detailsformBody">
-            <form action="{{ route("blog.store") }}" id="" class="form" method="POST"
+            <form action="{{ route("blog.store") }}" id="blogForm" class="form" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="formHeading">
                     <div class="formHeadingLeft">
                         <h3>Fill up the Information:</h3>
-                        <p>Provide information about the restaurant to contact.</p>
+                        <p>Provide information about the blog post.</p>
                     </div>
                     <div class="buttonDiv">
                         <button class="formBtn cancle">
                             <span>Cancel</span>
                             <ion-icon name="close-circle-outline"></ion-icon>
                         </button>
-                        <button class="formBtn update" type="submit">
+                        <button class="formBtn update" type="submit" id="submitButton">
                             <span>Create</span>
                             <ion-icon name="add-circle-outline"></ion-icon>
                         </button>
@@ -37,19 +37,19 @@
                     </div>
                     <div class="row">
                         <div class="formGroup">
-                            <label for="publish_date">publish_date:<span class="imp">*</span></label>
+                            <label for="publish_date">Publish Date:<span class="imp">*</span></label>
                             <input type="date" name="publish_date" id="publish_date" value="{{ old('publish_date') }}">
                         </div>
                         <div class="formGroup">
-                            <label for="blog_status">STATUS:<span class="imp">*</span></label>
+                            <label for="blog_status">Status:<span class="imp">*</span></label>
                             <select class="custom-select" id="blog_status" name="blog_status">
-                                <option value="">Choose blog status? </option>
+                                <option value="">Choose blog status?</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
                             </select>
                         </div>
                         <div class="formGroup">
-                            <label for="blog_type">TYPE:<span class="imp">*</span></label>
+                            <label for="blog_type">Type:<span class="imp">*</span></label>
                             <select class="custom-select" id="blog_type" name="blog_type">
                                 <option value="">Choose blog type?</option>
                                 <option value="Business">Business</option>
@@ -66,16 +66,6 @@
                     </div>
                 </div>
             </form>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -92,32 +82,26 @@
             .catch(error => {
                 console.error(error);
             });
-
-        ClassicEditor
-            .create(document.querySelector('#features'))
-            .catch(error => {
-                console.error(error);
-            });
     </script>
 @endsection
+
 @section('jsScript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const fileInput = document.getElementById('image');
-            const customButton = document.getElementById('customButton');
-            const fileName = document.getElementById('fileName');
+            const form = document.getElementById('blogForm');
+            const submitButton = document.getElementById('submitButton');
 
-            customButton.addEventListener('click', function() {
-                fileInput.click();
-            });
+            // Function to check if all fields are filled
+            function checkAllFieldsFilled() {
+                constFields = form.querySelectorAll(']');
+                let allFilled = true;
+            Fields.forEach(field => {
+                    if (field.value.trim() === '') {
+                        allFilled = false;
+                    }
+                });
+                return allFilled;
+            }
 
-            fileInput.addEventListener('change', function() {
-                if (fileInput.files.length > 0) {
-                    fileName.textContent = fileInput.files[0].name;
-                } else {
-                    fileName.textContent = 'No file chosen';
-                }
-            });
-        });
     </script>
 @endsection

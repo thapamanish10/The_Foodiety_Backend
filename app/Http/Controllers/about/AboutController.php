@@ -62,15 +62,15 @@ class AboutController extends Controller
 
     private function validateRequest(Request $request) {
         $request->validate([
-            'company_name' => 'string|max:255',
-            'company_logo' => 'image|mimes:jpg,jpeg,png|max:5048',
-            'phone_number' => 'string|max:20',
+            'company_name' => 'required|string|max:255',
+            'company_logo' => 'required|image|mimes:jpg,jpeg,png|max:5048',
+            'phone_number' => 'required|string|max:20',
             'optional_phone_number' => 'nullable|string|max:20',
-            'email_address' => 'nullable|string|max:255',
+            'email_address' => 'required|string|max:255',
             'facebook_link' => 'nullable|string|max:255',
             'instagram_link' => 'nullable|string|max:255',
             'youtube_link' => 'nullable|string|max:255',
-            'about_text' => 'string|max:10000',
+            'about_text' => 'required|string|max:10000',
         ]);
     }
 
@@ -112,6 +112,8 @@ class AboutController extends Controller
     }
     public function updateAboutImage(Request $request, $id)
     {
+
+
         $image = AboutImage::findOrFail($id);
         $image->about_id = $request->about_id;
         $image->image_name = $request->image_name;
