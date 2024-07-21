@@ -30,6 +30,11 @@ class VideosController extends Controller
     // Store the product video
     public function store(Request $request, $id)
     {
+        $request->validate([
+            'video_name' => 'required|string|max:255',
+            'video' => 'required|mimes:mp4,avi,mov',
+            'video_type' => 'required|string',
+        ]);
         $video = new Video();
         $video->product_id =  $request->product_id;
         $video->video_name = $request->video_name;

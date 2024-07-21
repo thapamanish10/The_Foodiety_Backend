@@ -31,18 +31,18 @@
                     </div>
                 </div>
                 <div class="formBody">
-                    <div class="formGroup">
+                    <div class="formGroup" hidden>
                         <label for="product_id">Product Id:</label>
                         <input type="text" value="{{ $data->id }}" name="product_id" id="product_id" readonly>
                     </div>
                     <div class="row">
                         <div class="formGroup">
                             <label for="video_name">VIDEO NAME: <span class="imp">*</span></label>
-                            <input type="text" value="" name="video_name" id="video_name" required>
+                            <input type="text" value="" name="video_name" id="video_name">
                         </div>
                         <div class="formGroup">
                             <label for="video_type">TYPE:<span class="imp">*</span></label>
-                            <select class="custom-select" id="video_type" name="video_type" required>
+                            <select class="custom-select" id="video_type" name="video_type">
                                 <option value="">Video type? </option>
                                 <option value="portrait">Portrait</option>
                                 <option value="landscape">Landscape</option>
@@ -51,7 +51,7 @@
                     </div>
                     <label for="video">PRODUCT VIDEO: <span class="imp">*</span></label>
                     <div class="formGroupImage">
-                        <input type="file" name="video" id="video" style="display: none;" value="{{ old('video') }}" accept="video/mp4" required>
+                        <input type="file" name="video" id="video" style="display: none;" value="{{ old('video') }}" accept="video/mp4">
                         <img src="{{ asset('assets/video_up.png') }}" style="opacity: 0.5" class="uploadimage" alt="" id="customButton" onclick="document.getElementById('video').click();">
                         <video id="selectedVideo" style="display:none; max-width: 100%; max-height: 300px; margin-top: 10px;" controls></video>
                         <span id="fileName">Drop your video here, Or browse</span>

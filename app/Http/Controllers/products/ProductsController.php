@@ -63,7 +63,7 @@ class ProductsController extends Controller
             'phone_number' => 'nullable|string|max:20',
             'about_us' => 'nullable|string',
             'features' => 'nullable|string',
-            'rating' => 'nullable|numeric|min:1|max:5',
+            'rating' => 'nullable|numeric|min:1|max:10',
         ]);
 
         $product = new Product();
@@ -194,9 +194,9 @@ class ProductsController extends Controller
         $request->validate([
             'product_id' => 'required|exists:products,id',
             'review_title' => 'required|string|max:255',
-            'visit_date' => 'nullable|date',
-            'visit_with' => 'nullable|string|max:255',
-            'review_text' => 'nullable|string',
+            'visit_date' => 'required|date',
+            'visit_with' => 'required|string|max:255',
+            'review_text' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5048',
         ]);
 
