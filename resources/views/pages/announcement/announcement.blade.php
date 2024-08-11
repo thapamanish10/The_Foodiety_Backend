@@ -4,9 +4,9 @@
     <main class="productsContainer">
         <div class="navigationHeading">
             <span>Dashboard</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
             <span class="segment">{{ Request::segment(1) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <div class="totelItems">
             <h3>Total Items (0)</h3>

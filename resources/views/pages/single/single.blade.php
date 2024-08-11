@@ -1,12 +1,12 @@
 @extends('pages.home')
 
 @section('content')
-    <main class="dashboardContainer">
+    <main class="productsContainer">
         <div class="navigationHeading">
-            <span>Home</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <span>{{ Request::segment(1) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <span>Dashboard</span>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
+            <span class="segment">{{ Request::segment(1) }}</span>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <div class="singlePageInfo">
             <div class="rNameRating">
