@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('./css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('./css/buttons.css') }}">
+    <link rel="stylesheet" href="{{ asset('./css/totalitems.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/topbar.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/products.css') }}">

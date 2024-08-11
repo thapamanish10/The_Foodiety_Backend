@@ -4,16 +4,16 @@
     <main class="productsContainer">
         <div class="navigationHeading">
             <span>Dashboard</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
             <span class="segment">{{ Request::segment(1) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <div class="totelItems">
             <h3>Total Items ({{ $totalDatas }})</h3>
             <a href="{{ route('product.create')}}">
                 <button class="addReview add">
                     <span>Create</span>
-                    <ion-icon name="add-circle-outline"></ion-icon>
+                     <img src="{{ asset('dashboardicons/add.png') }}" alt="CreateIcon">
                 </button>
             </a>
         </div>

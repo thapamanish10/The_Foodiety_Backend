@@ -38,7 +38,7 @@ aside {
     align-items: center;
     gap: 10px;
     margin: 3px 0;
-    padding: 7px 10px;
+    padding: 5px 10px;
     border-radius: 0.6rem;
 }
 .sidebarNavItems li img {
@@ -53,7 +53,7 @@ aside {
     padding: 5px;
     align-items: center;
     color: #4d4c55;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     text-decoration: none;
     transition: background-color 0.3s;

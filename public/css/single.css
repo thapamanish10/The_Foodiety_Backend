@@ -228,38 +228,6 @@
     aspect-ratio: 1/1;
 }
 
-.addReview {
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    outline: 0;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.manage {
-    background: transparent;
-    border: 1px solid var(--border);
-}
-.addReview span {
-    background: none;
-    font-size: 12px;
-    font-weight: 500;
-}
-.addReview ion-icon {
-    width: 14px;
-    height: 14px;
-    background: none;
-}
-.add {
-    border: 0;
-    background: var(--main);
-}
-.add:active {
-    opacity: 0.8;
-}
-
 .reviewDetails h2 {
     font-size: 14px;
     font-weight: 600;
