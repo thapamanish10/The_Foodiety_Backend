@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('./css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/topbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('./css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/products.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/single.css') }}">
@@ -22,15 +23,28 @@
 </head>
 
 <body>
-    @include('layouts.topbar')
-    @include('layouts.alert')
-    @yield('content')
-    @include('layouts.footer')
-    @yield('ckScript')
-    @yield('jsScript')
-    @yield('alertScript')
-    @yield('displayImageScript')
-    @yield('carouselScript')
+    <div class="homeMainContainer">
+        <div class="left">
+            @include('layouts.sidebar')
+        </div>
+        <div class="right">
+            <div class="top">
+                @include('layouts.topbar')
+            </div>
+            <div class="content">
+                @yield('content')
+                @include('layouts.alert')
+            </div>
+            <div class="footer">
+                {{-- @include('layouts.footer') --}}
+                @yield('ckScript')
+                @yield('jsScript')
+                @yield('alertScript')
+                @yield('displayImageScript')
+                @yield('carouselScript')
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

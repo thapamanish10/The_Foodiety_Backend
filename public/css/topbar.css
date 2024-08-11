@@ -1,59 +1,19 @@
-.nav {
-    width: 1200px;
-    margin: auto;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 7px 0;
-    transition: ease;
-    border-bottom: 1px solid var(--border);
-}
-.nav .navLeft,
-.navCenter,
-.navRight {
-    flex: 1;
-}
-.nav .navLeft ul {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-.nav .navLeft ul li a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    user-select: none;
-    font-size: 13px;
-    font-weight: 600;
-    transition: 0.3s ease;
-}
-.nav .navLeft ul li a:hover {
-    color: #38bdf8;
-}
-.activeNavLink {
-    color: #38bdf8;
-}
-.nav .navCenter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.nav .navCenter img {
-    height: 30px;
-    object-fit: contain;
-    cursor: pointer;
-    user-select: none;
-}
-.nav .navRight {
+nav {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding: 15px 20px;
+}
+
+.navRight {
+    display: flex;
+    align-items: center;
     gap: 20px;
 }
+
+/* Search Bar */
 .search {
-    height: 30px;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -63,135 +23,118 @@
     border-radius: 2rem;
     cursor: pointer;
 }
+
 .search ion-icon {
     width: 14px;
     height: 14px;
     color: var(--iconColor);
-    background: transparent;
 }
+
 .search input {
-    border: 0;
-    outline: 0;
+    border: none;
+    outline: none;
     font-size: 12px;
     font-weight: 500;
     color: var(--iconColor);
     width: 200px;
     background: transparent;
 }
+
+/* User Profile */
 .userProfile {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
-    user-select: none;
     position: relative;
 }
+
 .userProfile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/* Profile Dropdown */
 .profileDropdown {
     width: 250px;
-    border-radius: 10px;
     position: absolute;
     top: 130%;
     right: 10%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
         rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     padding: 10px;
-    background: white !important;
+    background: white;
     display: none;
-    z-index: 100000;
+    z-index: 1000;
 }
+
+/* Profile Picture and Username */
 .profilePic {
-    flex: 1;
     display: flex;
     align-items: center;
     gap: 10px;
-    position: relative;
     padding-bottom: 10px;
-    background: none;
 }
+
 .profilePic img {
     width: 35px;
     height: 35px;
     object-fit: cover;
-    background: none;
 }
-.dropdownUsername {
-    background: none;
-}
+
 .dropdownUsername h3 {
     font-size: 13px;
     font-weight: 800;
-    background: none;
     color: var(--black);
 }
+
 .dropdownUsername span {
     font-size: 12px;
     font-weight: 500;
     opacity: 0.8;
-    background: none;
     color: var(--black);
 }
-.profilePic ion-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 19px;
-    height: 19px;
-    aspect-ratio: 1/1;
-}
 
+/* Profile Items */
 .profileItem {
-    flex: 1;
-    background: none;
-}
-.profileItem {
-    flex: 1;
     display: flex;
     align-items: center;
     gap: 13px;
     padding: 5px 10px;
     border-radius: 7px;
     margin: 5px 0;
-    background: none;
-}
-.profileItem form button {
-    flex: 1;
-    background: none;
-    border: 0;
-    outline: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
+
 .profileItem:hover {
     background: var(--iconBg);
 }
+
 .profileItem ion-icon {
     width: 16px;
     height: 16px;
-    background: none;
     color: var(--iconColor);
-    transition: opacity 0.3s ease;
-    aspect-ratio: 1/1;
 }
-.profileItem span {
-    background: none;
+
+/* Logout Button */
+.logout {
     color: var(--iconColor);
-    transition: opacity 0.3s ease;
-    font-size: 12px;
-    font-weight: 500;
 }
+
 hr {
-    flex: 1;
-    height: 0;
-    border-right: none;
-    border-left: none;
-    border-bottom: none;
-    border-top: 1px solid var(--border);
+    height: 1px;
+    border: none;
+    background: var(--border);
+    margin: 5px 0;
+}
+
+/* Additional Styling */
+.profilePic ion-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 19px;
+    height: 19px;
 }

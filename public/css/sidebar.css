@@ -1,0 +1,79 @@
+aside {
+    width: 100%; /* Width of the sidebar */
+    height: 100vh; /* Full height */
+    display: flex;
+    padding: 7px;
+    flex-direction: column;
+}
+
+.sidebarContainer {
+    padding: 15px 0;
+    border-bottom: 1.6px dashed #6d6c864b;
+    margin-bottom: 15px;
+}
+
+.sidebarContainer img {
+    width: 50px;
+    height: 50px;
+    border-radius: 0.4rem;
+    object-fit: cover;
+}
+.sidebarSubHeading {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 10px;
+    color: #969ba8;
+    margin: 20px 0;
+}
+.sidebarNavItems {
+    flex: 1; /* Take up remaining space */
+}
+
+.sidebarNavItems ul {
+    list-style-type: none; /* Remove bullet points */
+}
+
+.sidebarNavItems li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 3px 0;
+    padding: 7px 10px;
+    border-radius: 0.6rem;
+}
+.sidebarNavItems li img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+.sidebarNavItems a {
+    flex: 1;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    color: #4d4c55;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.sidebarNavItems li:hover {
+    background-color: #ffffff;
+}
+
+.activeNavLink {
+    background-color: #ffffff;
+    box-shadow: #969ba821 0px 3px 8px;
+}
+
+.sidebarNavItems ion-icon {
+    margin-left: auto; /* Push icons to the right */
+    font-size: 17px; /* Icon size */
+    color: #ecf0f1; /* Icon color */
+}
+
+.sidebarNavItems a span {
+    flex-grow: 1; /* Take up available space */
+}
