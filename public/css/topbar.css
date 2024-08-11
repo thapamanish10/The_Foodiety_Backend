@@ -6,6 +6,7 @@ nav {
     padding: 10px 20px;
 }
 .navLeft {
+    width: max-content;
     display: flex;
     flex-direction: column;
 }
@@ -20,12 +21,14 @@ nav {
     color: #8a909e;
 }
 .navRight {
+    width: max-content;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
 }
 .search {
+    width: max-content;
     display: flex;
     align-items: center;
     gap: 5px;
