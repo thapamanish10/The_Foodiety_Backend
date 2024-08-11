@@ -36,10 +36,10 @@ nav {
     cursor: pointer;
 }
 
-.search img {
+.search .SearchIcon {
     width: 14px;
     height: 14px;
-    color: var(--iconColor);
+    aspect-ratio: 1 / 1;
 }
 
 .search input {

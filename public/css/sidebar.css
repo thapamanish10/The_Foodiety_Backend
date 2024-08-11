@@ -69,11 +69,11 @@ aside {
 }
 
 .sidebarNavItems ion-icon {
-    margin-left: auto; /* Push icons to the right */
-    font-size: 17px; /* Icon size */
-    color: #ecf0f1; /* Icon color */
+    margin-left: auto;
+    font-size: 17px;
+    color: #ecf0f1;
 }
 
 .sidebarNavItems a span {
-    flex-grow: 1; /* Take up available space */
+    flex-grow: 1;
 }

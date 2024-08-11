@@ -7,7 +7,7 @@
     </div>
     <div class="navRight">
         <div class="search">
-        <img src="{{ asset('dashboardicons/search.png') }}" alt="SearchIcon">
+        <img src="{{ asset('dashboardicons/search.png') }}" class="SearchIcon" alt="SearchIcon">
             <input type="text" placeholder="Search...">
         </div>
         <div class="userProfile" id="profileButton">
