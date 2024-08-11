@@ -8,6 +8,7 @@
     <link rel="icon" href="{{ asset('assets/foodiety.png') }}" type="image/png">
     <!-- Other head elements -->
     <link rel="stylesheet" href="{{ asset('./css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('./css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/topbar.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/sidebar.css') }}">
@@ -23,7 +24,7 @@
 </head>
 
 <body>
-    <div class="homeMainContainer">
+    <main class="home">
         <div class="left">
             @include('layouts.sidebar')
         </div>
