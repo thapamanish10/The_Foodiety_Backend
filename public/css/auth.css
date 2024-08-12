@@ -69,11 +69,14 @@ a {
     padding: 0 10px;
     gap: 10px;
 }
-.inputBox .inputBoxImg {
-    width: 18px !important;
-    height: 18px !important;
+.inputBox .inputBoxImage {
+    width: 18px;
+    height: 18px;
+}
+.inputBox .inputBoxImage .inputBoxImg {
+    width: 100%;
+    height: 100%;
     aspect-ratio: 1 / 1;
-    object-fit: fill;
 }
 .authFormGroup label {
     width: 100%;
