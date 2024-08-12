@@ -20,14 +20,14 @@
                 <label for="email" class="">Email</label>
                 <div class="authFormGroup">
                     <div class="inputBox">
-                        <img class="inputBoxImg" src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon">
+                        {{-- <img class="inputBoxImg" src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon"> --}}
                         <input id="email" name="email" type="email" autocomplete="email" required >
                     </div>
                 </div>
                 <label for="password" >Password</label>
                 <div class="authFormGroup">
                     <div class="inputBox">
-                        <img class="inputBoxImg" src="{{ asset('dashboardicons/eye.png') }}" alt="EyeArrowIcon">
+                        {{-- <img class="inputBoxImg" src="{{ asset('dashboardicons/eye.png') }}" alt="EyeArrowIcon"> --}}
                         <input id="password" 
                             name="password" 
                             type="password" 
