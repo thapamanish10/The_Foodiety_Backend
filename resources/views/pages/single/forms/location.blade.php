@@ -3,12 +3,12 @@
 @section('content')
     <main class="productsContainer">
         <div class="navigationHeading">
-            <span>Home</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <span>{{ Request::segment(1) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <span>{{ Request::segment(2) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <span>Dashboard</span>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
+            <span class="segment">{{ Request::segment(1) }}</span>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
+             <span>{{ Request::segment(2) }}</span>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <div class="locationformBody">
             <form action="{{ route('product.location.store', $data->id) }}" id="" class="form" method="POST"
@@ -20,13 +20,14 @@
                         <p>Provide information about the resturant to contact.</p>
                     </div>
                     <div class="buttonDiv">
-                        <button class="formBtn cancle">
+                        <button class="btn btnCancle">
                             <span>Cancle</span>
-                            <ion-icon name="close-circle-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/cancle.png') }}" alt="CancleIcon">
                         </button>
-                        <button class="formBtn update">
+                        <button class="btn btnUpdate btnPrimary">
                             <span>Update</span>
-                            <ion-icon name="checkmark-circle-outline"></ion-icon></button>
+                            <img src="{{ asset('dashboardicons/update.png') }}" alt="UpdateIcon">
+                        </button>
                     </div>
                 </div>
                 <div class="formBody">

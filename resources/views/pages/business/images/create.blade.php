@@ -20,13 +20,13 @@
                         <p>Provide information about the restaurant to contact.</p>
                     </div>
                     <div class="buttonDiv">
-                        <button class="formBtn cancle">
+                        <button class="btn btnCancle" type="button" onclick="window.history.back();">
                             <span>Cancel</span>
-                            <ion-icon name="close-circle-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/cancle.png') }}" alt="CancleIcon">
                         </button>
-                        <button class="formBtn update">
+                        <button class="btn btnAdd btnPrimary" type="submit">
                             <span>Upload</span>
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/image.png') }}" alt="AddIcon">
                         </button>
                     </div>
                 </div>

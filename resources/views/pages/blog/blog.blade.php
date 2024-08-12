@@ -11,9 +11,9 @@
         <div class="totelItems">
             <h3>Total Items ()</h3>
             <a href="{{ route('blog.create')}}">
-                <button class="addReview add">
+                <button class="btn btnAdd btnPrimary">
                     <span>Create</span>
-                    <ion-icon name="add-circle-outline"></ion-icon>
+                    <img src="{{ asset('dashboardicons/add.png') }}" alt="AddIcon">
                 </button>
             </a>
         </div>
@@ -41,7 +41,9 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <img class="blogLogo" src="{{ $data->blog_image }}" alt="">
+                                    @foreach ($data->images as $image)
+                                        <img class="blogLogo" src="{{ $image->image }}" alt="">
+                                    @endforeach
                                 </td>
                                 <td>{{ $data->publish_date }}</td>
                                 <td>{{ $data->blog_status }}</td>

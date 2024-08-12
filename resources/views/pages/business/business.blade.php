@@ -15,9 +15,9 @@
         @if ($abouts->count() < 1)
             <div class="totelItems">
                 <a href="{{ route('business.create') }}">
-                    <button class="addReview add">
+                    <button class="btn btnAdd">
                         <span>Create</span>
-                        <ion-icon name="add-circle-outline"></ion-icon>
+                        <img src="{{ asset('dashboardicons/add.png') }}" alt="AddIcon">
                     </button>
                 </a>
             </div>
@@ -35,8 +35,8 @@
                                 @endforeach
                             </div>
                             <div class="carousel-controls">
-                                <button class="carousel-control-prev">‹</button>
-                                <button class="carousel-control-next">›</button>
+                                <button class="carousel-control-prev carouselBtn"><img src="{{ asset('dashboardicons/left-arrow.png') }}" alt="LeftArrowIcon"></button>
+                                <button class="carousel-control-next carouselBtn"><img src="{{ asset('dashboardicons/right-arrow.png') }}" alt="RightArrowIcon"></button>
                             </div>
                         </div>
                     @endif
@@ -44,31 +44,31 @@
                         <h3 class="companyTitle">{{ $about->company_name }}</h3>
                         <div class="companyHeadingButtons">
                             <a href="{{ route('business.edit', ['id' => $about->id]) }}">
-                                <button class="addReview add">
+                                <button class="btn btnEdit">
                                     <span>Edit</span>
-                                    <ion-icon name="create-outline"></ion-icon>
+                                    <img src="{{ asset('dashboardicons/edit.png') }}" alt="EditIcon">
                                 </button>
                             </a>
                             <a href="{{ route('business.image.create', ['id' => $about->id]) }}">
-                                <button class="addReview add">
+                                <button class="btn btnAdd btnPrimary">
                                     <span>Add Images</span>
-                                    <ion-icon name="add-circle-outline"></ion-icon>
+                                    <img src="{{ asset('dashboardicons/image.png') }}" alt="AddImageIcon">
                                 </button>
                             </a>
                             @if ($about->images->count() > 0)
                                 <a href="{{ route('business.manage.image', ['id' => $about->id]) }}">
-                                    <button class="addReview add">
+                                    <button class="btn btnManage">
                                         <span>Manage Images</span>
-                                        <ion-icon name="settings-outline"></ion-icon>
+                                        <img src="{{ asset('dashboardicons/manage.png') }}" alt="ManageIcon">
                                     </button>
                                 </a>
                             @endif
                             <form action="{{ route('business.delete', $about->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this blog?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="addReview add delete">
+                                <button class="btn btnDelete btnDanger">
                                     <span>Delete</span>
-                                    <ion-icon name="trash-outline"></ion-icon>
+                                    <img src="{{ asset('dashboardicons/delete.png') }}" alt="DeleteIcon">
                                 </button>
                             </form>
                         </div>

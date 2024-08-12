@@ -15,10 +15,11 @@
     align-items: center;
     gap: 10px;
 }
-.resturantDetails {
+.singlePageInfoDetail {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 5px 0 10px 0;
 }
 .detailItem {
     display: flex;
@@ -29,10 +30,10 @@
     padding-right: 10px;
 }
 .detailItem span {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
 }
-.detailItem ion-icon {
+.detailItem img {
     width: 16px;
     height: 16px;
     aspect-ratio: 1/1;
@@ -41,7 +42,37 @@
 .resturantPhotosAndVideos {
     flex: 1;
 }
-.photosHeading {
+/* SINGLE PAGE HEADING */
+.singlePageHeading {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.singlePageHeading h3 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+/* SINGLE PAGE HEADING REVIEW STAR */
+.reviewStar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.reviewStar p {
+    font-size: 20px;
+    font-weight: 700;
+}
+.reviewStar img {
+    width: 20px;
+    height: 20px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}
+/* SINGLE PAGE SUB HEADING */
+.singlePageSubHeading {
     padding: 10px 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 10px;
@@ -49,14 +80,8 @@
     align-items: center;
     gap: 10px;
 }
-.photosHeading ion-icon {
-    width: 16px;
-    height: 16px;
-    aspect-ratio: 1/1;
-    cursor: pointer;
-}
-.photosHeading h3 {
-    font-size: 16px;
+.singlePageSubHeading h3 {
+    font-size: 18px;
     font-weight: 600;
     text-transform: capitalize;
 }
@@ -73,30 +98,19 @@
     align-items: center;
     gap: 20px;
 }
-.detailHeading ion-icon {
-    width: 16px;
-    height: 16px;
-    aspect-ratio: 1/1;
-    cursor: pointer;
-}
-.detailHeading h3 {
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: capitalize;
-}
 .resturantAbout {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 .resturantAbout .aboutItme h3 {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     text-transform: capitalize;
 }
 .resturantAbout .aboutItme p {
-    font-size: 12px;
-    opacity: 0.95;
+    font-size: 14px;
+    color: #4d4c55;
     text-align: justify;
 }
 .editDetail {
@@ -127,21 +141,7 @@
 .reviewsBody {
     flex: 1;
 }
-.reviewStar {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.reviewStar p {
-    font-size: 12px;
-    font-weight: 700;
-}
-.reviewStar img {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
-}
+
 .reviewBar {
     display: flex;
     flex-direction: column;
@@ -173,19 +173,6 @@
     transform: rotate(10deg);
     color: #008000;
 }
-.noOfReviews {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-.noOfReviews h3 {
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: capitalize;
-}
 .review {
     flex: 1;
     position: relative;
@@ -194,15 +181,14 @@
 }
 .reviewerProfile {
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 10px;
     padding-bottom: 10px;
 }
 .reviewerProfile img {
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     object-fit: contain;
-    border-radius: 50%;
     cursor: pointer;
 }
 .reviewerName h3 {
@@ -217,37 +203,29 @@
     font-weight: 500;
 }
 .reviewOption {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    cursor: pointer;
+    margin-left: 20px;
 }
-.reviewOption ion-icon {
+.reviewOption img {
     width: 18px;
     height: 18px;
     aspect-ratio: 1/1;
 }
 
 .reviewDetails h2 {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
+    color: #0f0e1a;
     text-transform: capitalize;
 }
 .reviewDetails h5 {
-    font-size: 12px;
-    font-weight: 500;
-    opacity: 0.7;
-}
-.reviewDetails p {
-    font-size: 12px;
-    padding: 7px 0;
-    text-align: justify;
-    opacity: 0.8;
-}
-.reviewDetails span {
     font-size: 13px;
     font-weight: 500;
-    opacity: 0.8;
+    color: #8a909e;
+}
+.reviewDetails p {
+    font-size: 14px;
+    padding: 7px 0;
+    text-align: justify;
 }
 
 .photosBody {

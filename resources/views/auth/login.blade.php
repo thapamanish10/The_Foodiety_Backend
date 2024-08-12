@@ -18,37 +18,38 @@
         <div class="authFormContainer">
             <form class="authForm" method="POST" action="{{ route('login') }}">
                 @csrf
+                <label for="email" class="">Email</label>
                 <div class="authFormGroup">
-                    <label for="email" class="">Email address</label>
-                    <input id="email" name="email" type="email" autocomplete="email" required >
+                    <div class="inputBox">
+                        <img src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon">
+                        <input id="email" name="email" type="email" autocomplete="email" required >
+                    </div>
                 </div>
+                <label for="password" >Password</label>
                 <div class="authFormGroup">
-                    <label for="password" >Password</label>
-                    <input id="password" 
-                        name="password" 
-                        type="password" 
-                        autocomplete="current-password" 
-                        required />
+                    <div class="inputBox">
+                        <img src="{{ asset('dashboardicons/eye.png') }}" alt="EyeArrowIcon">
+                        <input id="password" 
+                            name="password" 
+                            type="password" 
+                            autocomplete="current-password" 
+                            required />
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Remember Me -->
                 <div class="authFormRememberME">
-                    <label for="remember_me" class="">
-                        <input id="remember_me" type="checkbox" class="" name="remember">
-                        <span class="">{{ __('Remember me') }}</span>
-                    </label>
                     <div class="authForgotPassword">
                         @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" >Forgot password?</a>
+                            <a href="{{ route('password.request') }}">Forgot password?</a>
                         @endif
                     </div>
                 </div>
                 <div class="authFormGroupButton">
                     <button type="submit" class="">Log in</button>
                 </div>
-                <div class="authFormGroup">
-                <a href="{{ route('register') }}" class="">Registered Now?</a>
+                <a href="{{ route('register') }}" class="authNavigation">Don't have an account? <span>Sign Up here</span></a>
             </div>
             </form>
         </div>

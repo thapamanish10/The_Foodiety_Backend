@@ -38,6 +38,20 @@
                     <span>Blogs</span>
                 </a>
             </li>
+
+            <div class="logoutButton">
+                <h3 class="sidebarSubHeading">Logout / Exit</h3>
+            {{-- LOG OUT --}}
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <li id="logout">
+                    <img src="{{ asset('dashboardicons/logout.png') }}" alt="BlogIcon">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </div>
         </ul>
     </div>
 </aside>

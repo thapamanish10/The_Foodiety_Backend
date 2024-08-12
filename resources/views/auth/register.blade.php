@@ -10,55 +10,61 @@
 <body>
     <div class="authContainer">
         <div class="authContainerCard">
-        <div class="authHeading">
-            {{-- <img class="authLogo" src="{{ asset('./assets/logo.png') }}" alt="Your Company"> --}}
-            <h2 class="authHeadingText">Register</h2>
+            <div class="authHeading">
+                {{-- <img class="authLogo" src="{{ asset('./assets/logo.png') }}" alt="Your Company"> --}}
+                <h2 class="authHeadingText">Register</h2>
+            </div>
+            <div class="">
+                <form class="" method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <label for="name" class="">Username</label>
+                    <div class="authFormGroup">
+                        <div class="inputBox">
+                            <img src="{{ asset('dashboardicons/user.png') }}" alt="UserIcon">
+                            <input id="name" name="name" type="name" autocomplete="name" required class="">
+                        </div>
+                    </div>
+                    {{-- NEW EMAIL ADDRESS --}}
+                    <label for="email" class="">Email address</label>
+                    <div class="authFormGroup">
+                        <div class="inputBox">
+                            <img src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon">
+                            <input id="email" name="email" type="email" autocomplete="email" required class="">
+                        </div>
+                    </div>
+                    {{-- NEW PASSWORD --}}
+                    <label for="password" class="">Password</label>
+                    <div class="authFormGroup">
+                        <div class="inputBox">
+                            <img src="{{ asset('dashboardicons/eye.png') }}" alt="EyeIcon">
+                            <input id="password" 
+                                name="password" 
+                                type="password" 
+                                autocomplete="current-password" 
+                                required />
+                            </div>
+                        </div>
+                    </div>
+                    {{-- NEW CONFIRM PASSWORD --}}
+                    <label for="password_confirmation" class="">Confirm Password</label>
+                    <div class="authFormGroup">
+                        <div class="inputBox">
+                            <img src="{{ asset('dashboardicons/eye.png') }}" alt="EyeIcon">
+                            <input id="password_confirmation" 
+                                name="password_confirmation" 
+                                type="password" 
+                                autocomplete="new-password" 
+                                required />
+                        </div>
+                    </div>
+                    <div class="authFormGroupButton">
+                        <button type="submit" class="">Register Now</button>
+                    </div>
+                    <a href="{{ route('login') }}" class="authNavigation">Already have an account? <span>Login In here</span></a>
+                </form>
+            </div>
         </div>
-
-        <div class="">
-            <form class="" method="POST" action="{{ route('register') }}">
-                @csrf
-            <div class="authFormGroup">
-                <label for="name" class="">Username</label>
-                <input id="name" name="name" type="name" autocomplete="name" required class="">
-            </div>
-
-            <div class="authFormGroup">
-                <label for="email" class="">Email address</label>
-                <input id="email" name="email" type="email" autocomplete="email" required class="">
-            </div>
-
-            <div class="authFormGroup">
-                <label for="password" class="">Password</label>
-                    <input id="password" 
-                        name="password" 
-                        type="password" 
-                        autocomplete="current-password" 
-                        required 
-                        class="">
-            </div>
-
-            <div class="authFormGroup">
-                <label for="password_confirmation" class="">Confirm Password</label>
-                    <input id="password_confirmation" 
-                        name="password_confirmation" 
-                        type="password" 
-                        autocomplete="new-password" 
-                        required 
-                        class="">
-            </div>
-
-            <div class="authFormGroupButton">
-                <button type="submit" class="">Register Now</button>
-            </div>
-            <div class="authFormGroup">
-                <a href="{{ route('login') }}" class="">Already registered?</a>
-            </div>
-            </form>
-
-        </div>
-        </div>
-        </div>
+    </div>
 </body>
 </html>
 {{-- <x-guest-layout>

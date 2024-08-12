@@ -63,10 +63,7 @@ label {
     font-size: 12px;
     color: #fff;
 }
-.delete {
-    background: #ff003c !important;
-    color: #fff;
-}
+
 .empty_data {
     font-size: 12px;
     font-weight: 400;

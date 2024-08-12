@@ -15,9 +15,9 @@
         <div class="totelItems">
             <h3>Total Items ()</h3>
             <a href="{{ route('carousel.create')}}">
-                <button class="addReview add">
-                    <span>Create Carousel</span>
-                    <ion-icon name="add-circle-outline"></ion-icon>
+                <button class="btn btnAdd btnPrimary">
+                    <span>Create</span>
+                    <img src="{{ asset('dashboardicons/add.png') }}" alt="addIcon">
                 </button>
             </a>
         </div>
@@ -30,8 +30,8 @@
                 @endforeach
             </div>
             <div class="carousel-controls">
-                <button class="carousel-control-prev">‹</button>
-                <button class="carousel-control-next">›</button>
+                <button class="carousel-control-prev carouselBtn"><img src="{{ asset('dashboardicons/left-arrow.png') }}" alt="LeftArrowIcon"></button>
+                <button class="carousel-control-next carouselBtn"><img src="{{ asset('dashboardicons/right-arrow.png') }}" alt="RightArrowIcon"></button>
             </div>
         </div>
         @if ($carousels->count() > 0)
@@ -63,9 +63,9 @@
                                 <td>{{ $data->carousel_status }}</td>
                                 <td>                    
                                     <a href="{{ route('carousel.edit', ['id' => $data->id]) }}">
-                                        <button class="addReview add">
+                                        <button class="btn btnEdit">
                                             <span>Edit</span>
-                                            <ion-icon name="create-outline"></ion-icon>
+                                            <img src="{{ asset('dashboardicons/edit.png') }}" alt="EditIcon">
                                         </button>
                                     </a>
                                 </td>
@@ -73,9 +73,9 @@
                                     <form action="{{ route('carousel.delete', $data->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this blog?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="addReview add delete">
+                                        <button class="btn btnDelete btnDanger">
                                             <span>Delete</span>
-                                            <ion-icon name="trash-outline"></ion-icon>
+                                            <img src="{{ asset('dashboardicons/delete.png') }}" alt="DeleteIcon">
                                         </button>
                                     </form>
                                 </td>

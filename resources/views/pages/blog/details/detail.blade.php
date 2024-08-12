@@ -8,9 +8,9 @@
     <main class="productsContainer">
         <div class="navigationHeading">
             <span>Dashboard</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
             <span class="segment">{{ Request::segment(1) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <div class="companyContainer">
             @if ($data->images)
@@ -23,8 +23,8 @@
                         @endforeach
                     </div>
                     <div class="carousel-controls">
-                        <button class="carousel-control-prev">‹</button>
-                        <button class="carousel-control-next">›</button>
+                        <button class="carousel-control-prev carouselBtn"><img src="{{ asset('dashboardicons/left-arrow.png') }}" alt="LeftArrowIcon"></button>
+                        <button class="carousel-control-next carouselBtn"><img src="{{ asset('dashboardicons/right-arrow.png') }}" alt="RightArrowIcon"></button>
                     </div>
                 </div>
             @endif
@@ -32,31 +32,31 @@
                 <h3 class="companyTitle">{{ $data->blog_title }}</h3>
                 <div class="companyHeadingButtons">
                     <a href="{{ route('blog.edit', ['id' => $data->id]) }}">
-                        <button class="addReview add">
+                        <button class="btn btnEdit">
                             <span>Edit</span>
-                            <ion-icon name="create-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/edit.png') }}" alt="EditIcon">
                         </button>
                     </a>
                     <a href="{{ route('blog.image.create', ['id' => $data->id]) }}">
-                        <button class="addReview add">
+                        <button class="btn btnAdd btnPrimary">
                             <span>Add Image</span>
-                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/add.png') }}" alt="AddIcon">
                         </button>
                     </a>
                      @if ($data->images->count() > 0)
                         <a href="{{ route('blog.manage.image', ['id' => $data->id]) }}">
-                            <button class="addReview add">
+                            <button class="btn btnAdd">
                                 <span>Manage Image</span>
-                                <ion-icon name="add-circle-outline"></ion-icon>
+                                <img src="{{ asset('dashboardicons/manage.png') }}" alt="ManageIcon">
                             </button>
                         </a>
                     @endif
                     <form action="{{ route('blog.delete', $data->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this blog?');">
                         @csrf
                         @method('DELETE')
-                        <button class="addReview add delete">
+                        <button class="btn btnDelete btnDanger">
                             <span>Delete</span>
-                            <ion-icon name="trash-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/delete.png') }}" alt="DeleteIcon">
                         </button>
                     </form>
                 </div>

@@ -7,12 +7,12 @@
 @section('content')
 <main class="dashboardContainer">
     <div class="navigationHeading">
-        <span>Home</span>
-        <ion-icon name="chevron-forward-outline"></ion-icon>
-        <span>{{ Request::segment(1) }}</span>
-        <ion-icon name="chevron-forward-outline"></ion-icon>
+        <span>Dashboard</span>
+        <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
+        <span class="segment">{{ Request::segment(1) }}</span>
+        <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         <span>{{ Request::segment(2) }}</span>
-        <ion-icon name="chevron-forward-outline"></ion-icon>
+        <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
     </div>
     <div class="detailsformBody">
         <form 
@@ -30,13 +30,13 @@
                     <p>Provide information about the restaurant to contact.</p>
                 </div>
                 <div class="buttonDiv">
-                    <button class="formBtn cancle" type="button" onclick="window.location='{{ route('carousel.index') }}'">
+                    <button class="btn btnCancle" type="button" onclick="window.history.back();">
                         <span>Cancel</span>
-                        <ion-icon name="close-circle-outline"></ion-icon>
+                        <img src="{{ asset('dashboardicons/cancle.png') }}" alt="CancleIcon">
                     </button>
-                    <button class="formBtn update" type="submit">
+                    <button class="btn btnAdd btnPrimary" type="submit">
                         <span>Update</span>
-                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <img src="{{ asset('dashboardicons/update.png') }}" alt="UpdateIcon">
                     </button>
                 </div>
             </div>

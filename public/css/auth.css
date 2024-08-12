@@ -9,7 +9,7 @@
     font-family: "Noto Sans", sans-serif;
 }
 .authContainerCard {
-    width: 360px;
+    width: 400px;
     height: max-content;
     box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
         rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
@@ -18,7 +18,7 @@
         rgba(14, 63, 126, 0.04) 0px 12px 12px -6px,
         rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
     padding: 2rem;
-    border-radius: 0.4rem;
+    border-radius: 2rem;
 }
 a {
     text-decoration: none;
@@ -41,7 +41,8 @@ a {
 }
 .authHeadingText {
     font-size: 25px;
-    font-weight: 500;
+    font-weight: 900;
+    color: #232429;
 }
 .authFormContainer {
     width: 100%;
@@ -53,33 +54,52 @@ a {
     width: 100%;
     margin: 0.6rem 0;
     display: flex;
+    justify-content: center;
+    height: 40px;
     flex-direction: column;
     gap: 5px;
+    border: 2px solid #5b627431;
+    border-radius: 0.6rem;
+}
+.inputBox {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+}
+.inputBox img {
+    width: 18px;
+    height: 18px;
+    aspect-ratio: 1 / 1;
+    object-fit: fill;
 }
 .authFormGroup label {
     width: 100%;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 600;
 }
 .authFormGroup input {
+    flex: 1;
     font-size: 14px;
-    border: 1px solid #dddddd7a;
     outline: 0;
-    height: 33px;
-    border-radius: 3px;
+    height: 28px;
+    font-weight: 600;
     padding: 0 15px;
+    border: 0;
+    outline: 0;
+    border-left: 2px solid #5b627431;
 }
 /* .authFormGroup input:focus {
 } */
 .authFormRememberME {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 0.5rem 0;
 }
-.remember_me {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.authForgotPassword a {
+    text-decoration: underline;
+    color: #ffde59;
 }
 .authFormGroupButton {
     width: 100%;
@@ -90,16 +110,28 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 33px;
-    font-size: 12px;
-    border-radius: 3px;
-    font-weight: 500;
-    text-transform: uppercase;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: capitalize;
     background: #ffde59;
+    color: #232429;
     border: 0;
     outline: 0;
+    border-radius: 0.6rem;
     cursor: pointer;
 }
 .authFormGroupButton button:active {
     opacity: 0.7;
+}
+.authNavigation {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 6px;
+}
+.authNavigation span {
+    text-decoration: underline;
+    color: #5b6274;
 }

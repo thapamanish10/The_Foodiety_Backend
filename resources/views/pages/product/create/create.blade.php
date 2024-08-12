@@ -20,13 +20,13 @@
                         <p>Provide information about the restaurant to contact.</p>
                     </div>
                     <div class="buttonDiv">
-                        <button class="formBtn cancle">
+                        <button class="btn btnCancle">
                             <span>Cancel</span>
-                            <ion-icon name="close-circle-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/cancle.png') }}" alt="CancleIcon">
                         </button>
-                        <button class="formBtn update" type="submit">
+                        <button class="btn btnCreate btnPrimary" type="submit">
                             <span>Create</span>
-                            <ion-icon name="add-circle-outline"></ion-icon>
+                             <img src="{{ asset('dashboardicons/add.png') }}" alt="UpdateIcon">
                         </button>
                     </div>
                 </div>

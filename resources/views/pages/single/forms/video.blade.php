@@ -3,12 +3,12 @@
 @section('content')
     <main class="dashboardContainer">
         <div class="navigationHeading">
-            <span>Home</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <span>{{ Request::segment(1) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <span>Dashboard</span>
+            <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
+            <span class="segment">{{ Request::segment(1) }}</span>
+            <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
             <span>{{ Request::segment(2) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <div class="detailsformBody">
             <form action="{{ route('product.video.store', $data->id) }}" method="POST" enctype="multipart/form-data"
@@ -20,13 +20,13 @@
                         <p>Provide information about the restaurant to contact.</p>
                     </div>
                     <div class="buttonDiv">
-                        <button class="formBtn cancle" type="button">
-                            <span>Cancel</span>
-                            <ion-icon name="close-circle-outline"></ion-icon>
+                        <button class="btn btnCancle">
+                            <span>Cancle</span>
+                            <img src="{{ asset('dashboardicons/cancle.png') }}" alt="CancleIcon">
                         </button>
-                        <button class="formBtn update" type="submit">
+                        <button class="btn btnUpdate btnPrimary">
                             <span>Upload</span>
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/image.png') }}" alt="ImageIcon">
                         </button>
                     </div>
                 </div>

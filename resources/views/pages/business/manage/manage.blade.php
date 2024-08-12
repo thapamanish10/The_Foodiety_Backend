@@ -6,11 +6,11 @@
 
 @section('content')
     <main class="productsContainer">
-        <div class="navigationHeading">
-            <span>Home</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <span>{{ Request::segment(1) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+<div class="navigationHeading">
+            <span>Dashboard</span>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
+            <span class="segment">{{ Request::segment(1) }}</span>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <br>
         @if ($data->images->count() > 0)
@@ -38,9 +38,9 @@
                                 <td>{{ $image->status }}</td>
                                 <td>                    
                                     <a href="{{ route('business.manage.image.edit', ['id' => $image->id]) }}">
-                                        <button class="addReview add">
+                                        <button class="btn btnEdit">
                                             <span>Edit</span>
-                                            <ion-icon name="create-outline"></ion-icon>
+                                            <img src="{{ asset('dashboardicons/edit.png') }}" alt="EditIcon">
                                         </button>
                                     </a>
                                 </td>
@@ -48,9 +48,9 @@
                                     <form action="{{ route('business.manage.image.delete', $image->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="addReview add delete">
+                                        <button class="btn btnDelete btnDanger">
                                             <span>Delete</span>
-                                            <ion-icon name="trash-outline"></ion-icon>
+                                            <img src="{{ asset('dashboardicons/delete.png') }}" alt="DeleteIcon">
                                         </button>
                                     </form>
                                 </td>

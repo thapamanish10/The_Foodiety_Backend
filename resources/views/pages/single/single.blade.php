@@ -7,73 +7,75 @@
              <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
             <span class="segment">{{ Request::segment(1) }}</span>
              <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
+            <span class="segment">{{ Request::segment(2) }}</span>
+             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <div class="singlePageInfo">
-            <div class="rNameRating">
+            <div class="singlePageHeading">
                 <h3>{{ $data->name }}</h3>
                 <div class="reviewStar">
                     <img src="{{ asset('assets/rating.png') }}" class="ratingLogo" alt="">
                     <p>{{ $data->rating }} / 10</p>
                 </div>
             </div>
-            <div class="resturantDetails">
+            <div class="singlePageInfoDetail">
                 <div class="detailItem">
-                    <ion-icon name="location-outline"></ion-icon>
+                   <img src="{{ asset('dashboardicons/location.png') }}" alt="LocationIcon">
                     <span>{{ $data->location }}</span>
                 </div>
                 <div class="detailItem">
-                    <ion-icon name="call-outline"></ion-icon>
+                   <img src="{{ asset('dashboardicons/phone.png') }}" alt="PhoneIcon">
                     <span>{{ $data->phone_number }}</span>
                 </div>
                 <div class="detailItem">
-                    <ion-icon name="laptop-outline"></ion-icon>
+                    <img src="{{ asset('dashboardicons/website.png') }}" alt="WebsiteIcon">
                     <span>Website</span>
                 </div>
                 <div class="detailItem">
-                    <ion-icon name="cafe-outline"></ion-icon>
+                   <img src="{{ asset('dashboardicons/burger.png') }}" alt="MenuIcon">
                     <span>Menu</span>
                 </div>
                 <div class="detailItem">
-                    <ion-icon name="time-outline"></ion-icon>
+                   <img src="{{ asset('dashboardicons/time.png') }}" alt="TimeIcon">
                     <span>Open now {{ $data->opening_time }}</span>
                 </div>
                 <div class="detailItem">
-                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <img src="{{ asset('dashboardicons/info.png') }}" alt="InfoIcon">
                     <span>Improve this listing</span>
                 </div>
-                <div class="detailItem editDetail">
+                <div class="detailItem btn btnEdit">
                     <a href="{{ route('product.location', ['id' => $data->id]) }}">
-                        <ion-icon name="create-outline"></ion-icon>
+                        <img src="{{ asset('dashboardicons/edit.png') }}" alt="EditIcon">
                     </a>
                 </div>
             </div>
             <div class="resturantPhotosAndVideos">
-                <div class="photosHeading">
+                <div class="singlePageSubHeading">
                     <h3>Photos & Videos</h3>
                     <a href="{{ route('product.image.create', ['id' => $data->id]) }}">
-                        <button class="addReview add">
+                        <button class="btn btnCreate">
                             <span>Add Image</span>
-                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/image.png') }}" alt="ImageIcon">
                         </button>
                     </a>
                     <a href="{{ route('product.video.create', ['id' => $data->id]) }}">
-                        <button class="addReview add">
+                        <button class="btn btnEdit">
                             <span>Add Videos</span>
-                            <ion-icon name="add-circle-outline"></ion-icon>
+                             <img src="{{ asset('dashboardicons/edit.png') }}" alt="CreateIcon">
                         </button>
                     </a>
                     <a href="{{ route('manage.image', ['id'=> $data->id]) }}">
-                        <button class="addReview add">
+                        <button class="btn btnManage">
                             <span>Manage</span>
-                            <ion-icon name="settings-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/manage.png') }}" alt="ManageIcon">
                         </button>
                     </a>
                     <form action="{{ route('product.delete', $data->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this blog?');">
                         @csrf
                         @method('DELETE')
-                        <button class="addReview add delete">
+                        <button class="btn btnDelete">
                             <span>Delete</span>
-                            <ion-icon name="trash-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/delete.png') }}" alt="DeleteIcon">
                         </button>
                     </form>
                 </div>
@@ -88,59 +90,54 @@
                                 @endforeach
                             </div>
                             <div class="carousel-controls">
-                                <button class="carousel-control-prev">‹</button>
-                                <button class="carousel-control-next">›</button>
+                                <button class="carousel-control-prev carouselBtn"><img src="{{ asset('dashboardicons/left-arrow.png') }}" alt="LeftArrowIcon"></button>
+                                <button class="carousel-control-next carouselBtn"><img src="{{ asset('dashboardicons/right-arrow.png') }}" alt="RightArrowIcon"></button>
                             </div>
                         </div>
                     @endif
                 </div>
             </div>
             <div class="resturantDetail">
-                <div class="detailHeading">
+                <div class="singlePageSubHeading">
                     <h3>Details</h3>
-                    <a href="{{ route('product.about', ['id' => $data->id]) }}">
-                        <ion-icon name="create-outline"></ion-icon>
+                    <a href="{{ route('product.about', ['id' => $data->id]) }}" class="btn btnEdit">
+                        <img src="{{ asset('dashboardicons/edit.png') }}" alt="EditIcon">
                     </a>
                 </div>
                 <div class="resturantAbout">
                     <div class="aboutItme">
-                        <h3>About</h3>
-                        <p class="mt-2 text-lg leading-6 text-gray-600">{!! $data->about_us !!}</p>
+                        <h3>ABOUT</h3>
+                        <p>{!! $data->about_us !!}</p>
                     </div>
                     <div class="aboutItme">
                         <h3>PRICE RANGE</h3>
-                        <p class="mt-2 text-lg leading-6 text-gray-600">{{ $data->price_range }}</p>
+                        <p>{{ $data->price_range }}</p>
                     </div>
                     <div class="aboutItme">
                         <h3>CUISINES</h3>
-                        <p class="mt-2 text-lg leading-6 text-gray-600">{{ $data->cuisines }}</p>
+                        <p>{{ $data->cuisines }}</p>
                     </div>
                     <div class="aboutItme">
                         <h3>SPECIAL DIETS</h3>
-                        <p class="mt-2 text-lg leading-6 text-gray-600">{{ $data->special_diets }}</p>
+                        <p>{{ $data->special_diets }}</p>
                     </div>
                     <div class="aboutItme">
                         <h3>MEALS</h3>
-                        <p class="mt-2 text-lg leading-6 text-gray-600">{{ $data->meals }}</p>
+                        <p>{{ $data->meals }}</p>
                     </div>
                     <div class="aboutItme">
                         <h3>FEATURES</h3>
-                        <p class="mt-2 text-lg leading-6 text-gray-600">{!! $data->features !!}</p>
+                        <p>{!! $data->features !!}</p>
                     </div>
                     <div class="aboutItme"></div>
                 </div>
             </div>
             <div class="resturantReviews">
-                <div class="reviewsHeading">
+                <div class="singlePageSubHeading">
                     <h3>reviews & Ratings</h3>
-                    {{-- <span class="hidden sm:block">
-                        <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                            <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
-                            </svg>
-                            Edit
-                        </button>
-                    </span> --}}
+                    <a href="{{ route('product.about', ['id' => $data->id]) }}" class="btn btnEdit">
+                        <img src="{{ asset('dashboardicons/edit.png') }}" alt="EditIcon">
+                    </a>
                 </div>
                 <div class="reviewsBody">
                     <div class="reviewStar">
@@ -198,7 +195,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="noOfReviews">
+                    <div class="singlePageSubHeading">
                         <h3>Total Reviews ({{ count($data->reviews) }})</h3>
                         @if (count($data->reviews) < 1)
                             <a href="{{ route('product.review', ['id' => $data->id]) }}">
@@ -222,14 +219,14 @@
                                     </div>
                                     <div class="reviewOption">
                                         <a href="{{ route('product.review.edit', ['id' => $review->id]) }}">
-                                            <ion-icon name="create-outline"></ion-icon>
+                                            <img src="{{ asset('dashboardicons/edit.png') }}" alt="EditIcon">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="reviewDetails">
-                                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{ $review->review_title }}</h2>
+                                    <h2>{{ $review->review_title }}</h2>
                                     <h5>{{ $review->created_at->format('M d, Y') }} • {{ $review->visit_with }}</h5>
-                                    <p class="mt-2 text-lg leading-6 text-gray-600">{{ strip_tags($review->review_text) }}</p>
+                                    <p>{{ strip_tags($review->review_text) }}</p>
                                 </div>
                             @endforeach
                         @endif

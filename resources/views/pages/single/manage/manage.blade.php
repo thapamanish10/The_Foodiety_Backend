@@ -7,21 +7,21 @@
 @section('content')
     <main class="productsContainer">
         <div class="navigationHeading">
-            <span>Home</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-            <span>{{ Request::segment(1) }}</span>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <span>Dashboard</span>
+            <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
+            <span class="segment">{{ Request::segment(1) }}</span>
+            <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
         </div>
         <div class="photosHeading">
             <h3>Photos & Videos</h3>
             <a href="{{ route('product.image.create', ['id' => $data->id]) }}">
-                <button class="addReview add">
+                <button class="btn btnEdit">
                     <span>Add Image</span>
                     <ion-icon name="add-circle-outline"></ion-icon>
                 </button>
             </a>
             <a href="{{ route('product.video.create', ['id' => $data->id]) }}">
-                <button class="addReview add">
+                <button class="btn btnEdit">
                     <span>Add Videos</span>
                     <ion-icon name="add-circle-outline"></ion-icon>
                 </button>
@@ -53,9 +53,9 @@
                                 <td>{{ $image->status }}</td>
                                 <td>                    
                                     <a href="{{ route('product.image.edit', ['id' => $image->id]) }}">
-                                        <button class="addReview add">
+                                        <button class="btn btnEdit">
                                             <span>Edit</span>
-                                            <ion-icon name="create-outline"></ion-icon>
+                                            <img src="{{ asset('dashboardicons/edit.png') }}" alt="editIcon">
                                         </button>
                                     </a>
                                 </td>
@@ -63,9 +63,9 @@
                                     <form action="{{ route('manage.image.delete', $image->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="addReview add delete">
+                                        <button class="btn btnDelete btnDanger">
                                             <span>Delete</span>
-                                            <ion-icon name="trash-outline"></ion-icon>
+                                            <img src="{{ asset('dashboardicons/delete.png') }}" alt="DeleteIcon">
                                         </button>
                                     </form>
                                 </td>
@@ -83,9 +83,9 @@
                                 <td>{{ $video->status }}</td>
                                 <td>                    
                                     <a href="{{ route('product.video.edit', ['id' => $video->id]) }}">
-                                        <button class="addReview add">
+                                        <button class="btn btnEdit">
                                             <span>Edit</span>
-                                            <ion-icon name="create-outline"></ion-icon>
+                                           <img src="{{ asset('dashboardicons/edit.png') }}" alt="editIcon">
                                         </button>
                                     </a>
                                 </td>
@@ -93,9 +93,9 @@
                                     <form action="{{ route('manage.video.delete', $video->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="addReview add delete">
+                                        <button class="btn btnDelete btnDanger">
                                             <span>Delete</span>
-                                            <ion-icon name="trash-outline"></ion-icon>
+                                            <img src="{{ asset('dashboardicons/delete.png') }}" alt="DeleteIcon">
                                         </button>
                                     </form>
                                 </td>

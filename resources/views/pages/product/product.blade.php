@@ -11,7 +11,7 @@
         <div class="totelItems">
             <h3>Total Items ({{ $totalDatas }})</h3>
             <a href="{{ route('product.create')}}">
-                <button class="addReview add">
+                <button class="btn btnCreate btnPrimary">
                     <span>Create</span>
                      <img src="{{ asset('dashboardicons/add.png') }}" alt="CreateIcon">
                 </button>
@@ -66,21 +66,21 @@
                     <span>Displaying 1-10 of {{ $totalDatas }}</span>
                     @if ($datas->onFirstPage())
                         <a href="" class="disabled">
-                            <ion-icon name="chevron-back-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/left-arrow.png') }}" alt="LeftArrowIcon">
                         </a>
                     @else
                         <a href="{{ $datas->previousPageUrl() }}" rel="prev">
-                            <ion-icon name="chevron-back-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/left-arrow.png') }}" alt="LeftArrowIcon">
                         </a>
                     @endif
 
                     @if ($datas->hasMorePages())
                         <a href="{{ $datas->nextPageUrl() }}" rel="next">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/right-arrow.png') }}" alt="RightArrowIcon">
                         </a>
                     @else
                         <a href="" class="disabled">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                            <img src="{{ asset('dashboardicons/right-arrow.png') }}" alt="RightArrowIcon">
                         </a>
                     @endif
                 </div>
