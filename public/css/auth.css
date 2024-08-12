@@ -70,8 +70,8 @@ a {
     gap: 10px;
 }
 .inputBox .inputBoxImg {
-    width: 18px;
-    height: 18px;
+    width: 18px !important;
+    height: 18px !important;
     aspect-ratio: 1 / 1;
     object-fit: fill;
 }
