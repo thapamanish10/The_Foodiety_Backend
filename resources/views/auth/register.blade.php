@@ -18,24 +18,30 @@
                     @csrf
                     <label for="name" class="">Username</label>
                     <div class="authFormGroup">
-                        <div class="inputBox">
+                        <div class="inputBoxImage">
                             <img class="inputBoxImg" src="{{ asset('dashboardicons/user.png') }}" alt="UserIcon">
+                        </div>
+                        <div class="inputBox">
                             <input id="name" name="name" type="name" autocomplete="name" required class="">
                         </div>
                     </div>
                     {{-- NEW EMAIL ADDRESS --}}
                     <label for="email" class="">Email address</label>
                     <div class="authFormGroup">
-                        <div class="inputBox">
+                        <div class="inputBoxImage">
                             <img class="inputBoxImg" src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon">
+                        </div>
+                        <div class="inputBox">
                             <input id="email" name="email" type="email" autocomplete="email" required class="">
                         </div>
                     </div>
                     {{-- NEW PASSWORD --}}
                     <label for="password" class="">Password</label>
                     <div class="authFormGroup">
-                        <div class="inputBox">
+                        <div class="inputBoxImage">
                             <img class="inputBoxImg" src="{{ asset('dashboardicons/eye.png') }}" alt="EyeIcon">
+                        </div>
+                        <div class="inputBox">
                             <input id="password" 
                                 name="password" 
                                 type="password" 
@@ -47,8 +53,10 @@
                     {{-- NEW CONFIRM PASSWORD --}}
                     <label for="password_confirmation" class="">Confirm Password</label>
                     <div class="authFormGroup">
-                        <div class="inputBox">
+                        <div class="inputBoxImage">
                             <img class="inputBoxImg" src="{{ asset('dashboardicons/eye.png') }}" alt="EyeIcon">
+                        </div>
+                        <div class="inputBox">
                             <input id="password_confirmation" 
                                 name="password_confirmation" 
                                 type="password" 
