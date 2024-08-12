@@ -11,7 +11,6 @@
     <div class="authContainer">
         <div class="authContainerCard">
         <div class="authHeading">
-            {{-- <img class="authLogo" src="{{ asset('./assets/logo.png') }}" alt="Your Company"> --}}
             <h2 class="authHeadingText">Login</h2>
         </div>
 
@@ -21,14 +20,14 @@
                 <label for="email" class="">Email</label>
                 <div class="authFormGroup">
                     <div class="inputBox">
-                        <img src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon">
+                        <img class="inputBoxImg" src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon">
                         <input id="email" name="email" type="email" autocomplete="email" required >
                     </div>
                 </div>
                 <label for="password" >Password</label>
                 <div class="authFormGroup">
                     <div class="inputBox">
-                        <img src="{{ asset('dashboardicons/eye.png') }}" alt="EyeArrowIcon">
+                        <img class="inputBoxImg" src="{{ asset('dashboardicons/eye.png') }}" alt="EyeArrowIcon">
                         <input id="password" 
                             name="password" 
                             type="password" 

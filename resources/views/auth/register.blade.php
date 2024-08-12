@@ -11,7 +11,6 @@
     <div class="authContainer">
         <div class="authContainerCard">
             <div class="authHeading">
-                {{-- <img class="authLogo" src="{{ asset('./assets/logo.png') }}" alt="Your Company"> --}}
                 <h2 class="authHeadingText">Register</h2>
             </div>
             <div class="">
@@ -20,7 +19,7 @@
                     <label for="name" class="">Username</label>
                     <div class="authFormGroup">
                         <div class="inputBox">
-                            <img src="{{ asset('dashboardicons/user.png') }}" alt="UserIcon">
+                            <img class="inputBoxImg" src="{{ asset('dashboardicons/user.png') }}" alt="UserIcon">
                             <input id="name" name="name" type="name" autocomplete="name" required class="">
                         </div>
                     </div>
@@ -28,7 +27,7 @@
                     <label for="email" class="">Email address</label>
                     <div class="authFormGroup">
                         <div class="inputBox">
-                            <img src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon">
+                            <img class="inputBoxImg" src="{{ asset('dashboardicons/mail.png') }}" alt="MailIcon">
                             <input id="email" name="email" type="email" autocomplete="email" required class="">
                         </div>
                     </div>
@@ -36,7 +35,7 @@
                     <label for="password" class="">Password</label>
                     <div class="authFormGroup">
                         <div class="inputBox">
-                            <img src="{{ asset('dashboardicons/eye.png') }}" alt="EyeIcon">
+                            <img class="inputBoxImg" src="{{ asset('dashboardicons/eye.png') }}" alt="EyeIcon">
                             <input id="password" 
                                 name="password" 
                                 type="password" 
@@ -49,7 +48,7 @@
                     <label for="password_confirmation" class="">Confirm Password</label>
                     <div class="authFormGroup">
                         <div class="inputBox">
-                            <img src="{{ asset('dashboardicons/eye.png') }}" alt="EyeIcon">
+                            <img class="inputBoxImg" src="{{ asset('dashboardicons/eye.png') }}" alt="EyeIcon">
                             <input id="password_confirmation" 
                                 name="password_confirmation" 
                                 type="password" 

@@ -67,7 +67,7 @@ a {
     padding: 0 10px;
     gap: 10px;
 }
-.inputBox img {
+.inputBox .inputBoxImg {
     width: 18px;
     height: 18px;
     aspect-ratio: 1 / 1;
