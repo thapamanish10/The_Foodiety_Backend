@@ -19,19 +19,19 @@
                 @csrf
                 <label for="email" class="">Email</label>
                 <div class="authFormGroup">
+                    <div class="inputBoxImage">
+                        <img class="inputBoxImg" src="{{ url('dashboardicons/mail.png') }}" alt="MailIcon">
+                    </div>
                     <div class="inputBox">
-                        <div class="inputBoxImage">
-                            <img class="inputBoxImg" src="{{ url('dashboardicons/mail.png') }}" alt="MailIcon">
-                        </div>
                         <input id="email" name="email" type="email" autocomplete="email" required >
                     </div>
                 </div>
                 <label for="password" >Password</label>
                 <div class="authFormGroup">
+                    <div class="inputBoxImage">
+                        <img class="inputBoxImg" src="{{ url('dashboardicons/eye.png') }}" alt="EyeArrowIcon">
+                    </div>
                     <div class="inputBox">
-                        <div class="inputBoxImage">
-                            <img class="inputBoxImg" src="{{ url('dashboardicons/eye.png') }}" alt="EyeArrowIcon">
-                        </div>
                         <input id="password" 
                             name="password" 
                             type="password" 
