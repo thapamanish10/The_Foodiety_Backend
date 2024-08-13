@@ -39,7 +39,7 @@
                 @include('layouts.alert')
             </div>
             <div class="footer">
-                {{-- @include('layouts.footer') --}}
+                @include('layouts.footer')
                 @yield('ckScript')
                 @yield('jsScript')
                 @yield('alertScript')

@@ -13,7 +13,7 @@
     padding: 1rem 0;
 }
 .companyTitle {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     border-left: 2px solid #ffde59;
     padding-left: 10px;
@@ -24,11 +24,13 @@
     padding: 0.5rem 0;
 }
 .companyText p {
-    font-size: 12px;
+    font-size: 14px;
+    color: #5c6375;
 }
 .companyContactItemText {
-    font-size: 12px;
+    font-size: 14px;
     padding: 0.5rem 0;
+    color: #5c6375;
 }
 .companyHeadingButtons {
     display: flex;

@@ -61,7 +61,7 @@
                     <a href="{{ route('product.video.create', ['id' => $data->id]) }}">
                         <button class="btn btnEdit">
                             <span>Add Videos</span>
-                             <img src="{{ asset('dashboardicons/edit.png') }}" alt="CreateIcon">
+                             <img src="{{ asset('dashboardicons/video.png') }}" alt="VideoIcon">
                         </button>
                     </a>
                     <a href="{{ route('manage.image', ['id'=> $data->id]) }}">
@@ -73,7 +73,7 @@
                     <form action="{{ route('product.delete', $data->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this blog?');">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btnDelete">
+                        <button class="btn btnDelete btnDanger">
                             <span>Delete</span>
                             <img src="{{ asset('dashboardicons/delete.png') }}" alt="DeleteIcon">
                         </button>

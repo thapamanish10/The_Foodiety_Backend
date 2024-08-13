@@ -12,7 +12,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <h3 class="sidebarSubHeading">My Store</h3>
+            <h3 class="sidebarSubHeading store">My Store</h3>
             <li class="{{ Request::is('product') ? 'activeNavLink' : '' }}">
                 <img src="{{ asset('dashboardicons/product.png') }}" alt="ProductIcon">
                 <a  href="{{ url('/product') }}">
@@ -39,9 +39,26 @@
                 </a>
             </li>
 
+            {{-- USER PROFILE --}}
+            <div class="sideBarProfile">
+                <h3 class="sidebarSubHeading">Profile / Account</h3>
+                <li class="{{ Request::is('business') ? 'activeNavLink' : '' }}">
+                    <img src="{{ asset('dashboardicons/profile.png') }}" alt="ProfileIcon">
+                    <a  href="{{ url('/business') }}">
+                        <span>Profile</span>
+                    </a>
+                </li>
+                
+                <li class="{{ Request::is('blog') ? 'activeNavLink' : '' }}">
+                    <img src="{{ asset('dashboardicons/manage.png') }}" alt="manageIcon">
+                    <a  href="{{ url('/blog') }}">
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </div>
+            {{-- LOG OUT --}}
             <div class="logoutButton">
                 <h3 class="sidebarSubHeading">Logout / Exit</h3>
-            {{-- LOG OUT --}}
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>

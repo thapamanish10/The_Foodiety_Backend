@@ -1,13 +1,23 @@
 .home {
     display: flex;
     min-height: 100vh;
+    height: max-content;
     transition: 0.3s ease;
+    position: relative;
     background-color: #f6f6f9;
 }
 .left {
     width: 290px;
     padding-right: 10px;
     transition: 0.3s ease;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #f6f6f9;
+    overflow-y: scroll;
+}
+.left::-webkit-scrollbar {
+    width: 0;
 }
 
 .left h1 {
@@ -24,16 +34,26 @@
     box-shadow: #969ba821 0px 3px 8px;
     margin: 10px 0 10px 10px;
     border-radius: 0.4rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: calc(100% - 290px);
+    overflow: auto;
 }
 
 .top {
     transition: 0.3s ease;
+    position: sticky;
+    top: 0;
+    right: 0;
 }
 
 .content {
     flex: 1;
     padding: 20px;
     transition: 0.3s ease;
+    position: relative;
+    overflow: auto;
 }
 
 .footer {

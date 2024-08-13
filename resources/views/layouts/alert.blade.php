@@ -3,7 +3,7 @@
         <ul>
             @foreach ($errors->all() as $error)
                 <div class="alert danger ">
-                    <ion-icon name="alert-circle"></ion-icon>
+                    <img src="{{ asset('dashboardicons/error.png') }}" alt="ErrorIcon">
                     <div class="alertMessage">
                         <h3>Error!</h3>
                         <span>{{ $error }}.</span>
@@ -16,7 +16,7 @@
 @if (session('success'))
     <div class="alert alert-success" id="alert">
         <div class="alert success">
-            <ion-icon name="checkmark-circle"></ion-icon>
+            <img src="{{ asset('dashboardicons/success.png') }}" alt="SuccessIcon">
             <div class="alertMessage">
                 <h3>Success!</h3>
                 <span>{{ session('success') }}.</span>

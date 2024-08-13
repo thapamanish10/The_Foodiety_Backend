@@ -1,7 +1,7 @@
 .alert {
     background: var(--white);
     border-radius: 5px;
-    min-width: 300px;
+    min-width: 400px;
     display: flex;
     align-items: center;
     padding: 5px;
@@ -24,27 +24,27 @@
 .danger {
     border: 1px solid var(--danger);
 }
-.alert ion-icon {
-    width: 18px;
-    height: 18px;
+.alert img {
+    width: 45px;
+    height: 45px;
     padding: 6px;
     border-radius: 3px;
 }
-.success ion-icon {
+.success img {
     color: var(--success);
     background: var(--lightSuccess);
 }
-.danger ion-icon {
+.danger img {
     color: var(--danger);
     background: var(--lightDanger);
 }
 .alertMessage h3 {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     margin-bottom: -3px;
 }
 .alertMessage span {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
 }
 @keyframes slideIn {
