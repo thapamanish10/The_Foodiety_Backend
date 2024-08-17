@@ -7,14 +7,14 @@
     </div>
     <div class="navRight">
         <div class="search">
-        <img src="{{ asset('dashboardicons/search.png') }}" class="SearchIcon" alt="SearchIcon">
+            <img src="{{ asset('dashboardicons/search.png') }}" class="SearchIcon" alt="SearchIcon">
             <input type="text" placeholder="Search...">
         </div>
         <div class="userProfile" id="profileButton">
             {{-- <a href="{{ url('/auth/profile') }}"> --}}
                 <img src="{{ asset('assets/profile.png') }}" alt="User Profile">
             {{-- </a> --}}
-            <div class="profileDropdown" id="profileDropdown">
+            {{-- <div class="profileDropdown" id="profileDropdown">
                 <div class="profilePic">
                     <img src="{{ asset('assets/profile.png') }}" alt="">
                     <div class="dropdownUsername">
@@ -48,7 +48,7 @@
                         <span>Logout</span>
                     </div>
                 </a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </nav>

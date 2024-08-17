@@ -42,16 +42,16 @@
             {{-- USER PROFILE --}}
             <div class="sideBarProfile">
                 <h3 class="sidebarSubHeading">Profile / Account</h3>
-                <li class="{{ Request::is('business') ? 'activeNavLink' : '' }}">
+                <li class="{{ Request::is('profile') ? 'activeNavLink' : '' }}">
                     <img src="{{ asset('dashboardicons/profile.png') }}" alt="ProfileIcon">
-                    <a  href="{{ url('/business') }}">
+                    <a  href="{{ url('/profile') }}">
                         <span>Profile</span>
                     </a>
                 </li>
                 
-                <li class="{{ Request::is('blog') ? 'activeNavLink' : '' }}">
+                <li class="{{ Request::is('setting') ? 'activeNavLink' : '' }}">
                     <img src="{{ asset('dashboardicons/manage.png') }}" alt="manageIcon">
-                    <a  href="{{ url('/blog') }}">
+                    <a  href="{{ url('/setting') }}">
                         <span>Settings</span>
                     </a>
                 </li>

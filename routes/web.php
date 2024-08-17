@@ -101,8 +101,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/product/video/edit/{id}', [VideosController::class, 'edit'])->name('product.video.edit');
     Route::post('/product/video/update/{id}', [VideosController::class, 'update'])->name('product.video.update');
     Route::delete('/product/video/manage/delete/{id}', [VideosController::class, 'deleteVideo'])->name('manage.video.delete');
+
+
+
+
+
     // Profile routes
     Route::get('/profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
+    Route::get('/setting', [ProfileController::class, 'editSetting'])->name('setting.edit');
+    Route::get('/profile/delete', [ProfileController::class, 'viewProfileDelete'])->name('profile.delete');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

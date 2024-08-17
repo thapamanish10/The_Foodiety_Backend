@@ -1,74 +1,58 @@
-.userInfo {
-    width: 55%;
-    height: fit-content;
+.dashboarProfile {
+    width: 100%;
+    margin-top: 1rem;
 }
-.userInfo .userImage {
-    /* background: var(--white); */
+.profileHeading {
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 20px 30px;
-    margin-top: 30px;
-    border-radius: 0.4rem;
-    position: relative;
-    padding-bottom: 40px;
-    border: 1px solid var(--border);
-}
-.userInfo .userImage img {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-}
-.userName {
-    background: none;
-}
-.userName h3 {
-    font-size: 20px;
-    font-weight: 700;
-    background: none;
-}
-.userName span {
-    font-size: 13px;
-    font-weight: 500;
-    background: none;
-}
-.editBtn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    background: none;
-}
-.editBtn ion-icon {
-    width: 20px;
-    height: 20px;
-    background: none;
-}
-.logoutBtn {
-    position: absolute;
-    top: 25px;
-    right: 20px;
-    padding: 8px 30px;
-    border-radius: 5px;
-    background: var(--main);
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
+    transition: 0.6s ease;
 }
-.logoutBtn ion-icon {
-    width: 20px;
-    height: 20px;
-    background: none;
+.profileHeading img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    transition: 0.6s ease;
+    aspect-ratio: 1 / 1;
 }
-.logoutBtn span {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--black);
-    background: none;
+.profileHeading h3 {
+    font-size: 19px;
+    font-weight: 600;
+    transition: 0.6s ease;
+    color: #0f0e1a;
+}
+
+.profileUserImage {
+    flex: 1;
+    transition: 0.6s ease;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 0;
+    margin: 1rem 0;
+}
+.profileUserImage img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+.changeProfileBtn {
+    height: 80px;
+    width: max-content;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.profileUserInfoFormBody {
+    padding: 5px 0 !important;
+}
+.profileFormBody {
+    margin-top: 1rem !important;
+}
+.deleteAccount {
+    padding: 1rem;
+    box-shadow: #969ba810 0px 3px 8px;
+    border-radius: 0.6rem;
 }
