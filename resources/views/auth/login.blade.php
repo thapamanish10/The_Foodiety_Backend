@@ -23,7 +23,7 @@
                         <img class="inputBoxImg" src="{{ url('dashboardicons/mail.png') }}" alt="MailIcon">
                     </div>
                     <div class="inputBox">
-                        <input id="email" name="email" type="email" autocomplete="email" required  >
+                        <input id="email" name="email" type="email" autocomplete="email" required autofocus  >
                     </div>
                 </div>
                 <label for="password" >Password</label>

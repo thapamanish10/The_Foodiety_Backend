@@ -99,8 +99,10 @@ a {
     outline: 0;
     border-left: 2px solid #5b627431;
 }
-/* .authFormGroup input:focus {
-} */
+.authFormGroup:focus-within {
+    border: 2px solid #ffde599f;
+}
+
 .authFormRememberME {
     display: flex;
     align-items: center;

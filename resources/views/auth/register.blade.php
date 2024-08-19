@@ -22,7 +22,7 @@
                             <img class="inputBoxImg" src="{{ asset('dashboardicons/user.png') }}" alt="UserIcon">
                         </div>
                         <div class="inputBox">
-                            <input id="name" name="name" type="name" autocomplete="name" required class="">
+                            <input id="name" name="name" type="name" autocomplete="name" required class="" autofocus>
                         </div>
                     </div>
                     {{-- NEW EMAIL ADDRESS --}}
