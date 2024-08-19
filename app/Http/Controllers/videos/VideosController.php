@@ -58,7 +58,7 @@ class VideosController extends Controller
     {
         $data = Video::findOrFail($id);
         $product = $data->product;
-        return view('pages.single.video.video', compact('data', 'product'));
+        return view('pages.single.edit.video', compact('data', 'product'));
     }
 
     // Update the product video
