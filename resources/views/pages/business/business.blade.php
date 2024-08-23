@@ -95,6 +95,14 @@
                             <img src="{{ asset('./assets/instagram.png') }}" alt="">
                             <p class="companyContactItemText">{{ $about->instagram_link }}</p>
                         </div>
+                        <div class="companyContactItem">
+                            <img src="{{ asset('./assets/tiktok.png') }}" alt="">
+                            <p class="companyContactItemText">{{ $about->tiktok_link }}</p>
+                        </div>
+                        <div class="companyContactItem">
+                            <img src="{{ asset('./assets/threads.png') }}" alt="">
+                            <p class="companyContactItemText">{{ $about->threads_link }}</p>
+                        </div>
                     </div>
                 @endforeach
             </div>

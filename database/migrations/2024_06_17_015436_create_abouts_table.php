@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('facebook_link');
             $table->string('instagram_link');
             $table->string('youtube_link');
+            $table->string('tiktok_link');
+            $table->string('threads_link');
             $table->text('about_text');
             $table->timestamps();
         });

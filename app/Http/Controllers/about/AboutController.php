@@ -70,6 +70,8 @@ class AboutController extends Controller
             'facebook_link' => 'nullable|string|max:255',
             'instagram_link' => 'nullable|string|max:255',
             'youtube_link' => 'nullable|string|max:255',
+            'tiktok_link' => 'nullable|string|max:255',
+            'threads_link' => 'nullable|string|max:255',
             'about_text' => 'required|string|max:10000',
         ]);
     }
@@ -82,6 +84,8 @@ class AboutController extends Controller
         $about->facebook_link = $request->facebook_link;
         $about->instagram_link = $request->instagram_link;
         $about->youtube_link = $request->youtube_link;
+        $about->tiktok_link = $request->tiktok_link;
+        $about->threads_link = $request->threads_link;
         $about->about_text = $request->about_text;
 
         if ($request->hasFile('company_logo')) {

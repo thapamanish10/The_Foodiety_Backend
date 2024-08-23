@@ -86,6 +86,16 @@
                             <input type="text" name="youtube_link" id="youtube_link" value="{{ $about->youtube_link}}">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="formGroup">
+                            <label for="tiktok_link">TIKTOK LINK:<span class="imp">*</span></label>
+                            <input type="text" name="tiktok_link" id="tiktok_link" value="{{$about->tiktok_link }}">
+                        </div>
+                        <div class="formGroup">
+                            <label for="threads_link">THREADS LINK:<span class="imp">*</span></label>
+                            <input type="text" name="threads_link" id="threads_link" value="{{ $about->threads_link }}">
+                        </div>
+                    </div>
                     <div class="formGroup">
                         <label for="about_text">COMPANY ABOUT TEXT:<span class="imp">*</span></label>
                         <textarea type="text" cols="30" rows="10" name="about_text" id="editor">{{  $about->about_text }}</textarea>
