@@ -10,6 +10,7 @@ use App\Http\Controllers\blog\BlogController;
 use App\Http\Controllers\about\AboutController;
 use App\Http\Controllers\carousel\CarouselController;
 use App\Http\Controllers\about\image\AboutImageController;
+use App\Http\Controllers\message\MessageController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -103,6 +104,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/product/video/manage/delete/{id}', [VideosController::class, 'deleteVideo'])->name('manage.video.delete');
 
 
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+    Route::post('/messages/{id}/mark-as-read', [MessageController::class, 'markAsRead'])->name('messages.markAsRead');
+    Route::delete('/messages/delete/{id}', [MessageController::class, 'delete'])->name('messages.delete');
 
 
 

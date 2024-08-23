@@ -1,6 +1,9 @@
+@php
+    $unvisitedMessageCount = App\Models\Message::where('status', 'unvisited')->count();
+@endphp
 <aside>
     <div class="sidebarContainer">
-        <a href="/dashboard">
+        <a href="#">
             <img src="{{ asset('dashboardicons/logo.png') }}" alt="Logo">
         </a>
     </div>
@@ -37,6 +40,17 @@
                 <a  href="{{ url('/blog') }}">
                     <span>Blogs</span>
                 </a>
+            </li>
+
+            <li class="{{ Request::is('messages') ? 'activeNavLink' : '' }}">
+                <img src="{{ asset('dashboardicons/chat.png') }}" alt="ChatIcon">
+                <a href="{{ url('/messages') }}">
+                    <span>Messages</span>
+                </a>
+                
+                @if($unvisitedMessageCount > 0)
+                    <div class="messageNum">{{ $unvisitedMessageCount }}</div>
+                @endif
             </li>
 
             {{-- USER PROFILE --}}

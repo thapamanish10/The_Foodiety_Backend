@@ -14,18 +14,6 @@
         </div>
         <div class="photosHeading">
             <h3>Photos & Videos</h3>
-            <a href="{{ route('product.image.create', ['id' => $data->id]) }}">
-                <button class="btn btnEdit">
-                    <span>Add Image</span>
-                    <ion-icon name="add-circle-outline"></ion-icon>
-                </button>
-            </a>
-            <a href="{{ route('product.video.create', ['id' => $data->id]) }}">
-                <button class="btn btnEdit">
-                    <span>Add Videos</span>
-                    <ion-icon name="add-circle-outline"></ion-icon>
-                </button>
-            </a>
         </div>
         @if ($data->images->count() > 0)
             <div class="productsContent">
@@ -36,6 +24,7 @@
                             <td>Image Name</td>
                             <td>Image</td>
                             <td>Status</td>
+                            <td>View</td>
                             <td>Edit</td>
                             <td>Delete</td>
                             <td><ion-icon name="ellipsis-vertical"></ion-icon></td>
@@ -51,6 +40,12 @@
                                     <ion-icon name="image-outline"></ion-icon>
                                 </td>
                                 <td>{{ $image->status }}</td>
+                                <td>
+                                    <button class="btn btnView btnSuccess">
+                                        <span>View</span>
+                                        <img src="{{ asset('dashboardicons/view.png') }}" alt="ViewIcon">
+                                    </button>
+                                </td>
                                 <td>                    
                                     <a href="{{ route('product.image.edit', ['id' => $image->id]) }}">
                                         <button class="btn btnEdit">
@@ -81,6 +76,12 @@
                                     <ion-icon name="film-outline"></ion-icon>
                                 </td>
                                 <td>{{ $video->status }}</td>
+                                <td>                    
+                                    <button class="btn btnPlay btnSuccess">
+                                        <span>Play</span>
+                                        <img src="{{ asset('dashboardicons/play.png') }}" alt="PlayIcon">
+                                    </button>
+                                </td>
                                 <td>                    
                                     <a href="{{ route('product.video.edit', ['id' => $video->id]) }}">
                                         <button class="btn btnEdit">

@@ -9,6 +9,7 @@ use App\Http\Controllers\about\AboutController;
 use App\Http\Controllers\carousel\CarouselController;
 use App\Http\Controllers\about\image\AboutImageController;
 use App\Http\Controllers\blog\BlogController;
+use App\Http\Controllers\message\MessageController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -25,3 +26,4 @@ Route::get('/aboutImage', [AboutImageController::class, 'aboutImageAPI'])->name(
 Route::get('/blogs', [BlogController::class, 'blogAPI'])->name('blogs');
 Route::get('/blogImage', [BlogController::class, 'blogImageAPI'])->name('blogImage');
 Route::get('/blog/{id}', [BlogController::class, 'blogSingelAPI'])->name('blogSingelAPI');
+Route::post('/messages', [MessageController::class, 'createMessage'])->name('messages.store');

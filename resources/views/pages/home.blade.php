@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('./css/details.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/business.css') }}">
     <link rel="stylesheet" href="{{ asset('./css/alert.css') }}">
+    <link rel="stylesheet" href="{{ asset('./css/message.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 </head>

@@ -24,6 +24,10 @@
     background: #ff003c;
     color: #fff;
 }
+.btnSuccess {
+    background: #44b678;
+    color: #fff;
+}
 /* .manage {
     background: transparent;
     border: 1px solid var(--border);
