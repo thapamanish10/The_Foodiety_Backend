@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Message;
-use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Support\Facades\Gate;
+
 
 class DashboardController extends Controller
 {
     // DISPLAY DASHBOARD PAGE
-    public function viewDashbaordPage(){
+    public function adminDashboard()
+    {
+        if (auth()->user()->role === 'super_admin' && auth()->user()->role === 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('pages.dashboard');
     }
     public function viewDetailsPage(){

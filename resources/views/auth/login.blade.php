@@ -17,7 +17,7 @@
         <div class="authFormContainer">
             <form class="authForm" method="POST" action="{{ route('login') }}">
                 @csrf
-                <label for="email" class="">Email</label>
+                <label class="form-label" for="email" class="">Email</label>
                 <div class="authFormGroup">
                     <div class="inputBoxImage">
                         <img class="inputBoxImg" src="{{ url('dashboardicons/mail.png') }}" alt="MailIcon">
@@ -26,7 +26,7 @@
                         <input id="email" name="email" type="email" autocomplete="email" required autofocus  >
                     </div>
                 </div>
-                <label for="password" >Password</label>
+                <label class="form-label" for="password" >Password</label>
                 <div class="authFormGroup">
                     <div class="inputBoxImage">
                         <img class="inputBoxImg" src="{{ url('dashboardicons/eye.png') }}" alt="EyeArrowIcon">

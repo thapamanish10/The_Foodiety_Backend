@@ -52,10 +52,9 @@ aside {
     align-items: center;
     gap: 10px;
     margin: 3px 0;
-    padding: 5px 10px;
     border-radius: 0.6rem;
 }
-.sidebarNavItems li img {
+.sidebarNavItems li a img {
     width: 20px;
     height: 20px;
     object-fit: cover;
@@ -64,13 +63,14 @@ aside {
 .sidebarNavItems a {
     flex: 1;
     display: flex;
-    padding: 5px;
+    padding: 7px 10px;
     align-items: center;
     color: #4d4c55;
     font-size: 15px;
     font-weight: 500;
     text-decoration: none;
     transition: background-color 0.3s;
+    gap: 1rem;
 }
 .messageNum {
     background: #ffde59;

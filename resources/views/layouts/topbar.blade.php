@@ -1,7 +1,7 @@
 <nav>
     <div class="navLeft">
         <h3 class="loggedInUserName">
-            Welcome back, {{ Auth::user()->name }}
+            {{-- Welcome back, {{ Auth::user()->name }} --}}
         </h3>
         <span class="span">Monday, 23 November</span>
     </div>

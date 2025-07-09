@@ -4,21 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Video extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'product_id',
-        'video_name',
-        'video_text',
-        'video_type',
-        'video',
+        'name',       
+        'desc',      
+        'video_path',
+        'thumbnail_path'
     ];
 
-    // Define the inverse relationship with the Product model
-    public function product()
+    public function getDownloadNameAttribute()
     {
-        return $this->belongsTo(Product::class);
+        return Str::slug("The Foodiety_".$this->name) . '.' . pathinfo($this->path, PATHINFO_EXTENSION);
     }
 }

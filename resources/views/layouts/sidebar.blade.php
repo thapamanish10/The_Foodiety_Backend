@@ -1,6 +1,6 @@
-@php
+{{-- @php
     $unvisitedMessageCount = App\Models\Message::where('status', 'unvisited')->count();
-@endphp
+@endphp --}}
 <aside>
     <div class="sidebarContainer">
         <a href="#">
@@ -10,39 +10,72 @@
     <div class="sidebarNavItems">
         <ul>
             <li class="{{ Request::is('dashboard') ? 'activeNavLink' : '' }}">
-                <img src="{{ asset('dashboardicons/home.png') }}" alt="HomeIcon">
-                <a href="{{ url('/dashboard') }}">
+                <a href="{{ url('/admin/dashboard') }}">
+                <img src="{{ asset('home-agreement.png') }}" alt="HomeIcon">
                     <span>Dashboard</span>
                 </a>
             </li>
-            <h3 class="sidebarSubHeading store">My Store</h3>
-            <li class="{{ Request::is('product') ? 'activeNavLink' : '' }}">
-                <img src="{{ asset('dashboardicons/product.png') }}" alt="ProductIcon">
-                <a  href="{{ url('/product') }}">
-                    <span>Products</span>
-                </a>
-            </li>
+            <h3 class="sidebarSubHeading store">Home</h3>
             <li class="{{ Request::is('carousel') ? 'activeNavLink' : '' }}">
-                <img src="{{ asset('dashboardicons/carousel.png') }}" alt="CarouselIcon">
                 <a  href="{{ url('/carousel') }}">
+                <img src="{{ asset('carousel.png') }}" alt="CarouselIcon">
                     <span>Carousel</span>
                 </a>
             </li>
             <li class="{{ Request::is('business') ? 'activeNavLink' : '' }}">
-                <img src="{{ asset('dashboardicons/about.png') }}" alt="AboutIcon">
                 <a  href="{{ url('/business') }}">
-                    <span>Business</span>
+                <img src="{{ asset('info.png') }}" alt="AboutIcon">
+                    <span>About</span>
                 </a>
             </li>
-            
-            <li class="{{ Request::is('blog') ? 'activeNavLink' : '' }}">
-                <img src="{{ asset('dashboardicons/blog.png') }}" alt="BlogIcon">
-                <a  href="{{ url('/blog') }}">
+            <h3 class="sidebarSubHeading store">Manage Users</h3>
+            <li class="{{ Request::is('users') ? 'activeNavLink' : '' }}">
+                <a href="{{ route('users.index') }}" class="nav-link">
+                    <img src="{{ asset('add (1).png') }}" alt="Blog Icon" class="nav-icon">
+                    <span>Users</span>
+                </a>
+            </li>
+            <h3 class="sidebarSubHeading store">Categories</h3>
+            <li class="{{ Request::is('categories') ? 'activeNavLink' : '' }}">
+                <a href="{{ route('categories.index') }}" class="nav-link">
+                    <img src="{{ asset('menu.png') }}" alt="Blog Icon" class="nav-icon">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <h3 class="sidebarSubHeading store">Services</h3>
+            <li class="{{ Request::is('restaurants') ? 'activeNavLink' : '' }}">
+                <a  href="{{ url('/restaurants') }}">
+                <img src="{{ asset('restaurant.png') }}" alt="ProductIcon">
+                    <span>Restaurants</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('blogs') ? 'activeNavLink' : '' }}">
+                <a href="{{ url('/blogs') }}" class="nav-link">
+                    <img src="{{ asset('trending.png') }}" alt="Blog Icon" class="nav-icon">
                     <span>Blogs</span>
                 </a>
             </li>
+            <li class="{{ Request::is('recipes') ? 'activeNavLink' : '' }}">
+                <a href="{{ url('/recipes') }}" class="nav-link">
+                    <img src="{{ asset('ingredients.png') }}" alt="Blog Icon" class="nav-icon">
+                    <span>Recipes</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('galleries') ? 'activeNavLink' : '' }}">
+                <a href="{{ route('galleries.index')}}" class="nav-link">
+                    <img src="{{ asset('apple.png') }}" alt="Blog Icon" class="nav-icon">
+                    <span>Galleries</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('videos') ? 'activeNavLink' : '' }}">
+                <a href="{{ route('videos.index')}}" class="nav-link">
+                    <img src="{{ asset('streaming.png') }}" alt="Blog Icon" class="nav-icon">
+                    <span>Videos</span>
+                </a>
+            </li>
 
-            <li class="{{ Request::is('messages') ? 'activeNavLink' : '' }}">
+
+            {{-- <li class="{{ Request::is('messages') ? 'activeNavLink' : '' }}">
                 <img src="{{ asset('dashboardicons/chat.png') }}" alt="ChatIcon">
                 <a href="{{ url('/messages') }}">
                     <span>Messages</span>
@@ -51,21 +84,21 @@
                 @if($unvisitedMessageCount > 0)
                     <div class="messageNum">{{ $unvisitedMessageCount }}</div>
                 @endif
-            </li>
+            </li> --}}
 
             {{-- USER PROFILE --}}
             <div class="sideBarProfile">
                 <h3 class="sidebarSubHeading">Profile / Account</h3>
                 <li class="{{ Request::is('profile') ? 'activeNavLink' : '' }}">
-                    <img src="{{ asset('dashboardicons/profile.png') }}" alt="ProfileIcon">
                     <a  href="{{ url('/profile') }}">
+                    <img src="{{ asset('profile.png') }}" alt="ProfileIcon">
                         <span>Profile</span>
                     </a>
                 </li>
                 
                 <li class="{{ Request::is('setting') ? 'activeNavLink' : '' }}">
-                    <img src="{{ asset('dashboardicons/manage.png') }}" alt="manageIcon">
                     <a  href="{{ url('/setting') }}">
+                    <img src="{{ asset('settings.png') }}" alt="manageIcon">
                         <span>Settings</span>
                     </a>
                 </li>
@@ -77,8 +110,8 @@
                     @csrf
                 </form>
                 <li id="logout">
-                    <img src="{{ asset('dashboardicons/logout.png') }}" alt="BlogIcon">
                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <img src="{{ asset('power-off (1).png') }}" alt="BlogIcon">
                         <span>Logout</span>
                     </a>
                 </li>

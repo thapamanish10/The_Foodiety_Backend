@@ -1,4 +1,3 @@
-<?php
 
 namespace App\Http\Controllers\blog;
 
@@ -9,7 +8,6 @@ use App\Models\BlogImage;
 
 class BlogController extends Controller
 {
-    //
     public function blogAPI()
     {
         try {
@@ -81,7 +79,6 @@ class BlogController extends Controller
     }
 
 
-    // BLOG EDIT
     public function edit($id)
     {
         $data = Blog::findOrFail($id);
@@ -108,7 +105,6 @@ class BlogController extends Controller
     }
 
 
-    // BLOG DELETE
     public function delete($id)
     {
         $blog = Blog::findOrFail($id);
@@ -116,7 +112,6 @@ class BlogController extends Controller
         return redirect()->route('blog')->with('success', 'Blog deleted successfully.');
     }
 
-    // BLOG IMAGE
     public function createBlogImage($id)
     {
         $data = Blog::findOrFail($id);

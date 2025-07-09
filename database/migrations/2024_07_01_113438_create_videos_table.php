@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('video_name');
-            $table->text('video_text')->nullable();
-            $table->text('video_type')->default("potriate");
-            $table->string('video');
+            $table->string('name');
+            $table->text('desc')->nullable();
+            $table->string('video_path');
+            $table->string('thumbnail_path')->nullable();
             $table->timestamps();
         });
     }

@@ -1,0 +1,165 @@
+/* Table Container */
+.table {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    background: white;
+}
+
+/* Table Styling */
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Table Header */
+.table thead {
+    /* background-color: #4a6fa5; */
+    color: #5f5f5f;
+}
+
+.table thead tr td {
+    padding: 15px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* Table Body */
+.table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table tbody tr td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    color: #333;
+}
+
+/* Checkbox Styling */
+.table tbody tr td:first-child {
+    width: 30px;
+}
+
+.table tbody tr td input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.show-hide-icon{
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    padding: .4rem;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+.show-image{
+    background: #4a6fa5;
+}
+.hide-image{
+    background: #dc3545;
+}
+/* Image Styling */
+.blogLogo {
+    border-radius: 4px;
+    margin-right: 5px;
+    object-fit: cover;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Description Cell */
+.table tbody tr td:nth-child(5) {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+.table tbody tr td:last-child{
+    display: flex;
+}
+
+/* Button Styling */
+.table tbody tr td .btn {
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    transition: all 0.2s ease;
+}
+.btn  img {
+    min-width: 18px !important;
+    min-height: 18px !important;
+}
+.table tbody tr td .btn-outline-primary {
+    border-color: #4a6fa5;
+    background-color: #4a6fa5;
+    color: #4a6fa5;
+}
+
+.table tbody tr td .btn-outline-secondary {
+    border-color: #6c757d;
+    background-color: #6c757d;
+    color: #6c757d;
+}
+
+.table tbody tr td .btn-outline-danger {
+    border-color: #dc3545;
+    background-color: #dc3545;
+    color: #dc3545;
+}
+.table tbody tr td .btn-outline-primary:hover,
+.table tbody tr td .btn-outline-danger:hover,
+.table tbody tr td .btn-outline-secondary:hover {
+    opacity: 0.5;
+}
+
+/* Status Badges */
+.table tbody tr td:nth-child(6) {
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+/* Ellipsis Icon */
+
+
+/* Action Buttons Container */
+.table tbody tr td:last-child {
+    white-space: nowrap;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .table thead tr td {
+        padding: 12px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .table tbody tr td {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+    }
+    
+    .blogLogo {
+        height: 30px;
+        width: 30px;
+    }
+    
+    .table tbody tr td .btn {
+        padding: 3px 6px;
+        font-size: 0.7rem;
+    }
+}
