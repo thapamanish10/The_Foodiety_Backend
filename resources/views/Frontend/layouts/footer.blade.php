@@ -9,9 +9,8 @@
         .footer {
             width: 100%;
             margin: 0 auto;
-            background-color: #0f172a;
+            background-color: #000000;
             padding: 30px 0;
-            border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             color: #fff
         }

@@ -261,7 +261,7 @@ class BlogController extends Controller
     {
         // Check if user is authenticated
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You need to login to like this blog.');
+            return redirect()->route('continue.with')->with('error', 'You need to login to like this blog.');
         }
     
         $like = $blog->likes()->where('user_id', Auth::id())->first();
@@ -284,7 +284,7 @@ class BlogController extends Controller
     {
         // Check if user is authenticated
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You need to login to comment.');
+            return redirect()->route('continue.with')->with('error', 'You need to login to comment.');
         }
     
         $request->validate([

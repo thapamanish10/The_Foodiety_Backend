@@ -161,7 +161,7 @@
         .main-sub-heading {
             display: flex;
             align-items: flex-end;
-            margin: 0 auto;
+            margin: 0 .5rem;
         }
 
         .main-sub-heading-section {

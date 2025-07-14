@@ -1,20 +1,12 @@
 @extends('pages.home')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('./css/business.css') }}">
-@endsection
-
 @section('content')
-    <main class="dashboardContainer">
-        <div class="navigationHeading">
-            <span>Dashboard</span>
-             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
-            <span class="segment">{{ Request::segment(1) }}</span>
-             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
-              <span>{{ Request::segment(2) }}</span>
-             <img src="{{ asset('dashboardicons/right.png') }}" alt="RightArrowIcon">
-        </div>
-        <div class="detailsformBody">
+@include('components.loading-screen')
+<div class="container">
+    <div class="container-heading">
+        <h3>Fill up the Information:</h3>
+        <p>Provide information about the blog post.</p>
+    </div>
             <form 
                 action="{{ route('carousel.store') }}" 
                 method="POST" 
@@ -26,104 +18,144 @@
                     @method('PUT')
                 @endif
 
-                <div class="formHeading">
-                    <div class="formHeadingLeft">
-                        <h3>Fill up the Information:</h3>
-                        <p>Provide information about the restaurant to contact.</p>
-                    </div>
-                    <div class="buttonDiv">
-                        <button class="btn btnCancle" type="button" onclick="window.history.back();">
-                            <span>Cancel</span>
-                            <img src="{{ asset('dashboardicons/cancle.png') }}" alt="CancleIcon">
-                        </button>
-                        <button class="btn btnAdd btnPrimary" type="submit">
-                            <span>Create</span>
-                            <img src="{{ asset('dashboardicons/add.png') }}" alt="AddIcon">
-                        </button>
-                    </div>
-                </div>
-                <div class="formBody">
                     <div class="row">
-                        <div class="formGroup">
+                        <div class="form-group">
                             <label for="carousel_title">CAROUSEL TITLE: <span class="imp">*</span> </label>
                             <input type="text" name="carousel_title" id="carousel_title" value="{{ old('carousel_title') }}">
                         </div>
-                        <div class="formGroup">
+                        <div class="form-group">
                            <label for="carousel_status">STATUS: <span class="imp">*</span></label>
-                            <select class="custom-select" id="visit_with" name="carousel_status">
-                                <option value="{{ old('carousel_Image') }}">Add to Carousel? </option>
+                            <select class="form-select" id="visit_with" name="carousel_status">
                                 <option value="true">True</option>
                                 <option value="false">False</option>
                             </select>
                         </div>
                     </div>
-                    <label for="carousel_Image">CAROUSEL IMAGE: <span class="imp">*</span></label>
-                    <div class="formGroupImage">
-                        <input type="file" name="carousel_Image" id="image" style="display: none;" value="{{ old('carousel_Image') }}" accept="image/jpeg, image/png, image/jpg">
-                        <img src="{{ asset('assets/upload.png') }}" class="uploadimage" alt="" id="customButton" onclick="document.getElementById('image').click();">
-                        <img src="" alt="Selected Image" id="selectedImage" style="display:none; max-width: 100%; max-height: 300px; margin-top: 10px;" onclick="document.getElementById('image').click();">
-                        <span id="fileName">Drop your image here, Or browse</span>
-                        <small>Supports: JPG, JPEG2000, PNG</small>
-                    </div>
+                    <label for="images" class="form-label">CAROUSEL IMAGE</label>
+            <div class="form-group-image">
+                <input type="file" class="form-control" id="images" name="carousel_Image"  accept="image/*"
+                    style="display: none;">
+                <div id="imagePreviews" class="mt-2 d-flex flex-wrap gap-2"></div>
+                <div class="image-upload-icon" onclick="document.getElementById('images').click();">
+                    <img src="{{ asset('assets/upload.png') }}" class="uploadimage" alt="" id="customButton">
+                    <span id="fileName">Drop your image here, Or browse</span>
                 </div>
+            </div>
+            <div class="form-text" style="padding: 5px 0;">Max size 100MB each (JPEG, PNG, JPG, GIF, WEBP)</div>
+            <br>
+            <div class="form-group-buttons">
+                <a href="{{ route('carousel.index') }}" class="btn-secondary">Cancel</a>
+                <button type="submit" id="submitButton" class="btn-primary">Create Carousel</button>
+            </div>
             </form>
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-        </div>
     </main>
-@endsection
-@section('jsScript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const fileInput = document.getElementById('image');
-            const customButton = document.getElementById('customButton');
-            const fileName = document.getElementById('fileName');
-            const selectedImage = document.getElementById('selectedImage');
+            const imageInput = document.getElementById('images');
+            const previewContainer = document.getElementById('imagePreviews');
+            const maxFiles = 20; // Set maximum number of images
+            let selectedFiles = [];
 
-            fileInput.addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
+            // Handle file selection
+            imageInput.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+
+                // Check total files won't exceed max
+                if (selectedFiles.length + files.length > maxFiles) {
+                    alert(`You can upload a maximum of ${maxFiles} images`);
+                    return;
+                }
+
+                files.forEach(file => {
+                    // Validate file type and size
+                    if (!file.type.match('image.*')) {
+                        alert(`${file.name} is not an image file`);
+                        return;
+                    }
+
+                    // 100MB in bytes (100 * 1024 * 1024)
+                    if (file.size > 104857600) {
+                        alert(`${file.name} is too large (max 100MB)`);
+                        return;
+                    }
+
+                    // Add to selected files
+                    selectedFiles.push(file);
+
+                    // Create preview
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        selectedImage.src = e.target.result;
-                        selectedImage.style.display = 'block';
-                        customButton.style.display = 'none';
+                        const preview = document.createElement('div');
+                        preview.className = 'image-preview position-relative';
+                        preview.style.width = '150px';
+
+                        preview.innerHTML = `
+                        <img src="${e.target.result}" class="img-thumbnail" alt="Preview">
+                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 remove-image">
+                            ×
+                        </button>
+                    `;
+
+                        previewContainer.appendChild(preview);
+
+                        // Add remove functionality
+                        preview.querySelector('.remove-image').addEventListener('click',
+                            function() {
+                                preview.remove();
+                                selectedFiles = selectedFiles.filter(f => f !== file);
+                                updateFileInput();
+                            });
                     };
                     reader.readAsDataURL(file);
-                    fileName.textContent = file.name;
-                } else {
-                    selectedImage.style.display = 'none';
-                    customButton.style.display = 'block';
-                    fileName.textContent = 'Drop your image here, Or browse';
+                });
+
+                updateFileInput();
+            });
+
+            // Update the actual file input with remaining files
+            function updateFileInput() {
+                const dataTransfer = new DataTransfer();
+                selectedFiles.forEach(file => dataTransfer.items.add(file));
+                imageInput.files = dataTransfer.files;
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('blogForm');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const submitButton = document.getElementById('submitButton');
+
+            form.addEventListener('submit', function(e) {
+                // Show loading spinner
+                loadingOverlay.style.display = 'flex';
+
+                // Disable submit button to prevent multiple submissions
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = 'Processing...';
                 }
             });
         });
     </script>
 @endsection
-@section("displayImageScript")
-    <script>
-        document.getElementById('image').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const fileName = document.getElementById('fileName');
-            const selectedImage = document.getElementById('selectedImage');
 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    selectedImage.src = e.target.result;
-                    selectedImage.style.display = 'block';
-                    document.getElementById('customButton').style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-                fileName.textContent = file.name;
-            } else {
-                selectedImage.style.display = 'none';
-                document.getElementById('customButton').style.display = 'block';
-                fileName.textContent = 'Drop your image here, Or browse';
-            }
-        });
+@section('jsScript')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.getElementById('blogForm');
+                    const submitButton = document.getElementById('submitButton');
+
+                    // Function to check if all fields are filled
+                    function checkAllFieldsFilled() {
+                        constFields = form.querySelectorAll(']');
+                        let allFilled = true;
+                        Fields.forEach(field => {
+                            if (field.value.trim() === '') {
+                                allFilled = false;
+                            }
+                        });
+                        return allFilled;
+                    }
     </script>
 @endsection

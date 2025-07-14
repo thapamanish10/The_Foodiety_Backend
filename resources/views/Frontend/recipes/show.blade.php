@@ -15,7 +15,7 @@
             </div>
             <h2 class="main-blog-detail-div-heading">{{ $recipe->name }}</h2>
             <p class="main-blog-detail-div-desc">
-                {{ $recipe->desc }}
+                {!! $recipe->desc !!}
             </p>
 
             <!-- Image Carousel -->
@@ -45,7 +45,9 @@
                     <img src="{{ asset('images/default-blog.jpg') }}" alt="No image">
                 @endif
             </div>
-
+            <p class="main-blog-detail-div-desc">
+                {!! $recipe->desc2 !!}
+            </p>
             <div class="main-blog-detail-div-info">
                 <div class="main-blog-detail-div-info-sec">
                     <div class="main-blog-detail-div-info-sub-sec share-social-links">

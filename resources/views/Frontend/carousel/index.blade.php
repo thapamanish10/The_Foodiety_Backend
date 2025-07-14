@@ -1,38 +1,19 @@
 <div class="hero-carousel">
-    <div class="carousel-slide active"
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-        <div class="carousel-content">
-            <h1>Welcome to Hawksmoor</h1>
-            <p>Exceptional steaks, seafood and cocktails in elegant surroundings.</p>
-            <a href="#" class="carousel-btn">Book a Table</a>
+    @foreach ($carousels as $index => $carousel)
+        @if($carousel->carousel_Image) 
+        <div class="carousel-slide {{ $index === 0 ? 'active' : '' }}">
+            <img class="companyLogo" src="{{ $carousel->carousel_Image }}" alt="">
         </div>
-    </div>
-
-    <div class="carousel-slide"
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-        <div class="carousel-content">
-            <h1>Sunday Roast</h1>
-            <p>Join us for the finest Sunday roast in London, served with all the trimmings.</p>
-            <a href="#" class="carousel-btn">View Menu</a>
-        </div>
-    </div>
-
-    <div class="carousel-slide"
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-        <div class="carousel-content">
-            <h1>Private Dining</h1>
-            <p>Host your next event in one of our elegant private dining rooms.</p>
-            <a href="#" class="carousel-btn">Enquire Now</a>
-        </div>
-    </div>
-
+        @endif
+    @endforeach
     <div class="carousel-nav">
-        <div class="carousel-dot active" onclick="currentSlide(0)"></div>
-        <div class="carousel-dot" onclick="currentSlide(1)"></div>
-        <div class="carousel-dot" onclick="currentSlide(2)"></div>
+        @foreach ($carousels as $index => $carousel)
+            @if($carousel->carousel_Image) <!-- Only create dots for valid slides -->
+            <div class="carousel-dot {{ $index === 0 ? 'active' : '' }}" onclick="currentSlide({{ $index }})"></div>
+            @endif
+        @endforeach
     </div>
     <style>
-        /* Hero Carousel */
         .hero-carousel {
             position: relative;
             height: 85vh;
@@ -49,10 +30,29 @@
             transition: opacity 1s ease-in-out;
         }
 
+        @media (max-width: 768px) {
+            .hero-carousel {
+                position: relative;
+                height: 25vh;
+                overflow: hidden;
+            }
+
+            .carousel-nav {
+                position: absolute;
+                bottom: 20px !important;
+                right: 46% !important;
+                display: flex;
+                gap: 10px;
+            }
+        }
         .carousel-slide.active {
             opacity: 1;
         }
-
+        .carousel-slide img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         .carousel-content {
             position: absolute;
             bottom: 100px;
@@ -79,7 +79,7 @@
             display: inline-block;
             padding: 12px 30px;
             background-color: transparent;
-            color: white;
+            color: rgb(255, 255, 255);
             border: 1px solid white;
             text-decoration: none;
             font-size: 14px;
@@ -111,7 +111,7 @@
 
         .carousel-dot.active {
             width: 30px;
-            background-color: white;
+            background-color: rgb(255, 217, 49);
         }
     </style>
 </div>
@@ -126,36 +126,52 @@
                 navbar.classList.remove('scrolled');
             }
         });
+        
         let slideIndex = 0;
         showSlides();
 
         function showSlides() {
-            let i;
             let slides = document.getElementsByClassName("carousel-slide");
             let dots = document.getElementsByClassName("carousel-dot");
-
-            for (i = 0; i < slides.length; i++) {
+            
+            // If no slides available, return
+            if (slides.length === 0) return;
+            
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
                 slides[i].classList.remove("active");
             }
-
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1
-            }
-
-            for (i = 0; i < dots.length; i++) {
+            
+            // Remove active from all dots
+            for (let i = 0; i < dots.length; i++) {
                 dots[i].classList.remove("active");
             }
-
+            
+            // Move to next slide
+            slideIndex++;
+            
+            // If reached end, loop back to first slide
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            
+            // Show current slide and activate corresponding dot
             slides[slideIndex - 1].classList.add("active");
-            dots[slideIndex - 1].classList.add("active");
-
-            setTimeout(showSlides, 10000); // Change slide every 5 seconds
+            if (dots[slideIndex - 1]) {
+                dots[slideIndex - 1].classList.add("active");
+            }
+            
+            // Set timeout for next slide
+            setTimeout(showSlides, 10000);
         }
 
         function currentSlide(n) {
-            slideIndex = n;
-            showSlides();
+            // Only change slide if the index is valid
+            let slides = document.getElementsByClassName("carousel-slide");
+            if (n >= 0 && n < slides.length) {
+                slideIndex = n;
+                showSlides();
+            }
         }
     </script>
 @endpush

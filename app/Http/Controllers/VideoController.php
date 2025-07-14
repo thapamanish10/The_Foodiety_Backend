@@ -115,7 +115,7 @@ class VideoController extends Controller
     public function download(Video $video)
     {
         if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'Please login first to download videos.');
+            return redirect()->route('continue.with')->with('error', 'Please login first to download videos.');
         }
 
         $path = storage_path('app/public/' . $video->video_path);

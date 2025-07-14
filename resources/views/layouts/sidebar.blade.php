@@ -1,6 +1,6 @@
-{{-- @php
+@php
     $unvisitedMessageCount = App\Models\Message::where('status', 'unvisited')->count();
-@endphp --}}
+@endphp
 <aside>
     <div class="sidebarContainer">
         <a href="#">
@@ -26,6 +26,12 @@
                 <a  href="{{ url('/business') }}">
                 <img src="{{ asset('info.png') }}" alt="AboutIcon">
                     <span>About</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('services') ? 'activeNavLink' : '' }}">
+                <a  href="{{ url('/services') }}">
+                <img src="{{ asset('24-hours.png') }}" alt="AboutIcon">
+                    <span>Services</span>
                 </a>
             </li>
             <h3 class="sidebarSubHeading store">Manage Users</h3>
@@ -67,6 +73,12 @@
                     <span>Galleries</span>
                 </a>
             </li>
+            <li class="{{ Request::is('ais') ? 'activeNavLink' : '' }}">
+                <a href="{{ route('ais.index')}}" class="nav-link">
+                    <img src="{{ asset('magic-wand.png') }}" alt="Blog Icon" class="nav-icon">
+                    <span>Foodiety AI</span>
+                </a>
+            </li>
             <li class="{{ Request::is('videos') ? 'activeNavLink' : '' }}">
                 <a href="{{ route('videos.index')}}" class="nav-link">
                     <img src="{{ asset('streaming.png') }}" alt="Blog Icon" class="nav-icon">
@@ -75,16 +87,16 @@
             </li>
 
 
-            {{-- <li class="{{ Request::is('messages') ? 'activeNavLink' : '' }}">
-                <img src="{{ asset('dashboardicons/chat.png') }}" alt="ChatIcon">
+            <li class="{{ Request::is('messages') ? 'activeNavLink' : '' }}">
                 <a href="{{ url('/messages') }}">
+                <img src="{{ asset('comment.png') }}" alt="ChatIcon">
                     <span>Messages</span>
                 </a>
                 
                 @if($unvisitedMessageCount > 0)
                     <div class="messageNum">{{ $unvisitedMessageCount }}</div>
                 @endif
-            </li> --}}
+            </li>
 
             {{-- USER PROFILE --}}
             <div class="sideBarProfile">

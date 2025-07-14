@@ -66,6 +66,7 @@
                     @endforeach
                 </div>
             </div>
+            <br>
             <div class="form-group-buttons">
                 <a href="{{ route('blogs.index') }}" class="btn-secondary">Cancel</a>
                 <button type="submit" id="submitButton" class="btn-primary">Create Blog</button>

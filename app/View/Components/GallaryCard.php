@@ -9,13 +9,15 @@ use Illuminate\View\Component;
 class GallaryCard extends Component
 {
     public $gallery;
+    public $link;
     /**
      * Create a new component instance.
      */
-    public function __construct($gallery)
+    public function __construct($gallery, $link)
     {
         //
         $this->gallery = $gallery;
+        $this->link = $link;
     }
 
     /**

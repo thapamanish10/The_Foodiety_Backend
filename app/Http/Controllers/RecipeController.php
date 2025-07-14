@@ -230,7 +230,7 @@ class RecipeController extends Controller
     public function like(Recipe $recipe)
     {
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You need to login to like this blog.');
+            return redirect()->route('continue.with')->with('error', 'You need to login to like this blog.');
         }
         $like = $recipe->likes()->where('user_id', Auth::id())->first();
         
@@ -251,7 +251,7 @@ class RecipeController extends Controller
     public function comment(Request $request, Recipe $recipe)
     {
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You need to login to comment.');
+            return redirect()->route('continue.with')->with('error', 'You need to login to comment.');
         }
         $request->validate([
             'content' => 'required|string|max:1000',

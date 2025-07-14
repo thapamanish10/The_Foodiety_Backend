@@ -54,13 +54,13 @@
 
                 <div class="form-group">
                     <label for="latitude" class="form-label">Latitude : (optional)</label>
-                    <input type="number" step="0.000001" class="form-control" id="latitude" name="latitude"
+                    <input type="text"  class="form-control" id="latitude" name="latitude"
                         value="{{ old('latitude') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="longitude" class="form-label">Longitude : (optional)</label>
-                    <input type="number" step="0.000001" class="form-control" id="longitude" name="longitude"
+                    <input type="text"  class="form-control" id="longitude" name="longitude"
                         value="{{ old('longitude') }}">
                 </div>
             </div>

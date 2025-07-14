@@ -16,17 +16,13 @@ class RestaurantController extends Controller
 {
     public function welcomePageRestaurants()
     {
-        $restaurants = Restaurant::withCount(['likes', 'comments', 'views', 'images'])
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+       $restaurants = Restaurant::with('images')->latest()->take(6)->get();
         
         return view('Frontend.restaurants.home-restaurant', compact('restaurants'));
     }
     public function homePageRestaurants()
     {
-        $restaurants = Restaurant::withCount(['likes', 'comments', 'views', 'images'])
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+       $restaurants = Restaurant::with('images')->latest()->take(6)->get();
         
         return view('Frontend.restaurants.index', compact('restaurants'));
     }
@@ -282,7 +278,7 @@ $shareLinks = [
     {
         // Check if user is authenticated
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You need to login to like this restaurant.');
+            return redirect()->route('continue.with')->with('error', 'You need to login to like this restaurant.');
         }
     
         $like = $restaurant->likes()->where('user_id', Auth::id())->first();
@@ -305,7 +301,7 @@ $shareLinks = [
     {
         // Check if user is authenticated
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You need to login to comment.');
+            return redirect()->route('continue.with')->with('error', 'You need to login to comment.');
         }
     
         $request->validate([

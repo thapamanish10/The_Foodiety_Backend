@@ -59,8 +59,8 @@
                         </a>
                     </div>
                     <div class="main-blog-detail-div-info-sub-sec share-social-links">
-                        <a href="https://twitter.com/intent/tweet?text=" target="_blank">
-                            <img src="{{ asset('twitter (1).png') }}" alt="Share on Instagram">
+                        <a href="https://www.instagram.com/?url={{ urlencode(url()->current()) }}" target="_blank" title="Share on Instagram">
+                            <img src="{{ url('instagram (3).png') }}" alt="Share on Instagram">
                         </a>
                     </div>
                     <div class="main-blog-detail-div-info-sub-sec share-social-links"
@@ -107,8 +107,6 @@
         border: 0;
         outline: 0;
     }
-
-
 
     .main-blog-detail-div {
         width: 55%;
@@ -288,8 +286,10 @@
     }
 
     .share-social-links img {
-        width: 18px;
-        height: 18px;
+        width: 50%;
+        height: 50%;
+        margin: auto;
+        object-fit: cover;
     }
 
     .share-social-links a {

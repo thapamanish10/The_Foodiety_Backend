@@ -4,18 +4,22 @@
 <head>
     @include('Frontend.layouts.head')
 </head>
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; 
+    /* background: #f8f8ff93; */
+}
+</style>
 
 <body class="{{ $bodyClass ?? '' }}">
     @include('Frontend.layouts.navbar')
-
-    <div id="app">
-        <main class="py-4">
-            {{-- @include('partials.alerts') --}}
+        <main>
             @yield('content')
             <x-loading-screen />
-
         </main>
-    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Restore scroll position
@@ -36,16 +40,12 @@
                 }, 100);
             };
 
-            // Save position on scroll
             window.addEventListener('scroll', saveScrollPosition);
 
-            // Save final position before leaving
             window.addEventListener('beforeunload', saveScrollPosition);
         });
     </script>
     @include('Frontend.layouts.footer')
-    {{-- @include('layouts.scripts') --}}
     @stack('scripts')
 </body>
-
 </html>

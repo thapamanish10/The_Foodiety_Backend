@@ -74,11 +74,11 @@
         </form>
 
         <label class="form-label">Current Images</label>
-        <div class="current-images d-flex flex-wrap gap-2 mb-3">
+        <div class="current-images" >
             @foreach ($blog->images as $image)
                 <div class="image-container position-relative" data-image-id="{{ $image->id }}">
-                    <img src="{{ asset('storage/' . $image->path) }}" alt="Blog image" class="img-thumbnail"
-                        style="height: 150px; width: auto;">
+                    <img src="{{ asset('storage/' . $image->path) }}" width="150" height="150" alt="Current Thumbnail"
+                    style="object-fit: cover">
                     <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 remove-image"
                         data-image-id="{{ $image->id }}" title="Remove image">
                         <i class="fas fa-times"></i>

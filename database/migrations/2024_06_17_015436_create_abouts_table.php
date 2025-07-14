@@ -13,17 +13,24 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('company_logo');
-            $table->string('phone_number');
-            $table->string('optional_phone_number')->nullable();
-            $table->string('email_address');
-            $table->string('facebook_link');
-            $table->string('instagram_link');
-            $table->string('youtube_link');
-            $table->string('tiktok_link');
-            $table->string('threads_link');
-            $table->text('about_text');
+            $table->string('name');
+            $table->text('desc');
+            $table->string('number');
+            $table->string('email');
+            $table->string('logo')->nullable();
+            $table->string('opt_number')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('tiktok')->nullable();
+            $table->string('threads')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('about_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('about_id')->constrained()->onDelete('cascade');
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -33,6 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('about_images');
         Schema::dropIfExists('abouts');
     }
 };

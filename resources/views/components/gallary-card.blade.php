@@ -1,6 +1,6 @@
-@props(['gallery'])
+@props(['gallery', 'link'])
 <div class="gallery-main-div-card-body-image-card">
-    <a href="{{ route('home.galleries.show', ['gallery' => $gallery->id . '-' . $gallery->name]) }}"></a>
+    <a href="{{ $link }}"></a>
     <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->name }}">
     <div class="gallery-main-div-card-body-image-card-info">
         <h3>{{ $gallery->name }}</h3>
@@ -12,9 +12,12 @@
 
     .gallery-main-div-card-body-image-card {
         flex: 1;
-        height: 430px;
-        min-height: 430px;
-        max-height: 430px;
+        width: 450px;
+        min-width: 450px;
+        max-width: 450px;
+        height: 450px;
+        min-height: 450px;
+        max-height: 450px;
         overflow: hidden;
         cursor: pointer;
         position: relative;
@@ -34,6 +37,7 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+        background: linear-gradient(180deg, rgba(38, 39, 39, 0), rgba(31, 31, 31, 0.8));
     }
 
     .gallery-main-div-card-body-image-card:hover .gallery-main-div-card-body-image-card-info {

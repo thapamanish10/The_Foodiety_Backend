@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -12,12 +13,17 @@ class GalleryController extends Controller
     public function frontendGallery()
     {
         $galleries = Gallery::latest()->paginate(10);
-        return view('Frontend.gallery.index', compact('galleries'));
+        $videos = Video::latest()->paginate(10);
+        return view('Frontend.gallery.index', compact('galleries', 'videos'));
     }
 
     public function frontendGalleryShow(Gallery $gallery)
     {
         return view('Frontend.gallery.show', compact('gallery'));
+    }
+    public function frontendVideoShow(Video $video)
+    {
+        return view('Frontend.gallery.video', compact('video'));
     }
 
 
@@ -99,7 +105,7 @@ class GalleryController extends Controller
     {
         // Check if user is authenticated
         if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'Please login first to download images.');
+            return redirect()->route('continue.with')->with('error', 'Please login first to download images.');
         }
 
         $path = storage_path('app/public/' . $gallery->image);

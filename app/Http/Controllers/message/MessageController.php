@@ -8,6 +8,10 @@ use App\Models\Message;
 
 class MessageController extends Controller
 {
+    public function homeContactPage()
+    {
+
+    }
     //
     public function store(Request $request)
     {

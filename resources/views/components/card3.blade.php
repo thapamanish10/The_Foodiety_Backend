@@ -1,22 +1,11 @@
-@props(['restaurant', 'views', 'comments', 'likes', 'query' => null])
+@props(['service', 'even' => false])
 
-<div class="card3">
-    <a href="{{ route('home.restaurants.show', ['restaurant' => $restaurant->id . '-0-' . $restaurant->name]) }}"></a>
-
+<div class="card3 {{ $even ? 'even-card' : '' }}">
     <!-- Image Carousel -->
     <div class="card3-card-image">
-        @if ($restaurant->images->isNotEmpty())
-            @php
-                $firstImage = $restaurant->images->first();
-            @endphp
+        @if($service->thumbnail)
             <div class="single-image">
-                <img src="{{ asset('storage/' . $firstImage->path) }}" alt="{{ $restaurant->name }}"
-                    onerror="this.onerror=null;this.src='{{ asset('images/default-restaurant.jpg') }}'"
-                    data-debug-path="{{ $firstImage->path }}">
-            </div>
-        @else
-            <div class="no-image">
-                <img src="{{ asset('images/default-restaurant.jpg') }}" alt="No image available" data-debug="no-images">
+                <img src="{{ asset('storage/' . $service->thumbnail) }}" class="img-fluid mb-3">
             </div>
         @endif
     </div>
@@ -27,49 +16,23 @@
                 <img src="{{ url('foodiety.png') }}" alt="" class="card3-content-user-image">
                 <div class="card3-content-user-info-user-details">
                     <h3>The Foodiety</h3>
-                    <span>{{ $restaurant->created_at->format('d M') }}</span>
+                    <span>{{ $service->created_at->format('d M') }}</span>
                 </div>
                 <img src="{{ asset('share.png') }}" alt="" class="card3-content-share">
             </div>
             <h2 class="card3-heading">
-                @if ($query)
-                    {!! Str::highlight($restaurant->name, $query) !!}
-                @else
-                    {{ $restaurant->name }}
-                @endif
+                    {!! $service->name !!}
             </h2>
 
             <p class="card3-desc">
-                @if ($query)
-                    {!! Str::highlight(Str::limit($restaurant->desc, 200), $query) !!}
-                @else
-                    {!! Str::limit($restaurant->desc, 200) !!}
-                @endif
+                {!! Str::limit($service->desc, 600) !!}
             </p>
         </div>
-        <div class="card3-info">
-            <div class="card3-info-sec">
-                <div class="card3-info-sub-sec">
-                    <span>{{ $views ?? '0' }} views</span>
-                </div>
-                <div class="card3-info-sub-sec">
-                    <span>{{ $comments ?? '0' }} comments</span>
-                </div>
-            </div>
-            <div class="card3-info-sec">
-                <form action="{{ route('restaurants.like', $restaurant) }}" method="POST" class="like-form">
-                    @csrf
-                    <button type="submit"
-                        class="like-button {{ $restaurant->isLikedBy(auth()->user()) ? 'liked' : '' }}">
-                        <div class="card3-info-sub-sec">
-                            <span>{{ $likes ?? '0' }}</span>
-                            <img src="{{ asset($restaurant->isLikedBy(auth()->user()) ? 'heart (2).png' : 'heart (1).png') }}"
-                                alt="Like">
-                        </div>
-                    </button>
-                </form>
-            </div>
-        </div>
+        <div class="read-more-btn-section">
+        <a href="{{ route('home.services.show', ['service' => $service->id . '-0-' . $service->name]) }}" class="read-more-btn">
+            Read more
+        </a>
+    </div>
     </div>
 </div>
 
@@ -92,23 +55,15 @@
         height: 370px;
         max-height: 370px;
         border: 1px solid #dddddd93;
-        display: flex;
+        display: flex !important; /* Force flex display */
+        flex-direction: row;
         align-items: stretch;
         overflow: hidden;
         background: white;
     }
 
-    .card3:nth-child(3) {
-        flex-direction: row-reverse !important;
-    }
-
-    .card3 a {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
+    .card3.even-card {
+        flex-direction: row-reverse;
     }
 
     /* Image Carousel Styles */
@@ -207,12 +162,6 @@
         margin: 0.5rem 0;
         text-align: justify;
         color: #5f5f5f;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        line-height: 1.5;
-        max-height: calc(1.5em * 3);
         position: relative;
         flex-grow: 1;
     }
@@ -279,6 +228,31 @@
     .like-button.liked img {
         animation: heartBeat 0.5s;
     }
+    .read-more-btn{
+        position: relative;
+        top: none;
+        left: none;
+        width: none;
+        height: none;
+        z-index: 2;
+    }
+    .read-more-btn-section{
+        width: max-content;
+        padding: .3rem .7rem;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        transition: .3s ease-in;
+        user-select: none;
+    }
+    .read-more-btn-section a{
+        text-decoration: none;
+        color: #5f5f5f;
+        font-family: "Playfair Display", serif;
+    }
+    .read-more-btn-section:hover{
+        border-color: #ffde59;
+        background: #ffde59;
+    }
 
     @keyframes heartBeat {
         0% {
@@ -318,7 +292,9 @@
             overflow: hidden;
             background: white;
         }
-
+        .card3.even-card{
+                        flex-direction: column;
+        }
         .card3-content-user-info {
             width: 95%;
             display: flex;

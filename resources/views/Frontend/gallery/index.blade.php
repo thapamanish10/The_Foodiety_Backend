@@ -1,12 +1,23 @@
 @extends('Frontend.layouts.main')
 
 @section('content')
-    <x-main-heading title="All My Images" />
+    <x-main-heading title="Photos" />
     <section class="gallery-main-div">
         <div class="gallery-main-div-card">
             <div class="gallery-main-div-card-body">
                 @forelse ($galleries as $gallery)
-                    <x-gallary-card :gallery="$gallery" />
+                    <x-gallary-card :gallery="$gallery" link="{{ route('home.galleries.show', ['gallery' => $gallery->id . '-' . $gallery->name]) }}" />
+                @empty
+                @endforelse
+            </div>
+        </div>
+    </section>
+    <x-main-heading title="Videos" />
+    <section class="gallery-main-div">
+        <div class="gallery-main-div-card">
+            <div class="gallery-main-div-card-body">
+                @forelse ($videos as $video)
+                    <x-video-card :video="$video" />
                 @empty
                 @endforelse
             </div>

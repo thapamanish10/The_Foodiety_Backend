@@ -1,6 +1,7 @@
 @props(['restaurant', 'views', 'comments', 'likes', 'query' => null])
 
 <div class="restaurant-card">
+    <a href="{{ route('home.restaurants.show', ['restaurant' => $restaurant->id . '-0-' . $restaurant->name]) }}"></a>
     <div class="restaurant-card-sub-card">
         <!-- Image Carousel -->
         <div class="restaurant-card-card-image">
@@ -82,7 +83,6 @@
             </div>
         </div>
     </div>
-    {{-- <a href="{{ route('home.restaurants.show', ['restaurant' => $restaurant->id . '-0-' . $restaurant->name]) }}"></a> --}}
 </div>
 <style>
     .restaurant-card-card-image {
@@ -200,7 +200,7 @@
     }
 
     /* Responsive behavior */
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
 
         .restaurant-card-sub-card,
         .restaurant-card-sub-card:nth-child(odd) {
@@ -240,7 +240,7 @@
 
     /* Content Area Styles */
     .restaurant-card-content {
-        height: 100%;
+        height: 90%;
         padding: 2rem 2rem 0 2rem;
         width: 50%;
         display: flex;
@@ -409,14 +409,14 @@
     }
 
     /* Mobile Styles */
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
         .restaurant-card {
             position: relative;
             width: 100%;
             margin: 0 auto 2rem;
-            min-height: 500px;
-            height: 500px;
-            max-height: 500px;
+            min-height: 520px;
+            height: 520px;
+            max-height: 520px;
             border: 1px solid #dddddd93;
             display: flex;
             flex-direction: column;
@@ -427,6 +427,7 @@
 
         .restaurant-card-content-user-info {
             width: 95%;
+            margin: auto;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -469,7 +470,7 @@
 
         .restaurant-card-heading {
             width: 95%;
-            margin: 1rem 0;
+            margin: 1rem auto;
             font-family: "Playfair Display", serif;
             font-weight: 400;
             color: #5f5f5f;
@@ -483,7 +484,7 @@
 
         .restaurant-card-content-sub p {
             width: 95%;
-            margin: 0.5rem 0;
+            margin: 0.5rem auto;
             font-size: 15px;
             text-align: justify;
             color: #5f5f5f;
@@ -500,6 +501,7 @@
         .restaurant-card-info {
             height: 20%;
             width: 95%;
+            margin: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;

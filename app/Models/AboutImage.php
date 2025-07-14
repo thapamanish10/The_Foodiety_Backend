@@ -9,11 +9,8 @@ class AboutImage extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'product_id',
-        'image_name',
-        'image_text',
-        'image_type',
-        'image',
+        'about_id',
+        'path',
     ];
 
     // Define the inverse relationship with the Product model

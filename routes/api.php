@@ -11,19 +11,19 @@ use App\Http\Controllers\about\image\AboutImageController;
 use App\Http\Controllers\blog\BlogController;
 use App\Http\Controllers\message\MessageController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
 
 
-Route::get('/product', [ProductsController::class, 'productAPI'])->name('product');
-Route::get('/product/{id}', [ProductsController::class, 'productDetailAPI'])->name('productDetailAPI');
-Route::get('/image', [ImageController::class, 'productImageAPI'])->name('image');
-Route::get('/video', [VideosController::class, 'productVideoAPI'])->name('video');
-Route::get('/carousel', [CarouselController::class, 'carouselImageAPI'])->name('carousel');
-Route::get('/about', [AboutController::class, 'aboutAPI'])->name('about');
-Route::get('/aboutImage', [AboutImageController::class, 'aboutImageAPI'])->name('aboutImage');
-Route::get('/blogs', [BlogController::class, 'blogAPI'])->name('blogs');
-Route::get('/blogImage', [BlogController::class, 'blogImageAPI'])->name('blogImage');
-Route::get('/blog/{id}', [BlogController::class, 'blogSingelAPI'])->name('blogSingelAPI');
-Route::post('/messages', [MessageController::class, 'createMessage'])->name('messages.store');
+// Route::get('/product', [ProductsController::class, 'productAPI'])->name('product');
+// Route::get('/product/{id}', [ProductsController::class, 'productDetailAPI'])->name('productDetailAPI');
+// Route::get('/image', [ImageController::class, 'productImageAPI'])->name('image');
+// Route::get('/video', [VideosController::class, 'productVideoAPI'])->name('video');
+// Route::get('/carousel', [CarouselController::class, 'carouselImageAPI'])->name('carousel');
+// Route::get('/about', [AboutController::class, 'aboutAPI'])->name('about');
+// Route::get('/aboutImage', [AboutImageController::class, 'aboutImageAPI'])->name('aboutImage');
+// Route::get('/blogs', [BlogController::class, 'blogAPI'])->name('blogs');
+// Route::get('/blogImage', [BlogController::class, 'blogImageAPI'])->name('blogImage');
+// Route::get('/blog/{id}', [BlogController::class, 'blogSingelAPI'])->name('blogSingelAPI');
+// // Route::post('/messages', [MessageController::class, 'createMessage'])->name('messages.store');

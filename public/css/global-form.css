@@ -235,3 +235,9 @@
     .custom-checkbox-input:checked:hover+.custom-checkbox-label {
         background-color: #0f172a;
     }
+    .current-images{
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        position: relative;
+    }

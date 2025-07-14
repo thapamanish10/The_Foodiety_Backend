@@ -3,13 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\announcement\AnnouncementController;
-use App\Http\Controllers\products\ProductsController;
-use App\Http\Controllers\image\ImageController;
-use App\Http\Controllers\videos\VideosController;
 use App\Http\Controllers\about\AboutController;
+use App\Http\Controllers\AIController;
 use App\Http\Controllers\carousel\CarouselController;
-use App\Http\Controllers\about\image\AboutImageController;
-use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GoogleController;
@@ -20,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
+use App\Models\About;
+use App\Models\Carousel;
 use App\Models\Restaurant;
 
 // Route::middleware(['guest'])->group(function () {
@@ -29,14 +28,25 @@ use App\Models\Restaurant;
 //     });
 // });
 Route::get('/', function () {
-    $restaurants = Restaurant::withCount(['likes', 'comments', 'views', 'images'])
-    ->orderBy('created_at', 'desc')
-    ->get();
-    return view('welcome', compact('restaurants'));
+    $carousels = Carousel::all();
+    $abouts = About::all();
+    $restaurants = Restaurant::whereHas('images')  
+                        ->with('images')   
+                        ->withCount(['likes', 'comments', 'views'])
+                        ->latest()
+                        ->take(3)
+                        ->get();
+    return view('welcome', compact('restaurants', 'carousels','abouts'));
 });
+Route::get('home/contact', function () {
+     $abouts = About::all();
+    return view('Frontend.pages.contact.contact', compact('abouts'));
+})->name("home.contact.index");
+
+
 Route::get('/continue/with', function () {
     return view('continue');
-});
+})->name('continue.with');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('users')->group(function () {
@@ -59,6 +69,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
             ->middleware(['auth', 'superadmin']);
     });
 });
+Route::resource('services', ServiceController::class);
+Route::get('/home/services', [ServiceController::class, 'homePageServices'])->name('home.services.index');
+Route::get('/home/services/{service}', [ServiceController::class, 'homePageServicesDetail'])->name('home.services.show');
+Route::resource('business', AboutController::class);
+Route::get('/home/business', [AboutController::class, 'homePageAbouts'])->name('home.business.index');
+Route::get('/home/business/{busines}', [AboutController::class, 'homePageAboutsDetail'])->name('home.business.show');
 
 Route::resource('categories', CategoryController::class);
 Route::resource('restaurants',RestaurantController::class);
@@ -66,7 +82,7 @@ Route::post('/restaurants/{restaurant}/like', [RestaurantController::class, 'lik
 Route::post('/restaurants/{restaurant}/comment', [RestaurantController::class, 'comment'])->name('restaurants.comment');
 Route::post('/restaurants/{restaurant}/share', [RestaurantController::class, 'share'])->name('restaurants.share');
 Route::delete('restaurants/images/{image}', [RestaurantController::class, 'destroyImage'])->name('restaurants.destroyImage');
-Route::get('/restaurants', [RestaurantController::class, 'welcomePageRestaurants'])->name('welcome.restaurants.index');
+Route::get('/welcome/restaurants', [RestaurantController::class, 'welcomePageRestaurants'])->name('welcome.restaurants.index');
 Route::get('/home/restaurants', [RestaurantController::class, 'homePageRestaurants'])->name('home.restaurants.index');
 Route::get('/home/restaurants/{restaurant}', [RestaurantController::class, 'homePageRestaurantsDetail'])->name('home.restaurants.show');
 
@@ -82,6 +98,24 @@ Route::prefix('galleries')->group(function () {
 });
 Route::get('home/galleries', [GalleryController::class, 'frontendGallery'])->name('home.galleries.index');
 Route::get('home/galleries/{gallery}', [GalleryController::class, 'frontendGalleryShow'])->name('home.galleries.show');
+
+Route::prefix('ais')->group(function () {
+    Route::get('/', [AIController::class, 'index'])->name('ais.index');
+    Route::get('/create', [AIController::class, 'create'])->name('ais.create');
+    Route::post('/', [AIController::class, 'store'])->name('ais.store');
+    Route::get('/{ai}', [AIController::class, 'show'])->name('ais.show');
+    Route::get('/{ai}/edit', [AIController::class, 'edit'])->name('ais.edit');
+    Route::put('/{ai}', [AIController::class, 'update'])->name('ais.update');
+    Route::delete('/{ai}', [AIController::class, 'destroy'])->name('ais.destroy');
+    Route::get('/{ai}/download', [AIController::class, 'download'])->name('ais.download');
+});
+Route::get('home/ais', [AIController::class, 'frontendAI'])->name('home.ais.index');
+Route::get('home/ais/{ai}', [AIController::class, 'frontendAIShow'])->name('home.ais.show');
+
+
+
+
+Route::get('home/videos/{video}', [GalleryController::class, 'frontendVideoShow'])->name('home.videos.show');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
@@ -137,7 +171,6 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
     // Route to display the dashboard page
 
     // Route to display the details page
@@ -147,32 +180,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement');
     Route::get('/announcement/create', [AnnouncementController::class, 'create'])->name('announcement.create');
 
-    Route::get('/business', [AboutController::class, 'index'])->name('business.index');
-    Route::get('/business/create', [AboutController::class, 'create'])->name('business.create');
-    Route::post('/business', [AboutController::class, 'store'])->name('business.store');
-    Route::get('/business/edit/{id}', [AboutController::class, 'edit'])->name('business.edit');
-    Route::put('/business//update{id}', [AboutController::class, 'update'])->name('business.update');
-    Route::delete('/business/delete/{id}', [AboutController::class, 'delete'])->name('business.delete');
-
-    Route::get('/business/image/manage/{id}', [AboutController::class, 'manageAboutImage'])->name('business.manage.image');
-    Route::get('/business/image/manage/edit/{id}', [AboutController::class, 'editAboutImage'])->name('business.manage.image.edit');
-    Route::put('/business/image/manage/update{id}', [AboutController::class, 'updateAboutImage'])->name('business.manage.image.update');
-    Route::delete('/business/image/manage/delete/{id}', [AboutController::class, 'deleteAboutImage'])->name('business.manage.image.delete');
-
-    Route::get('/business/image/{id}', [AboutImageController::class, 'create'])->name('business.image.create');
-    Route::post('/business/image/store/{id}', [AboutImageController::class, 'store'])->name('business.image.store');
-    Route::get('/business/image/edit/{id}', [AboutImageController::class, 'viewEditImageForm'])->name('business.image.edit');
-    Route::post('/business/image/update/{id}', [AboutImageController::class, 'viewUpdateImageForm'])->name('business.image.update');
 
     // Route to handle the blog page
-    Route::get('/carousel', [CarouselController::class, 'index'])->name('carousel.index');
-    Route::get('/carousel/create', [CarouselController::class, 'create'])->name('carousel.create');
-    Route::post('/carousel', [CarouselController::class, 'store'])->name('carousel.store');
-    Route::get('/carousel/edit/{id}', [CarouselController::class, 'edit'])->name('carousel.edit');
-    Route::put('/carousel/update{id}', [CarouselController::class, 'update'])->name('carousel.update');
-    Route::delete('/carousel/delete/{id}', [CarouselController::class, 'delete'])->name('carousel.delete');
+    Route::resource('/carousel', CarouselController::class);
+    Route::get('/home/carousel', [CarouselController::class, 'welcomePageCarousel'])
+    ->name('home.carousel.index');
 
-
+    Route::middleware(['auth', 'verified'])->group(function () {
 
 
     // // Route to handle the product page
@@ -205,11 +219,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::delete('/product/video/manage/delete/{id}', [VideosController::class, 'deleteVideo'])->name('manage.video.delete');
 
 
-    // Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
-    // Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
-    // Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
-    // Route::post('/messages/{id}/mark-as-read', [MessageController::class, 'markAsRead'])->name('messages.markAsRead');
-    // Route::delete('/messages/delete/{id}', [MessageController::class, 'delete'])->name('messages.delete');
 
 
 
@@ -222,3 +231,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
+    Route::post('/messages/store', [MessageController::class, 'store'])->name('messages.store');
+    Route::post('/messages/{id}/mark-as-read', [MessageController::class, 'markAsRead'])->name('messages.markAsRead');
+    Route::delete('/messages/delete/{id}', [MessageController::class, 'delete'])->name('messages.delete');

@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
+
         <div class="card">
+
             <img src="{{ asset('storage/' . $gallery->image) }}" class="card-img-top" alt="{{ $gallery->name }}">
             <div class="card-body">
                 <h1 class="card-title">{{ $gallery->name }}</h1>

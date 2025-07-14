@@ -8,17 +8,10 @@ use App\Models\Carousel;
 
 class CarouselController extends Controller
 {
-    public function carouselImageAPI()
-    {
-        try {
-            $data = Carousel::all();
-            return response()->json($data, 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error fetching carousel images',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+
+    public function welcomePageCarousel() {
+        $carousels = Carousel::all();
+        return view('Frontend.carousel.index', compact('carousels'));
     }
 
     public function index() {
@@ -53,7 +46,7 @@ class CarouselController extends Controller
         return redirect()->route('carousel.index')->with('success', 'Carousel updated successfully.');
     }
 
-    public function delete($id) {
+    public function destroy($id) {
         $carousel = Carousel::findOrFail($id);
         $carousel->delete();
         return redirect()->route('carousel.index')->with('success', 'Carousel deleted successfully.');

@@ -4,8 +4,11 @@
         <h3>Comments</h3>
     </div>
     <div class="add-comment-main-div-body">
-        <form action="{{ $type === 'recipe' ? route('recipes.comment', $blog_id) : route('blogs.comment', $blog_id) }}"
-            method="POST">
+        <form action="{{ 
+            $type === 'recipe' ? route('recipes.comment', $blog_id) : 
+            ($type === 'restaurant' ? route('restaurants.comment', $blog_id) : 
+            route('blogs.comment', $blog_id)) 
+        }}" method="POST">
             @csrf
             <textarea name="content" cols="30" rows="10" placeholder="Write a comment ..."></textarea>
             <input type="hidden" name="parent_id" value="{{ $parentId ?? null }}">

@@ -3,26 +3,14 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-use Illuminate\Support\Str;
 
 class Card3 extends Component
 {
-    public $restaurant;
-    public $views;
-    public $comments;
-    public $likes;
-    public $query;
+    public $service;
 
-    public function __construct($restaurant, $views = 0, $comments = 0, $likes = 0, $query = null)
+    public function __construct($service)
     {
-        if (!$restaurant || !$restaurant->relationLoaded('images')) {
-            abort(500, 'Invalid restaurant data');
-        }
-        $this->restaurant = $restaurant;
-        $this->views = $views;
-        $this->comments = $comments;
-        $this->likes = $likes;
-        $this->query = $query;
+        $this->service = $service;
     }
 
     public function render()

@@ -6,131 +6,205 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\AboutImage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class AboutController extends Controller
 {
-    public function aboutAPI()
+    public function homePageAbouts()
     {
-        try {
-            $data = About::all();
-            return response()->json($data, 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error fetching about data',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        $abouts = About::withCount(['images'])
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+        
+        return view('Frontend.pages.about.index', compact('abouts'));
+    }
+    public function homePageAboutsDetail(About $busines)
+    {
+         $abouts = About::withCount(['images'])
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+        return view('Frontend.pages.about.show',[
+            'abouts' => $abouts,
+        ]);
     }
     public function index()
     {
-        // Fetch all about records
-        $abouts = About::with('images')->get();
-        return view('pages.business.business', ['abouts' => $abouts]);
-    }
-    public function create() {
-        return view('pages.business.create');
-    }
-
-    public function edit($id) {
-        $about = About::findOrFail($id);
-        return view('pages.business.edit', ['about' => $about]);
+        $abouts = About::withCount(['images'])
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+        
+        return view('pages.abouts.index', compact('abouts'));
     }
 
-    public function store(Request $request) {
-        $this->validateRequest($request);
-
-        $about = new About();
-        $this->saveData($about, $request);
-
-        return redirect()->route('business.index')->with('success', 'About added successfully.');
-    }
-
-    public function update(Request $request, $id) {
-        $this->validateRequest($request);
-
-        $about = About::findOrFail($id);
-        $this->saveData($about, $request);
-
-        return redirect()->route('business.index')->with('success', 'About updated successfully.');
-    }
-    public function delete($id)
+    public function create()
     {
-        $about = About::findOrFail($id);
-        $about->delete();
-        return redirect()->route('business.index')->with('success', 'About deleted successfully.');
+        return view('pages.abouts.create');
     }
 
-    private function validateRequest(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
-            'company_name' => 'required|string|max:255',
-            'company_logo' => 'required|image|mimes:jpg,jpeg,png|max:5048',
-            'phone_number' => 'required|string|max:20',
-            'optional_phone_number' => 'nullable|string|max:20',
-            'email_address' => 'required|string|max:255',
-            'facebook_link' => 'nullable|string|max:255',
-            'instagram_link' => 'nullable|string|max:255',
-            'youtube_link' => 'nullable|string|max:255',
-            'tiktok_link' => 'nullable|string|max:255',
-            'threads_link' => 'nullable|string|max:255',
-            'about_text' => 'required|string|max:10000',
+            'name' => 'required|string|max:255',
+            'desc' => 'required',
+            'number' => 'required',
+            'email' => 'required',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:102400',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:102400',
+            'opt_number' => 'nullable|string|max:255',
+            'facebook' => 'nullable|string|max:255',
+            'instagram' => 'nullable|string|max:255',
+            'youtube' => 'nullable|string|max:255',
+            'tiktok' => 'nullable|string|max:255',
+            'threads' => 'nullable|string|max:255',
+        ]);
+
+        $about = About::create($request->except(['images']));
+
+        if ($request->hasFile('logo')) {
+            // Delete old logo if exists
+            if ($about->logo) {
+                Storage::disk('public')->delete($about->logo);
+            }
+            
+            // Store new logo in public disk (storage/app/public/logos)
+            $path = $request->file('logo')->store('logos', 'public');
+            $validated['logo'] = $path; // This will store the correct relative path
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('About_images', 'public');
+                AboutImage::create([
+                    'about_id' => $about->id,
+                    'path' => $path
+                ]);
+            }
+        }
+
+        return redirect()->route('business.index')->with('success', 'About created successfully.');
+    }
+
+    public function show(About $about)
+    {
+        return view('pages.abouts.show',[
+            'About' => $about,
         ]);
     }
 
-    private function saveData(About $about, Request $request) {
-        $about->company_name = $request->company_name;
-        $about->phone_number = $request->phone_number;
-        $about->optional_phone_number = $request->optional_phone_number;
-        $about->email_address = $request->email_address;
-        $about->facebook_link = $request->facebook_link;
-        $about->instagram_link = $request->instagram_link;
-        $about->youtube_link = $request->youtube_link;
-        $about->tiktok_link = $request->tiktok_link;
-        $about->threads_link = $request->threads_link;
-        $about->about_text = $request->about_text;
+    public function edit(About $business)
+    {
+        return view('pages.abouts.edit', [
+            'about' => $business
+        ]);
+    }
 
-        if ($request->hasFile('company_logo')) {
-            $file = $request->file('company_logo');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $destinationPath = public_path('companyLogo');
-            $file->move($destinationPath, $filename);
-            $about->company_logo = 'companyLogo/' . $filename;
+    public function update(Request $request, About $business)
+    {
+        // Validate request data
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'number' => 'required|string|max:20',
+            'email' => 'required|email|max:255',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:10240', // 10MB
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:10240', // 10MB
+            'opt_number' => 'nullable|string|max:20',
+            'facebook' => 'nullable|url|max:255',
+            'instagram' => 'nullable|url|max:255',
+            'youtube' => 'nullable|url|max:255',
+            'tiktok' => 'nullable|url|max:255',
+            'threads' => 'nullable|url|max:255',
+            'removed_images' => 'nullable|array',
+            'removed_images.*' => 'exists:about_images,id,about_id,'.$business->id
+        ]);
+    
+        DB::beginTransaction();
+    
+        try {
+            // Handle logo upload
+            if ($request->hasFile('logo')) {
+                // Delete old logo if exists
+                if ($business->logo) {
+                    Storage::disk('public')->delete($business->logo);
+                }
+                
+                $validated['logo'] = $request->file('logo')->store('about/logos', 'public');
+            }
+    
+            // Update About data
+            $business->update($validated);
+    
+            // Handle removed images
+            if ($request->filled('removed_images')) {
+                $imagesToDelete = AboutImage::where('about_id', $business->id)
+                                          ->whereIn('id', $request->removed_images)
+                                          ->get();
+    
+                foreach ($imagesToDelete as $image) {
+                    Storage::disk('public')->delete($image->path);
+                    $image->delete();
+                }
+            }
+    
+            // Handle new image uploads
+            if ($request->hasFile('images')) {
+                $imagePaths = [];
+                
+                foreach ($request->file('images') as $image) {
+                    $path = $image->store('about/images', 'public');
+                    $imagePaths[] = ['path' => $path];
+                }
+    
+                // Bulk insert for better performance
+                $business->images()->createMany($imagePaths);
+            }
+    
+            DB::commit();
+    
+            return redirect()->back()
+                           ->with('success', 'About information updated successfully.');
+    
+        } catch (\Exception $e) {
+            DB::rollBack();
+            
+            Log::error('About update failed: ' . $e->getMessage());
+            
+            return redirect()->back()
+                           ->with('error', 'Failed to update About information. Please try again.')
+                           ->withInput();
+        }
+    }
+
+    public function deleteImage(AboutImage $image)
+    {
+        // Check if the authenticated user owns the About that contains this image
+        if (auth()->user()->id !== $image->About->user_id) {
+            return response()->json(['error' => 'Unauthorized'], 403);
         }
 
-        $about->save();
-    }
-
-    public function manageAboutImage($id){
-        $data = About::with(['images'])->findOrFail($id);
-        return view('pages.business.manage.manage' , compact('data'));
-    }
-    public function deleteAboutImage($id) {
-        $data = AboutImage::findOrFail($id);
-        $data->delete();
-        return redirect()->back()->with('success', 'Image deleted successfully.');
-    }
-    public function editAboutImage($id)
-    {
-        $data = AboutImage::findOrFail($id); 
-        $about = $data->about;
-        return view('pages.business.manage.edit.edit', compact('data', 'about'));
-    }
-    public function updateAboutImage(Request $request, $id)
-    {
-
-
-        $image = AboutImage::findOrFail($id);
-        $image->about_id = $request->about_id;
-        $image->image_name = $request->image_name;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $destinationPath = public_path('resturentImage');
-            $file->move($destinationPath, $filename);
-            $image->image = 'resturentImage/' . $filename;
+        try {
+            // Delete the file from storage
+            Storage::delete('public/' . $image->path);
+            
+            // Delete the image record from database
+            $image->delete();
+            
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete image'], 500);
         }
-        $image->save();
-
-        return redirect()->route('business.manage.image', $image->about_id)->with('success', 'Image updated successfully.');
+    }
+    public function destroy(About $about)
+    {
+        // Delete associated image if exists
+        if ($about->image) {
+            Storage::disk('public')->delete($about->image);
+        }
+        
+        $about->delete();
+        return redirect()->route('Abouts.index')->with('success', 'About deleted successfully.');
     }
 
 
