@@ -16,13 +16,22 @@ use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {
-    public function homePagerecipes()
+    public function homePagerecipes(Request $request)
     {
-        $recipes = Recipe::withCount(['likes', 'comments', 'views', 'images'])
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+        $query = Recipe::withCount(['likes', 'comments', 'views', 'images'])
+                    ->with(['categories'])
+                    ->orderBy('created_at', 'desc');
+            
+        if ($request->has('categories')) {
+            $query->whereHas('categories', function($q) use ($request) {
+                $q->whereIn('slug', $request->categories);
+            });
+        }
         
-        return view('Frontend.recipes.index', compact('recipes'));
+        $recipes = $query->get();
+        $categories = Category::all();
+        
+        return view('Frontend.recipes.index', compact('recipes', 'categories'));
     }
 
     public function homePagerecipesDetail(Recipe $recipe)

@@ -55,8 +55,22 @@ class Recipe extends Model
     {
         return $this->hasMany(RecipeShare::class);
     }
+    // public function categories()
+    // {
+    //     return $this->belongsToMany(Category::class, 'recipe_categorys');
+    // }
+    // App\Models\Recipe.php
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'recipe_categorys');
     }
+
+    // Add this scope for filtering
+    public function scopeWithCategory($query, $categorySlug)
+    {
+        return $query->whereHas('categories', function($q) use ($categorySlug) {
+            $q->where('slug', $categorySlug);
+        });
+    }
 }
+

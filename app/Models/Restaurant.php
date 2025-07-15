@@ -32,6 +32,24 @@ class Restaurant extends Model
     {
         return $this->hasMany(RestaurantImage::class);
     }
+
+    // Get first image URL or fallback to logo/default
+    public function getFeaturedImageAttribute()
+    {
+        if ($this->images->isNotEmpty()) {
+            return asset('storage/' . $this->images->first()->path);
+        }
+        
+        return $this->logo ? asset('storage/' . $this->logo) : asset('images/default-restaurant.jpg');
+    }
+
+    // Get all image URLs
+    public function getImageUrlsAttribute()
+    {
+        return $this->images->map(function ($image) {
+            return asset('storage/' . $image->path);
+        });
+    }
     public function likes()
     {
         return $this->hasMany(RestaurantLike::class);

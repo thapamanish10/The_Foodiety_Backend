@@ -30,13 +30,34 @@ use App\Models\Restaurant;
 Route::get('/', function () {
     $carousels = Carousel::all();
     $abouts = About::all();
-    $restaurants = Restaurant::whereHas('images')  
-                        ->with('images')   
-                        ->withCount(['likes', 'comments', 'views'])
-                        ->latest()
-                        ->take(3)
-                        ->get();
-    return view('welcome', compact('restaurants', 'carousels','abouts'));
+    $restaurants = Restaurant::with(['images', 'likes', 'comments', 'views'])
+        ->withCount(['likes', 'comments', 'views'])
+        ->latest()
+        ->take(3)
+        ->get();
+        
+    return view('welcome', compact('restaurants', 'carousels', 'abouts'));
+});
+
+Route::get('/debug-restaurants', function() {
+    $restaurants = Restaurant::with('images')->get();
+    return response()->json([
+        'storage_link_exists' => file_exists(public_path('storage')),
+        'restaurants' => $restaurants->map(function($restaurant) {
+            return [
+                'name' => $restaurant->name,
+                'logo' => $restaurant->logo,
+                'images' => $restaurant->images->map(function($image) {
+                    return [
+                        'path' => $image->path,
+                        'full_path' => storage_path('app/public/' . $image->path),
+                        'exists' => file_exists(storage_path('app/public/' . $image->path))
+                    ];
+                }),
+                'logo_exists' => $restaurant->logo ? file_exists(storage_path('app/public/' . $restaurant->logo)) : false
+            ];
+        })
+    ]);
 });
 Route::get('home/contact', function () {
      $abouts = About::all();

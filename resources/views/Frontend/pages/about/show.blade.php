@@ -1,9 +1,7 @@
 @extends('Frontend.layouts.main')
 
 @section('content')
-    <br>
-    <br>
-    <br>
+    <x-main-heading title="Our Story"/>
     <div class="about-artical-main-container">
         @foreach ($abouts as $about)
             <artical class="about-artical">
@@ -12,7 +10,7 @@
                 </section>
                 <section class="about-articel-section">
                     <h1>Welcome to {{ $about->name }}</h1>
-                    <p class="about-articel-section-desc">{!! $about->desc !!}</p>
+                    <div>{!! $about->desc !!}</div>
                 </section>
             </artical>
         @endforeach
@@ -33,7 +31,6 @@
         .about-artical {
             width: 100%;
             margin: 2rem auto;
-            display: flex;
             gap: 3rem;
             max-height: 450px;
             padding: 5px;
@@ -43,14 +40,13 @@
 
         .about-artical .about-articel-section,
         .about-article-section-img-div {
-            flex-basis: 50%;
             height: 100%;
             overflow: hidden;
         }
 
         .about-article-section-img-div img {
             width: 100%;
-            height: 100%;
+            height: 450px;
             object-fit: cover;
         }
 
@@ -74,7 +70,9 @@
             font-family: "Playfair Display", serif;
         }
 
-        .about-articel-section p {
+        p{
+            padding: 0;
+            margin: 0;
             font-size: 16px;
             margin-bottom: 20px;
             text-align: justify;
@@ -83,7 +81,10 @@
             color: #5f5f5f;
             text-align: justify;
             display: -webkit-box;
+            overflow: hidden;
             position: relative;
+            padding: .5rem 0;
+            margin: 0;
         }
 
         strong {

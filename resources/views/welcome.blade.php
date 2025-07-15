@@ -3,14 +3,17 @@
 @section('content')
 @include('Frontend.carousel.index', ['carousels'=> $carousels])
         <x-heading title="Our Story" />
-    @include('Frontend.pages.about.index')
+    @include('Frontend.pages.about.home-about')
      <div class="welcome-container-sections">
         <x-heading title="Our Services" />
         @include('Frontend.services.home-service')
      </div>
     <div class="welcome-container-sections">
         <x-heading title="Recommended Picks" />
-        {{-- @include('Frontend.restaurants.home-restaurant') --}}
+        {{-- @include("Frontend.restaurants.home-restaurant", ['restaurants'=> $restaurants]) --}}
+        @foreach ($restaurants as $restaurant)
+            <x-card4 :restaurant="$restaurant" />
+        @endforeach
     </div>
     @include('Frontend.pages.contact.index')
     <div class="welcome-container-sections">
@@ -22,12 +25,12 @@
 @endsection
 <style>
     .welcome-container-sections{
-        width:65%;
+        width: 65%;
         margin: auto;
     }
     @media (max-width: 1200px) {
         .welcome-container-sections{
-            width:65%;
+            width: 65%;
             margin: auto;
         }
     }
@@ -46,3 +49,4 @@
         }
     }
 </style>
+

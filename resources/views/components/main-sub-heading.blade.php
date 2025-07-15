@@ -108,7 +108,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 3rem auto;
+        margin: 2rem auto;
     }
 
     .main-sub-heading-section {

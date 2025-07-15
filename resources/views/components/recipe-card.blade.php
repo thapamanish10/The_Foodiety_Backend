@@ -100,7 +100,7 @@
 
     .recipes-card-image {
         width: 100%;
-        height: 60%;
+        height: 50%;
         margin-bottom: 1rem;
     }
 

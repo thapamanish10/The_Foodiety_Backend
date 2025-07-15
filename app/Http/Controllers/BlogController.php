@@ -16,13 +16,22 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-    public function homePageBlogs()
+    public function homePageBlogs(Request $request)
     {
-        $blogs = Blog::withCount(['likes', 'comments', 'views', 'images'])
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+        $query = Blog::withCount(['likes', 'comments', 'views', 'images'])
+                    ->with(['categories'])
+                    ->orderBy('created_at', 'desc');
         
-        return view('Frontend.blogs.index', compact('blogs'));
+        if ($request->has('categories')) {
+            $query->whereHas('categories', function($q) use ($request) {
+                $q->whereIn('slug', $request->categories);
+            });
+        }
+        
+        $blogs = $query->get();
+        $categories = Category::all(); 
+        
+        return view('Frontend.blogs.index', compact('blogs', 'categories'));
     }
     public function homePageBlogsDetail(Blog $blog)
     {

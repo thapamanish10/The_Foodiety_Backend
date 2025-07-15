@@ -1,118 +1,135 @@
-@props(['restaurant', 'views', 'comments', 'likes', 'query' => null])
-
-<div class="restaurant-card">
-    <a href="{{ route('home.restaurants.show', ['restaurant' => $restaurant->id . '-0-' . $restaurant->name]) }}"></a>
-    <div class="restaurant-card-sub-card">
-        <!-- Image Carousel -->
-        <div class="restaurant-card-card-image">
-            @php
-    $validImages = $restaurant->images->filter(fn($img) => !empty($img->path) && file_exists(public_path('storage/' . $img->path)));
-@endphp
-            @if ($validImages->isNotEmpty())
-                <div class="image-carousel">
-                    @foreach ($restaurant->images as $image)
-                        <div class="carousel-slide">
-                            <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $restaurant->name }}"
-                                onerror="this.onerror=null;this.src='{{ asset('images/default-restaurant.jpg') }}'"
-                                data-debug-path="{{ $image->path }}">
-                        </div>
-                    @endforeach
-                </div>
-                <!-- Carousel navigation arrows -->
-                <button class="carousel-prev">&lt;</button>
-                <button class="carousel-next">&gt;</button>
-                <!-- Carousel indicators -->
-                <div class="carousel-indicators">
-                    @foreach ($restaurant->images as $index => $image)
-                        <span class="indicator {{ $index === 0 ? 'active' : '' }}"
-                            data-index="{{ $index }}"></span>
-                    @endforeach
-                </div>
-            @else
-                <div class="no-image">
-                    <img src="{{ asset('images/default-restaurant.jpg') }}" alt="No image available"
-                        data-debug="no-images">
-                </div>
-            @endif
-        </div>
-        <div class="restaurant-card-content">
-            <div class="restaurant-card-content-sub">
-                <div class="restaurant-card-content-user-info">
-                    <img src="{{ url('foodiety.png') }}" alt="" class="restaurant-card-content-user-image">
-                    <div class="restaurant-card-content-user-info-user-details">
-                        <h3>The Foodiety</h3>
-                        <span>{{ $restaurant->created_at->format('d M') }}</span>
-                    </div>
-                    <img src="{{ asset('share.png') }}" alt="" class="restaurant-card-content-share">
-                </div>
-                <h2 class="restaurant-card-heading">
-                    @if ($query)
-                        {!! Str::highlight($restaurant->name, $query) !!}
-                    @else
-                        {{ $restaurant->name }}
-                    @endif
-                </h2>
-
-                <p class="restaurant-card-desc">
-                    @if ($query)
-                        {!! Str::highlight(Str::limit($restaurant->desc, 200), $query) !!}
-                    @else
-                        {!! Str::limit($restaurant->desc, 200) !!}
-                    @endif
-                </p>
-            </div>
-            <div class="restaurant-card-info">
-                <div class="restaurant-card-info-sec">
-                    <div class="restaurant-card-info-sub-sec">
-                        <span>{{ $views ?? '0' }} views</span>
-                    </div>
-                    <div class="restaurant-card-info-sub-sec">
-                        <span>{{ $comments ?? '0' }} comments</span>
-                    </div>
-                </div>
-                <div class="restaurant-card-info-sec">
-                    <form action="{{ route('restaurants.like', $restaurant) }}" method="POST" class="like-form">
-                        @csrf
-                        <button type="submit"
-                            class="like-button {{ $restaurant->isLikedBy(auth()->user()) ? 'liked' : '' }}">
-                            <div class="restaurant-card-info-sub-sec">
-                                <span>{{ $likes ?? '0' }}</span>
-                                <img src="{{ asset($restaurant->isLikedBy(auth()->user()) ? 'heart (2).png' : 'heart (1).png') }}"
-                                    alt="Like">
+@foreach ($restaurants as $restaurant)
+    <div class="restaurant-card">
+        <a
+            href="{{ route('home.restaurants.show', ['restaurant' => $restaurant->id . '-0-' . $restaurant->name]) }}"></a>
+        <div class="restaurant-card-sub-card">
+            <div class="restaurant-images-container">
+                @php
+                    $validImages = $restaurant->images->filter(fn($img) => $img->path);
+                @endphp
+                @if ($validImages->count() > 0)
+                    <div class="restaurant-carousel">
+                        <div class="carousel-track-container">
+                            <div class="carousel-track">
+                                @foreach ($restaurant->images as $key => $image)
+                                    <div class="carousel-slide {{ $key === 0 ? 'active' : '' }}">
+                                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $restaurant->name }}"
+                                            onerror="this.onerror=null;this.src='{{ asset('images/default-restaurant.jpg') }}'">
+                                    </div>
+                                @endforeach
                             </div>
-                        </button>
-                    </form>
+                        </div>
+
+                        <button class="carousel-prev">❮</button>
+                        <button class="carousel-next">❯</button>
+
+                        <div class="carousel-indicators">
+                            @foreach ($restaurant->images as $key => $image)
+                                <span class="indicator {{ $key === 0 ? 'active' : '' }}"
+                                    data-slide-to="{{ $key }}"></span>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="single-image">
+                        <img src="{{ $restaurant->logo ? asset('storage/' . $restaurant->logo) : asset('images/default-restaurant.jpg') }}"
+                            alt="{{ $restaurant->name }}"
+                            onerror="this.onerror=null;this.src='{{ asset('images/default-restaurant.jpg') }}'">
+                    </div>
+                @endif
+            </div>
+            <div class="restaurant-card-content">
+                <div class="restaurant-card-content-sub">
+                    <div class="restaurant-card-content-user-info">
+                        <img src="{{ url('foodiety.png') }}" alt="" class="restaurant-card-content-user-image">
+                        <div class="restaurant-card-content-user-info-user-details">
+                            <h3>The Foodiety</h3>
+                            <span>{{ $restaurant->created_at->format('d M') }}</span>
+                        </div>
+                        <img src="{{ asset('share.png') }}" alt="" class="restaurant-card-content-share">
+                    </div>
+                    <h2 class="restaurant-card-heading">
+                        {{ $restaurant->name }}
+                    </h2>
+
+                    <p class="restaurant-card-desc">
+                        {!! Str::limit($restaurant->desc, 200) !!}
+                    </p>
+                </div>
+                <div class="restaurant-card-info">
+                    <div class="restaurant-card-info-sec">
+                        <div class="restaurant-card-info-sub-sec">
+                            <span>{{ $restaurant->views_count }} views</span>
+                        </div>
+                        <div class="restaurant-card-info-sub-sec">
+                            <span>{{ $restaurant->comments_count }} comments</span>
+                        </div>
+                    </div>
+                    <div class="restaurant-card-info-sec">
+                        <form action="{{ route('restaurants.like', $restaurant) }}" method="POST" class="like-form">
+                            @csrf
+                            <button type="submit"
+                                class="like-button {{ $restaurant->isLikedBy(auth()->user()) ? 'liked' : '' }}">
+                                <div class="restaurant-card-info-sub-sec">
+                                    <span>{{ $restaurant->likes_count }}</span>
+                                    <img src="{{ asset($restaurant->isLikedBy(auth()->user()) ? 'heart (2).png' : 'heart (1).png') }}"
+                                        alt="Like">
+                                </div>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endforeach
 <style>
-    .restaurant-card-card-image {
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+    .restaurant-images-container {
+        position: relative;
+        width: 50%;
+        overflow: hidden;
+        height: 370px;
+    }
+
+    .restaurant-carousel {
         position: relative;
         width: 100%;
+        height: 100%;
         overflow: hidden;
     }
 
-    .image-carousel {
-        height: 100%;
+    .carousel-track-container {
         width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .carousel-track {
         display: flex;
+        height: 100%;
         transition: transform 0.5s ease;
+        width: 100%;
+        /* Ensure full width */
     }
 
     .carousel-slide {
-        height: 100%;
         min-width: 100%;
-        box-sizing: border-box;
+        height: 100%;
+        flex-shrink: 0;
+        /* Prevent slides from shrinking */
     }
 
     .carousel-slide img {
-        height: 100%;
         width: 100%;
+        height: 100%;
+        object-fit: cover;
         display: block;
+        /* Remove any extra space below image */
     }
 
+    /* Navigation Arrows */
     .carousel-prev,
     .carousel-next {
         position: absolute;
@@ -121,45 +138,60 @@
         background: rgba(0, 0, 0, 0.5);
         color: white;
         border: none;
-        padding: 10px;
+        padding: 10px 15px;
+        border-radius: 50%;
         cursor: pointer;
         z-index: 10;
+        font-size: 18px;
         display: none;
     }
 
     .carousel-prev {
-        left: 10px;
+        left: 15px;
     }
 
     .carousel-next {
-        right: 10px;
+        right: 15px;
     }
 
+    /* Indicators */
     .carousel-indicators {
         position: absolute;
-        bottom: 18px;
+        bottom: 15px;
         left: 0;
         right: 0;
         display: flex;
         justify-content: center;
-        gap: 5px;
+        gap: 8px;
+        z-index: 10;
     }
 
-    .indicator {
-        width: 10px;
-        height: 10px;
+    .carousel-indicators .indicator {
+        width: 12px;
+        height: 12px;
         border-radius: .4rem;
-        background: rgba(255, 255, 255, 0.329);
+        background: rgba(255, 255, 255, 0.5);
         cursor: pointer;
+        transition: background 0.3s;
     }
 
-    .indicator.active {
+    .carousel-indicators .indicator.active {
         width: 25px;
-        background: #ffde59;
+        background: rgb(253, 214, 40);
     }
-</style>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+    /* Fallback single image */
+    .single-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .single-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
 
     .restaurant-card-info-sec button {
         background: transparent;
@@ -181,12 +213,14 @@
         overflow: hidden;
         background: white;
     }
+
     .restaurant-card {
         width: 100%;
         margin-bottom: 2rem;
     }
 
     .restaurant-card-sub-card {
+        width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -210,7 +244,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 2;
+        z-index: 1000;
     }
 
     .restaurant-card-card-image {
@@ -227,10 +261,12 @@
         justify-content: space-between;
         flex-direction: column;
     }
-    .restaurant-card-content-sub{
+
+    .restaurant-card-content-sub {
         width: 90%;
         margin: auto;
     }
+
     .restaurant-card-info {
         width: 90%;
         margin: auto;
@@ -242,6 +278,7 @@
         z-index: 5;
         margin-top: auto;
     }
+
     .restaurant-card-content-user-info {
         width: 100%;
         display: flex;
@@ -298,7 +335,7 @@
         line-height: 1.3;
     }
 
-    .restaurant-card-content-sub {
+    ..restaurant-card-content-sub {
         height: 80%;
     }
 
@@ -497,67 +534,81 @@
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const carousels = document.querySelectorAll('.image-carousel');
-
-        carousels.forEach(carousel => {
+        // Initialize all carousels on the page
+        document.querySelectorAll('.restaurant-carousel').forEach(carousel => {
             const slides = carousel.querySelectorAll('.carousel-slide');
-            const prevBtn = carousel.parentElement.querySelector('.carousel-prev');
-            const nextBtn = carousel.parentElement.querySelector('.carousel-next');
-            const indicators = carousel.parentElement.querySelectorAll('.indicator');
-
+            const prevBtn = carousel.querySelector('.carousel-prev');
+            const nextBtn = carousel.querySelector('.carousel-next');
+            const indicators = carousel.querySelectorAll('.indicator');
             let currentIndex = 0;
-            const totalSlides = slides.length;
+            let autoSlideInterval;
 
-            function updateCarousel() {
-                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
 
                 // Update indicators
-                indicators.forEach((indicator, index) => {
-                    if (index === currentIndex) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
+                indicators.forEach(indicator => {
+                    indicator.classList.remove('active');
                 });
+
+                // Show current slide and update indicator
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+
+                currentIndex = index;
             }
 
-            // Next slide
+            function nextSlide() {
+                const newIndex = (currentIndex + 1) % slides.length;
+                showSlide(newIndex);
+            }
+
+            function prevSlide() {
+                const newIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(newIndex);
+            }
+
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+            }
+
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            // Event listeners
             nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateCarousel();
+                nextSlide();
+                stopAutoSlide();
+                startAutoSlide();
             });
 
-            // Previous slide
             prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                updateCarousel();
+                prevSlide();
+                stopAutoSlide();
+                startAutoSlide();
             });
 
-            // Indicator click
-            indicators.forEach(indicator => {
+            indicators.forEach((indicator, index) => {
                 indicator.addEventListener('click', () => {
-                    currentIndex = parseInt(indicator.dataset.index);
-                    updateCarousel();
+                    showSlide(index);
+                    stopAutoSlide();
+                    startAutoSlide();
                 });
             });
 
-            // Auto-rotate (optional)
-            let interval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateCarousel();
-            }, 5000);
+            // Start auto-sliding
+            startAutoSlide();
 
             // Pause on hover
-            carousel.parentElement.addEventListener('mouseenter', () => {
-                clearInterval(interval);
-            });
+            carousel.addEventListener('mouseenter', stopAutoSlide);
+            carousel.addEventListener('mouseleave', startAutoSlide);
 
-            carousel.parentElement.addEventListener('mouseleave', () => {
-                interval = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                    updateCarousel();
-                }, 5000);
-            });
+            // Show first slide initially
+            showSlide(0);
         });
     });
 </script>

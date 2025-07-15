@@ -3,6 +3,7 @@
 
 <head>
     @include('Frontend.layouts.head')
+    @stack('styles')
 </head>
 <style>
 body, html {

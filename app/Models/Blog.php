@@ -55,8 +55,20 @@ class Blog extends Model
     {
         return $this->hasMany(BlogShare::class);
     }
+    // public function categories()
+    // {
+    //     return $this->belongsToMany(Category::class, 'blog_categorys');
+    // }
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'blog_categorys');
+    }
+
+    // Add this scope for filtering
+    public function scopeWithCategory($query, $categorySlug)
+    {
+        return $query->whereHas('categories', function($q) use ($categorySlug) {
+            $q->where('slug', $categorySlug);
+        });
     }
 }
