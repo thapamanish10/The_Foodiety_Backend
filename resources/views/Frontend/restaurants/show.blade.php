@@ -7,15 +7,7 @@
     <br>
     <x-main-sub-heading />
     <div class="main-restaurant-detail-div-card">
-        <div class="main-restaurant-detail-div-user-info">
-            <img src="https://images.pexels.com/photos/32645258/pexels-photo-32645258.jpeg" alt="User"
-                class="main-restaurant-detail-div-user-image">
-            <div class="main-restaurant-detail-div-user-info-user-details">
-                <h3>The Foodiety</h3>
-                <p>{{ $restaurant->created_at->format('d M') }}</p>
-            </div>
-            <img src="{{ asset('share.png') }}" alt="Share" class="main-restaurant-detail-div-share">
-        </div>
+          <x-user-info/>
         <div class="restaurant-header">
             <h1 class="restaurant-name">{{ $restaurant->name }}</h1>
         </div>
@@ -231,59 +223,6 @@
    .main-restaurant-detail-div-card {
         padding: 3rem;
         border: 1px solid #ddd;
-    }
-    .main-restaurant-detail-div-user-info {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        position: relative;
-        z-index: 5;
-    }
-
-    .main-restaurant-detail-div-user-image {
-        width: 45px;
-        height: 45px;
-        object-fit: cover;
-        border-radius: 50%;
-    }
-
-    .main-restaurant-detail-div-user-info-user-details {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .main-restaurant-detail-div-user-info-user-details h3 {
-        font-size: 16px;
-        font-weight: 600;
-        white-space: nowrap;
-        color: #5f5f5f;
-        font-family: "Playfair Display", serif !important;
-        text-transform: uppercase;
-    }
-
-    .main-restaurant-detail-div-user-info-user-details p {
-        font-size: 12px;
-        font-weight: 500;
-        color: #5f5f5f;
-    }
-    .main-restaurant-detail-div-share {
-        position: absolute;
-        top: 50%;
-        right: 0%;
-        transform: translate(0%, -50%);
-        width: 20px;
-        height: 20px;
-    }
-    .restaurant-name {
-        width: 100%;
-        font-size: 30px;
-        margin: auto;
-        padding: 1rem 0;
-        font-family: "Playfair Display", serif !important;
-        font-weight: 400;
-        color: #5f5f5f;
     }
     
     /* Carousel Section */

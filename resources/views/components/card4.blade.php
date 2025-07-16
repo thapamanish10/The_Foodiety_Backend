@@ -36,14 +36,7 @@
     <!-- ─── Text / meta area (customise as you like) ──────────────── -->
     <div class="card4-body">
         <div class="card4-content-sub">
-            <div class="card4-content-user-info">
-                <img src="{{ url('foodiety.png') }}" alt="" class="card4-content-user-image">
-                <div class="card4-content-user-info-user-details">
-                    <h3>The Foodiety</h3>
-                    <span>{{ $restaurant->created_at->format('d M') }}</span>
-                </div>
-                <img src="{{ asset('share.png') }}" alt="" class="card4-content-share">
-            </div>
+            <x-user-info/>
             <h2 class="card4-heading">
                 {{ $restaurant->name }}
             </h2>
@@ -219,52 +212,6 @@
                 border-top: 1px solid #dddddd93;
                 z-index: 5;
                 margin-top: auto;
-            }
-
-            .card4-content-user-info {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                position: relative;
-                z-index: 5;
-            }
-
-            .card4-content-user-image {
-                width: 45px;
-                height: 45px;
-                object-fit: cover;
-                border-radius: 50%;
-                border: 1.5px solid #ffde59;
-                padding: .1rem;
-            }
-
-            .card4-content-user-info-user-details h3 {
-                font-size: 16px;
-                font-weight: 600;
-                color: #5f5f5f;
-                text-transform: uppercase;
-                margin-bottom: 0;
-                white-space: nowrap;
-            }
-
-            .card4-content-user-info-user-details span {
-                font-size: 12px;
-                font-weight: 500;
-                color: #5f5f5f;
-                margin-top: .1rem;
-                margin-bottom: 0;
-                font-family: "Playfair Display", serif;
-            }
-
-            .card4-content-share {
-                position: absolute;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                width: 20px;
-                height: 20px;
-                cursor: pointer;
             }
 
             .card4-heading {

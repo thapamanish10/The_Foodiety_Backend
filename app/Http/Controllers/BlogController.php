@@ -33,25 +33,28 @@ class BlogController extends Controller
         
         return view('Frontend.blogs.index', compact('blogs', 'categories'));
     }
+
     public function homePageBlogsDetail(Blog $blog)
     {
+        // Track view
         BlogView::create([
             'blog_id' => $blog->id,
             'user_id' => auth()->id(),
             'ip_address' => request()->ip(),
             'user_agent' => request()->userAgent()
         ]);
-        $shareLinks = [
-            'facebook' => 'https://www.facebook.com/sharer/sharer.php?u='.urlencode(route('blogs.show', $blog)),
-            'twitter' => 'https://twitter.com/intent/tweet?text='.urlencode($blog->name).'&url='.urlencode(route('blogs.show', $blog)),
-            'linkedin' => 'https://www.linkedin.com/shareArticle?mini=true&url='.urlencode(route('blogs.show', $blog)).'&title='.urlencode($blog->name),
-            'copy_link' => route('blogs.show', $blog)
-        ];
 
-        return view('Frontend.blogs.show',[
+        // Prepare share links
+        $shareLinks = [
+                'facebook' => 'https://www.facebook.com/sharer/sharer.php?u='.urlencode(route('blogs.show', $blog)),
+                'instagram' => 'https://www.instagram.com/',
+                'copy_link' => route('blogs.show', $blog)
+            ];
+
+        return view('Frontend.blogs.show', [
             'blog' => $blog,
             'shareLinks' => $shareLinks,
-            'likeCount' => $blog->likes()->count(), // Now this will work
+            'likeCount' => $blog->likes()->count(),
             'isLiked' => $blog->likes()->where('user_id', auth()->id())->exists(),
             'comments' => $blog->comments()->with('user')->get(),
             'commentCount' => $blog->comments()->count(),

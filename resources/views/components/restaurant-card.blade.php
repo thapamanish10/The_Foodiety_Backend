@@ -37,14 +37,7 @@
         </div>
         <div class="restaurant-card-content">
             <div class="restaurant-card-content-sub">
-                <div class="restaurant-card-content-user-info">
-                    <img src="{{ url('foodiety.png') }}" alt="" class="restaurant-card-content-user-image">
-                    <div class="restaurant-card-content-user-info-user-details">
-                        <h3>The Foodiety</h3>
-                        <span>{{ $restaurant->created_at->format('d M') }}</span>
-                    </div>
-                    <img src="{{ asset('share.png') }}" alt="" class="restaurant-card-content-share">
-                </div>
+                <x-user-info/>
                 <h2 class="restaurant-card-heading">
                     @if ($query)
                         {!! Str::highlight($restaurant->name, $query) !!}
@@ -242,52 +235,7 @@
         z-index: 5;
         margin-top: auto;
     }
-    .restaurant-card-content-user-info {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        position: relative;
-        z-index: 5;
-    }
-
-    .restaurant-card-content-user-image {
-        width: 45px;
-        height: 45px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 1.5px solid #ffde59;
-        padding: .1rem;
-    }
-
-    .restaurant-card-content-user-info-user-details h3 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #5f5f5f;
-        text-transform: uppercase;
-        margin-bottom: 0;
-        white-space: nowrap;
-    }
-
-    .restaurant-card-content-user-info-user-details span {
-        font-size: 12px;
-        font-weight: 500;
-        color: #5f5f5f;
-        margin-top: .1rem;
-        margin-bottom: 0;
-        font-family: "Playfair Display", serif;
-    }
-
-    .restaurant-card-content-share {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-    }
-
+    
     .restaurant-card-heading {
         width: 100%;
         margin: 1rem 0;
@@ -296,10 +244,6 @@
         color: #5f5f5f;
         font-size: 1.5rem;
         line-height: 1.3;
-    }
-
-    .restaurant-card-content-sub {
-        height: 80%;
     }
 
     .restaurant-card-content-sub p {
@@ -408,33 +352,6 @@
             align-items: stretch;
             overflow: hidden;
             background: white;
-        }
-
-        .restaurant-card-content-user-info {
-            width: 95%;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            position: relative;
-            z-index: 5;
-        }
-
-        .restaurant-card-content-user-info-user-details h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #5f5f5f;
-            text-transform: uppercase;
-            margin-bottom: 0;
-            margin-top: 0rem;
-        }
-
-        .restaurant-card-content-user-info-user-details p {
-            font-size: 12px;
-            font-weight: 500;
-            color: #5f5f5f;
-            margin-top: .3rem;
-            margin-bottom: 0;
         }
 
         .restaurant-card-card-image {

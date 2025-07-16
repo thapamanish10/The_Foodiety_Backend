@@ -4,15 +4,7 @@
     <section class="main-blog-detail-div">
         <x-main-sub-heading />
         <div class="main-blog-detail-div-card">
-            <div class="main-blog-detail-div-user-info">
-                <img src="https://images.pexels.com/photos/32645258/pexels-photo-32645258.jpeg" alt="User"
-                    class="main-blog-detail-div-user-image">
-                <div class="main-blog-detail-div-user-info-user-details">
-                    <h3>The Foodiety</h3>
-                    <p>{{ $recipe->created_at->format('d M') }}</p>
-                </div>
-                <img src="{{ asset('share.png') }}" alt="Share" class="main-blog-detail-div-share">
-            </div>
+            <x-user-info />
             <h2 class="main-blog-detail-div-heading">{{ $recipe->name }}</h2>
             <p class="main-blog-detail-div-desc">
                 {!! $recipe->desc !!}
@@ -57,8 +49,8 @@
                         </a>
                     </div>
                     <div class="main-blog-detail-div-info-sub-sec share-social-links">
-                        <a href="https://twitter.com/intent/tweet?text=" target="_blank">
-                            <img src="{{ asset('twitter (1).png') }}" alt="Share on Instagram">
+                        <a href="https://www.instagram.com" target="_blank">
+                            <img src="{{ asset('in.png') }}" alt="Share on Instagram">
                         </a>
                     </div>
                     <div class="main-blog-detail-div-info-sub-sec share-social-links"
@@ -115,51 +107,6 @@
     .main-blog-detail-div-card {
         padding: 3rem;
         border: 1px solid #ddd;
-    }
-
-    .main-blog-detail-div-user-info {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        position: relative;
-        z-index: 5;
-    }
-
-    .main-blog-detail-div-user-image {
-        width: 45px;
-        height: 45px;
-        object-fit: cover;
-        border-radius: 50%;
-    }
-
-    .main-blog-detail-div-user-info-user-details {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .main-blog-detail-div-user-info-user-details h3 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #5f5f5f;
-        font-family: "Playfair Display", serif !important;
-        text-transform: uppercase;
-    }
-
-    .main-blog-detail-div-user-info-user-details p {
-        font-size: 12px;
-        font-weight: 500;
-        color: #5f5f5f;
-    }
-
-    .main-blog-detail-div-share {
-        position: absolute;
-        top: 50%;
-        right: 0%;
-        transform: translate(0%, -50%);
-        width: 20px;
-        height: 20px;
     }
 
     .main-blog-detail-div-heading {

@@ -23,14 +23,7 @@
 
     <div class="card2-content">
         <div class="card2-content-sub">
-            <div class="card2-content-user-info">
-                <img src="{{ url('foodiety.png') }}" alt="" class="card2-content-user-image">
-                <div class="card2-content-user-info-user-details">
-                    <h3>The Foodiety</h3>
-                    <span>{{ $blog->created_at->format('d M') }}</span>
-                </div>
-                <img src="{{ asset('share.png') }}" alt="" class="card2-content-share">
-            </div>
+            <x-user-info/>
             <h2 class="card2-heading">
                 @if ($query)
                     {!! Str::highlight($blog->name, $query) !!}

@@ -157,19 +157,104 @@
         </div>
     @endforeach
 </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        const mobileNavbar = document.getElementById('mobileNavbar');
+        const followTrigger = document.getElementById('followTrigger');
+        const mobileFollowTrigger = document.getElementById('mobileFollowTrigger');
+        const topbar = document.getElementById('topbar');
+        const mobileTopbar = document.getElementById('mobileTopbar');
+        const navbar = document.getElementById('navbar');
+        
+        // Check if we're on the home page
+        const isHomePage = window.location.pathname === '/';
+        
+        // Set initial navbar style for home page
+        if (isHomePage) {
+            navbar.style.background = 'transparent';
+            navbar.style.boxShadow = 'none';
+        }
+        
+        // Toggle mobile menu
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileNavbar.classList.add('active');
+        });
 
+        // Close mobile menu
+        mobileCloseBtn.addEventListener('click', function() {
+            mobileNavbar.classList.remove('active');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileNavbar.contains(e.target) && e.target !== mobileMenuToggle) {
+                mobileNavbar.classList.remove('active');
+            }
+        });
+
+        // Toggle follow section (desktop)
+        if (followTrigger) {
+            followTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                topbar.style.display = topbar.style.display === 'block' ? 'none' : 'block';
+            });
+        }
+
+        // Toggle follow section (mobile)
+        if (mobileFollowTrigger) {
+            mobileFollowTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                mobileTopbar.style.display = mobileTopbar.style.display === 'block' ? 'none' : 'block';
+            });
+        }
+
+        // Close follow section when clicking outside (desktop)
+        document.addEventListener('click', function(e) {
+            if (!topbar.contains(e.target) && e.target !== followTrigger) {
+                topbar.style.display = 'none';
+            }
+        });
+
+        // Window scroll handler for navbar effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.style.background = '#fff';
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+                navbar.style.position = 'fixed';
+                navbar.style.top = '0';
+            } else {
+                if (isHomePage) {
+                    navbar.style.background = 'transparent';
+                    navbar.style.boxShadow = 'none';
+                } else {
+                    navbar.style.background = '#fff';
+                    navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+                }
+            }
+        });
+
+        // Window resize handler
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 992) {
+                mobileNavbar.classList.remove('active');
+            }
+        });
+    });
+</script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-    /* Base Navbar Styles */
     .navbar {
-        position: relative;
-        width: 100%;
-        z-index: 1000;
-        background: #fff;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        font-family: "Raleway", sans-serif;
+    position: fixed; 
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: "Raleway", sans-serif;
+    transition: all 0.3s ease;
+    top: 0; 
     }
-
     .logo {
         font-size: 1.5rem;
         font-weight: bold;
