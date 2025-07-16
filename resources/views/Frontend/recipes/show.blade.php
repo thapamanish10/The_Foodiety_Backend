@@ -49,9 +49,81 @@
                         </a>
                     </div>
                     <div class="main-blog-detail-div-info-sub-sec share-social-links">
-                        <a href="https://www.instagram.com" target="_blank">
-                            <img src="{{ asset('in.png') }}" alt="Share on Instagram">
+                        {{-- <a href="#" onclick="shareRecipe('{{ $recipe->title }}')">
+                            <img src="{{ asset('in.png') }}" alt="Share Recipe">
                         </a>
+
+                        <script>
+                        function shareRecipe(recipeTitle) {
+                            // Try using the Web Share API first (works on mobile devices)
+                            if (navigator.share) {
+                                navigator.share({
+                                    title: recipeTitle,
+                                    text: `Check out this "${recipeTitle}" recipe!`,
+                                    url: window.location.href,
+                                })
+                                .catch(err => console.log('Error sharing:', err));
+                            } 
+                            // Fallback for desktop browsers
+                            else {
+                                const currentUrl = encodeURIComponent(window.location.href);
+                                const message = encodeURIComponent(`Check out this "${recipeTitle}" recipe!`);
+                                
+                                // Open Instagram with a suggested message (may not work in all cases)
+                                window.open(`https://www.instagram.com/direct/inbox/?text=${message}%20${currentUrl}`, '_blank');
+                                
+                                // Alternative: Copy link to clipboard with a prompt
+                                navigator.clipboard.writeText(`${recipeTitle}: ${window.location.href}`)
+                                    .then(() => alert('Link copied! Paste it in Instagram DMs to share.'))
+                                    .catch(err => console.error('Could not copy text: ', err));
+                            }
+                        }
+                        </script> --}}
+                        <a href="#" onclick="shareRecipe('{{ $recipe->title }}')">
+                            <img src="{{ asset('in.png') }}" alt="Share to Instagram">
+                        </a>
+
+                        <script>
+                        function shareRecipe(recipeTitle) {
+                            const currentUrl = window.location.href;
+                            const shareText = `Check out this "${recipeTitle}" recipe! ${currentUrl}`;
+                            
+                            // Try Web Share API first (mobile devices)
+                            if (navigator.share) {
+                                navigator.share({
+                                    title: recipeTitle,
+                                    text: shareText,
+                                    url: currentUrl,
+                                })
+                                .catch(err => {
+                                    // If Web Share fails, try Instagram directly
+                                    shareToInstagram(recipeTitle, currentUrl);
+                                });
+                            } 
+                            else {
+                                // Directly try Instagram sharing
+                                shareToInstagram(recipeTitle, currentUrl);
+                            }
+                        }
+
+                        function shareToInstagram(recipeTitle, url) {
+                            const encodedText = encodeURIComponent(`Check out this "${recipeTitle}" recipe!`);
+                            const encodedUrl = encodeURIComponent(url);
+                            
+                            // Try to open Instagram app first
+                            window.location.href = `instagram://sharing?text=${encodedText}%0A%0A${encodedUrl}`;
+                            
+                            // Fallback to web if app isn't installed
+                            setTimeout(() => {
+                                window.open(`https://www.instagram.com/?text=${encodedText}%0A%0A${encodedUrl}`, '_blank');
+                                
+                                // Ultimate fallback - copy to clipboard
+                                navigator.clipboard.writeText(`${recipeTitle}: ${url}`)
+                                    .then(() => alert('Link copied! Open Instagram and paste it in a DM or story.'))
+                                    .catch(err => console.error('Copy failed:', err));
+                            }, 300);
+                        }
+                        </script>
                     </div>
                     <div class="main-blog-detail-div-info-sub-sec share-social-links"
                         onclick="copyToClipboard('{{ url()->current() }}')">

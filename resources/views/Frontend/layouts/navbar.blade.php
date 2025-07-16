@@ -93,7 +93,7 @@
             <a class="{{ Request::is('home/recipes') ? 'activeNavLink' : '' }}" href="{{ route('home.recipes.index') }}">Recipes</a>
            <a class="{{ Request::is('home/ais') ? 'activeNavLink' : '' }}" href="{{ route('home.ais.index') }}">Foodiety Ai</a>
         </div>
-        <div class="logo">THE FOODIETY</div>
+        <div class="logo"><img src="{{ url('the-foodiety-logo1.png') }}" alt=""></div>
         <div class="nav-left nav-right">
             @foreach ($abouts as $about)
             <a class="{{ Request::is('home/business') ? 'activeNavLink' : '' }}" href="{{ route('home.business.show', $about->id."-".$about->name) }}">About</a>
@@ -246,14 +246,18 @@
 </script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+    /* Base Navbar Styles */
     .navbar {
-    position: fixed; 
+    position: fixed; /* Changed from relative to fixed */
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     font-family: "Raleway", sans-serif;
-    transition: all 0.3s ease;
-    top: 0; 
+    transition: all 0.3s ease; /* Add smooth transition */
+    top: 0; /* Ensure it stays at top */
+    }
+    body {
+        padding-top: 100px; /* Adjust this value based on your navbar height */
     }
     .logo {
         font-size: 1.5rem;
@@ -386,6 +390,10 @@
         flex-wrap: nowrap;
         white-space: nowrap;
     }
+    .logo img{
+        height: 40px;
+        object-fit: contain;
+    }
     .nav-left, .nav-right {
         width: 50%;
         display: flex;
@@ -459,8 +467,10 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    /* Responsive Breakpoint */
     @media (min-width: 992px) {
+        body {
+            padding-top: 0px; 
+        }
         .mobile-nav {
             display: none;
         }

@@ -1,7 +1,7 @@
 @extends('Frontend.layouts.main')
 
 @section('content')
-    <x-main-heading title="Foodiety Blogs" />
+    <x-main-heading title="Recommended Restaurants" />
     <section class="restaurant-index-div">
         <x-main-sub-heading title="All My Blogs" type="blog" />
         @forelse ($restaurants as $restaurant)

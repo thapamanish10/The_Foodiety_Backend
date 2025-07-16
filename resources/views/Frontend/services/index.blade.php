@@ -1,7 +1,7 @@
 @extends('Frontend.layouts.main')
 
 @section('content')
-    <x-main-heading title="Foodiety Blogs" />
+    <x-main-heading title="Foodiety Services" />
     <section class="services-index-div">
         <x-main-sub-heading title="All My Blogs" type="blog" />
         <div class="card3-container">

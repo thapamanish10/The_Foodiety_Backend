@@ -40,7 +40,7 @@
             .carousel-nav {
                 position: absolute;
                 bottom: 20px !important;
-                right: 46% !important;
+                right: 43% !important;
                 display: flex;
                 gap: 10px;
             }
