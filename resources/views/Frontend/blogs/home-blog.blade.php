@@ -1,6 +1,7 @@
 @php
     $blogs = \App\Models\Blog::withCount(['likes', 'comments', 'views', 'images'])
         ->orderBy('created_at', 'desc')
+        ->take(3)
         ->get();
 @endphp
 <div class="home-blog-container">

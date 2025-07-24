@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AI;
+use App\Models\AI_Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -12,14 +13,18 @@ class AIController extends Controller
     public function frontendAI()
     {
         $ais = AI::latest()->paginate(10);
-        return view('Frontend.ai.index', compact('ais'));
+        $videos = AI_Video::latest()->paginate(10);
+        return view('Frontend.ai.index', compact('ais', 'videos'));
     }
 
     public function frontendAIShow(AI $ai)
     {
         return view('Frontend.ai.show', compact('ai'));
     }
-
+    public function frontendVideoShow(AI_Video $video)
+    {
+        return view('Frontend.ai.video', compact('video'));
+    }
     public function index()
     {
         $ais = AI::latest()->get();

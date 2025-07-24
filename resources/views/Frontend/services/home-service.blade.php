@@ -21,17 +21,18 @@
     }
 
     .home-service-container .bg-image {
+        background: linear-gradient(rgba(0, 0, 0, 0.644), rgba(0, 0, 0, 0.507));
         width: 100%;
         height: 100%;
         position: absolute;
         object-fit: cover;
     }
 
-    @media (max-width: 1200px) {
+    /* @media (max-width: 1200px) {
         .home-service-container {
             grid-template-columns: repeat(3, 1fr);
         }
-    }
+    } */
 
     @media (max-width: 900px) {
         .home-service-container {

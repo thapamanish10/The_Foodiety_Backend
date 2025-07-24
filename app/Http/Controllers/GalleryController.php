@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -107,6 +108,14 @@ class GalleryController extends Controller
         if (!auth()->check()) {
             return redirect()->route('continue.with')->with('error', 'Please login first to download images.');
         }
+        DB::table('gallery_downloads')->insert([
+            'gallery_id' => $gallery->id,
+            'user_id' => auth()->id(),
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
         $path = storage_path('app/public/' . $gallery->image);
         

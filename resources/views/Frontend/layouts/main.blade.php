@@ -48,5 +48,6 @@ body, html {
     </script>
     @include('Frontend.layouts.footer')
     @stack('scripts')
+    @yield('meta')
 </body>
 </html>

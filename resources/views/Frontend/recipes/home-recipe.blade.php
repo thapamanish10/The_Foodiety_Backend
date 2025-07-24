@@ -1,6 +1,7 @@
 @php
     $recipes = \App\Models\Recipe::withCount(['likes', 'comments', 'views', 'images'])
         ->orderBy('created_at', 'desc')
+        ->take(3)
         ->get();
 @endphp
 <div class="home-recipe-container">

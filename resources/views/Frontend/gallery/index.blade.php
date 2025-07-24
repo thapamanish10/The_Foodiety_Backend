@@ -17,7 +17,7 @@
         <div class="gallery-main-div-card">
             <div class="gallery-main-div-card-body">
                 @forelse ($videos as $video)
-                    <x-video-card :video="$video" />
+                    <x-video-card :video="$video" type="gallery" />
                 @empty
                 @endforelse
             </div>

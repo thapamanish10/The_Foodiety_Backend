@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -44,16 +45,9 @@ class BlogController extends Controller
             'user_agent' => request()->userAgent()
         ]);
 
-        // Prepare share links
-        $shareLinks = [
-                'facebook' => 'https://www.facebook.com/sharer/sharer.php?u='.urlencode(route('blogs.show', $blog)),
-                'instagram' => 'https://www.instagram.com/',
-                'copy_link' => route('blogs.show', $blog)
-            ];
-
         return view('Frontend.blogs.show', [
             'blog' => $blog,
-            'shareLinks' => $shareLinks,
+            'shareLinks' => $this->generateShareLinks($blog) ?? [],
             'likeCount' => $blog->likes()->count(),
             'isLiked' => $blog->likes()->where('user_id', auth()->id())->exists(),
             'comments' => $blog->comments()->with('user')->get(),
@@ -135,17 +129,28 @@ class BlogController extends Controller
         ]);
     }
 
-    // Add this new private method to generate share links
     private function generateShareLinks($blog)
     {
-        $url = urlencode(route('blogs.show', $blog));
-        $title = urlencode($blog->name);
+        $baseUrl = config('app.url');
+        $url = route('home.blogs.show', $blog);
+        $encodedUrl = urlencode($url);
         
+        // Prepare content
+        $title = urlencode($blog->name);
+        $description = urlencode(Str::limit(strip_tags($blog->desc), 100));
+        
+        // Get image URL
+        $imageUrl = $blog->images->count() 
+            ? url(Storage::url($blog->images->first()->path))
+            : url('images/default-blog.jpg');
+        $encodedImageUrl = urlencode($imageUrl);
+
         return [
-            'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$url}",
-            'twitter' => "https://twitter.com/intent/tweet?text={$title}&url={$url}",
-            'linkedin' => "https://www.linkedin.com/shareArticle?mini=true&url={$url}&title={$title}",
-            'copy_link' => route('blogs.show', $blog),
+            'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$encodedUrl}",
+            'twitter' => "https://twitter.com/intent/tweet?text={$title}%0A%0A{$description}&url={$encodedUrl}",
+            'whatsapp' => "https://wa.me/?text={$title}%0A%0A{$description}%0A%0A{$encodedUrl}",
+            'copy_link' => $url,
+            'image_url' => $imageUrl // For meta tags
         ];
     }
 

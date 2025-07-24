@@ -69,8 +69,8 @@ class UserController extends Controller
 
     public function showResetPasswordForm(User $user)
     {
-        if (!in_array(auth()->user()->role, ['super_admin', 'admin'])) {
-            abort(403, 'You need admin privileges');
+        if (!in_array(auth()->user()->role, ['super_admin'])) {
+             return redirect()->back()->with("error","You need Super admin privileges");
         }
 
         return view('users.reset-password', compact('user'));
@@ -78,8 +78,8 @@ class UserController extends Controller
 
     public function resetPassword(Request $request, User $user)
     {
-        if (!in_array(auth()->user()->role, ['super_admin', 'admin'])) {
-            abort(403, 'You need admin privileges');
+        if (!in_array(auth()->user()->role, ['super_admin'])) {
+             return redirect()->back()->with("error","You need Super admin privileges");
         }
 
         $request->validate([

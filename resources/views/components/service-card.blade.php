@@ -11,7 +11,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
     .service-card-main-container {
-        width: 200px;
+        width: 150px;
         height: 200px;
         aspect-ratio: 1 / 1;
         display: flex;
@@ -30,6 +30,7 @@
         text-transform: uppercase;
         font-size: 15px;
         font-weight: 500;
+        text-align: center;
     }
 
     .service-card-main-container a {

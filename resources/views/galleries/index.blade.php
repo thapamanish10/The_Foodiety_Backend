@@ -7,6 +7,8 @@
             <div class="form-group-buttons">
                 <a href="{{ route('galleries.create') }}" class="create-btn"><strong style="margin-right: .5rem">+
                     </strong>Create Images</a>
+                <a href="{{ route('videos.index') }}" class="create-btn"><strong style="margin-right: .5rem">+ </strong>Create
+                Videos</a>
             </div>
         </div>
 

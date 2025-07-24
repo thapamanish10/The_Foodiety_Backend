@@ -5,6 +5,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\announcement\AnnouncementController;
 use App\Http\Controllers\about\AboutController;
 use App\Http\Controllers\AIController;
+use App\Http\Controllers\AIVideoController;
 use App\Http\Controllers\carousel\CarouselController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\GalleryController;
@@ -137,13 +138,17 @@ Route::get('home/ais/{ai}', [AIController::class, 'frontendAIShow'])->name('home
 
 
 Route::get('home/videos/{video}', [GalleryController::class, 'frontendVideoShow'])->name('home.videos.show');
+Route::get('home/ai-videos/{video}', [AIController::class, 'frontendVideoShow'])->name('home.ai-videos.show');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::resource('videos', VideoController::class);
 Route::get('videos/{video}/download', [VideoController::class, 'download'])
      ->name('videos.download');
-
+     
+Route::resource('ai-videos', AIVideoController::class);
+Route::get('ai-videos/{video}/download', [AIVideoController::class, 'download'])
+     ->name('ai-videos.download');
 
 
 Route::resource('blogs', BlogController::class);

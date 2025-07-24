@@ -11,6 +11,7 @@ use App\Models\RestaurantView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RestaurantController extends Controller
 {
@@ -34,16 +35,10 @@ class RestaurantController extends Controller
             'ip_address' => request()->ip(),
             'user_agent' => request()->userAgent()
         ]);
-        $shareLinks = [
-            'facebook' => 'https://www.facebook.com/sharer/sharer.php?u='.urlencode(route('restaurants.show', $restaurant)),
-            'twitter' => 'https://twitter.com/intent/tweet?text='.urlencode($restaurant->name).'&url='.urlencode(route('restaurants.show', $restaurant)),
-            'linkedin' => 'https://www.linkedin.com/shareArticle?mini=true&url='.urlencode(route('restaurants.show', $restaurant)).'&title='.urlencode($restaurant->name),
-            'copy_link' => route('restaurants.show', $restaurant)
-        ];
 
         return view('Frontend.restaurants.show',[
             'restaurant' => $restaurant,
-            'shareLinks' => $shareLinks,
+            'shareLinks' => $this->generateShareLinks($restaurant) ?? [],
             'likeCount' => $restaurant->likes()->count(), // Now this will work
             'isLiked' => $restaurant->likes()->where('user_id', auth()->id())->exists(),
             'comments' => $restaurant->comments()->with('user')->get(),
@@ -110,14 +105,6 @@ class RestaurantController extends Controller
         return redirect()->route('restaurants.index')->with('success', 'Restaurant created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(Restaurant $restaurant)
-    // {
-    //     return view('restaurants.show', compact('restaurant'));
-    // }
-
     public function show(Restaurant $restaurant)
     {
         // Record view
@@ -127,15 +114,10 @@ class RestaurantController extends Controller
             'ip_address' => request()->ip(),
             'user_agent' => request()->userAgent()
         ]);
-$shareLinks = [
-    'facebook' => 'https://www.facebook.com/sharer/sharer.php?u='.urlencode(route('restaurants.show', $restaurant)),
-    'instagram' => 'https://www.instagram.com/?url='.urlencode(route('restaurants.show', $restaurant)),
-    'copy_link' => route('restaurants.show', $restaurant)
-];
 
         return view('restaurant.show',[
             'restaurant' => $restaurant,
-            'shareLinks' => $shareLinks,
+            'shareLinks' => $this->generateShareLinks($restaurant) ?? [],
             'likeCount' => $restaurant->likes()->count(), // Now this will work
             'isLiked' => $restaurant->likes()->where('user_id', auth()->id())->exists(),
             'comments' => $restaurant->comments()->with('user')->get(),
@@ -146,19 +128,26 @@ $shareLinks = [
     // Add this new private method to generate share links
     private function generateShareLinks($restaurant)
     {
-        $url = route('restaurants.show', $restaurant);
+        $baseUrl = config('app.url');
+        $url = route('home.recipes.show', $restaurant);
         $encodedUrl = urlencode($url);
+        
+        // Prepare content
         $title = urlencode($restaurant->name);
+        $description = urlencode(Str::limit(strip_tags($restaurant->desc), 100));
         
-        // Detect mobile devices for better Instagram sharing
-        $isMobile = preg_match("/(android|iphone|ipod|ipad)/i", request()->userAgent());
-        
+        // Get image URL
+        $imageUrl = $restaurant->images->count() 
+            ? url(Storage::url($restaurant->images->first()->path))
+            : url('images/default-re$restaurant.jpg');
+        $encodedImageUrl = urlencode($imageUrl);
+
         return [
             'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$encodedUrl}",
-            'instagram' => $isMobile 
-                ? "instagram://library?AssetPath={$encodedUrl}"
-                : "https://www.instagram.com/?url={$encodedUrl}",
+            'twitter' => "https://twitter.com/intent/tweet?text={$title}%0A%0A{$description}&url={$encodedUrl}",
+            'whatsapp' => "https://wa.me/?text={$title}%0A%0A{$description}%0A%0A{$encodedUrl}",
             'copy_link' => $url,
+            'image_url' => $imageUrl // For meta tags
         ];
     }
 

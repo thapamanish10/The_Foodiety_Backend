@@ -1,6 +1,11 @@
-@props(['video'])
+@props(['video','type'])
 <div class="video-main-div-card-body-image-card">
-    <a href="{{ route('home.videos.show', ['video' => $video->id . '-' . $video->name]) }}"></a>
+    {{-- <a href="{{ route('home.videos.show', ['video' => $video->id . '-' . $video->name]) }}"></a> --}}
+    <a
+        href="{{ $type === 'ai'
+            ? route('home.ai-videos.show', ['video' => $video->id . '-0-' . Str::slug($video->name)])
+            : route('home.videos.show', ['video' => $video->id . '-0-' . Str::slug($video->name)]) }}">
+    </a>
     <img src="{{ asset('storage/' . $video->thumbnail_path) }}" alt="{{ $video->name }}">
     <div class="video-main-div-card-body-image-card-info">
         <h3>{{ $video->name }}</h3>

@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
+class AI_Video extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',       
+        'desc',      
+        'video_path',
+        'thumbnail_path',
+        'type'
+    ];
+
+    public function getDownloadNameAttribute()
+    {
+        return Str::slug("The Foodiety_AI_".$this->name) . '.' . pathinfo($this->path, PATHINFO_EXTENSION);
+    }
+}

@@ -7,6 +7,8 @@
             <div class="form-group-buttons">
                 <a href="{{ route('ais.create') }}" class="create-btn"><strong style="margin-right: .5rem">+
                     </strong>Create Images</a>
+                <a href="{{ route('ai-videos.index') }}" class="create-btn"><strong style="margin-right: .5rem">+ </strong>Create
+                Videos</a>
             </div>
         </div>
 

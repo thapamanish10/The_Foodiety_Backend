@@ -13,6 +13,17 @@
             </div>
         </div>
     </section>
+    <x-main-heading title="Videos" />
+    <section class="gallery-main-div">
+        <div class="gallery-main-div-card">
+            <div class="gallery-main-div-card-body">
+                @forelse ($videos as $video)
+                    <x-video-card :video="$video" type="ai" />
+                @empty
+                @endforelse
+            </div>
+        </div>
+    </section>
     <style>
         .gallery-main-div {
             width: 100%;

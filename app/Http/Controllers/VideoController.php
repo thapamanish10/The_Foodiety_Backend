@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -117,6 +118,14 @@ class VideoController extends Controller
         if (!auth()->check()) {
             return redirect()->route('continue.with')->with('error', 'Please login first to download videos.');
         }
+        DB::table('video_downloads')->insert([
+            'video_id' => $video->id,
+            'user_id' => auth()->id(),
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent(),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
         $path = storage_path('app/public/' . $video->video_path);
         

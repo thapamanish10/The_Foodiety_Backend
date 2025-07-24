@@ -14,7 +14,8 @@ class Video extends Model
         'name',       
         'desc',      
         'video_path',
-        'thumbnail_path'
+        'thumbnail_path',
+        'type'
     ];
 
     public function getDownloadNameAttribute()

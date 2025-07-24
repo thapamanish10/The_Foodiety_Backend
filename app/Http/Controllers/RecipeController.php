@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 class RecipeController extends Controller
 {
     public function homePagerecipes(Request $request)
@@ -42,10 +42,11 @@ class RecipeController extends Controller
             'ip_address' => request()->ip(),
             'user_agent' => request()->userAgent()
         ]);
+
         
         return view('Frontend.recipes.show', [
             'recipe' => $recipe,
-            'shareLinks' => $this->generateShareLinks($recipe),
+           'shareLinks' => $this->generateShareLinks($recipe) ?? [],
             'likeCount' => $recipe->likes()->count(),
             'isLiked' => $recipe->likes()->where('user_id', auth()->id())->exists(),
             'comments' => $recipe->comments()->with('user')->get(),
@@ -115,7 +116,7 @@ class RecipeController extends Controller
         return view('pages.recipe.show',[
             'recipe' =>$recipe,
             // 'shareLinks' => $shareLinks,
-            'shareLinks' => $this->generateShareLinks($recipe),
+           'shareLinks' => $this->generateShareLinks($recipe) ?? [],
             'likeCount' =>$recipe->likes()->count(), // Now this will work
             'isLiked' =>$recipe->likes()->where('user_id', auth()->id())->exists(),
             'comments' =>$recipe->comments()->with('user')->get(),
@@ -125,14 +126,26 @@ class RecipeController extends Controller
 
     private function generateShareLinks($recipe)
     {
-        $url = urlencode(route('recipes.show', $recipe));
-        $title = urlencode($recipe->name);
+        $baseUrl = config('app.url');
+        $url = route('home.recipes.show', $recipe);
+        $encodedUrl = urlencode($url);
         
+        // Prepare content
+        $title = urlencode($recipe->name);
+        $description = urlencode(Str::limit(strip_tags($recipe->desc), 100));
+        
+        // Get image URL
+        $imageUrl = $recipe->images->count() 
+            ? url(Storage::url($recipe->images->first()->path))
+            : url('images/default-re$recipe.jpg');
+        $encodedImageUrl = urlencode($imageUrl);
+
         return [
-            'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$url}",
-            'twitter' => "https://twitter.com/intent/tweet?text={$title}&url={$url}",
-            'linkedin' => "https://www.linkedin.com/shareArticle?mini=true&url={$url}&title={$title}",
-            'copy_link' => route('recipes.show', $recipe),
+            'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$encodedUrl}",
+            'twitter' => "https://twitter.com/intent/tweet?text={$title}%0A%0A{$description}&url={$encodedUrl}",
+            'whatsapp' => "https://wa.me/?text={$title}%0A%0A{$description}%0A%0A{$encodedUrl}",
+            'copy_link' => $url,
+            'image_url' => $imageUrl // For meta tags
         ];
     }
 
@@ -239,7 +252,7 @@ class RecipeController extends Controller
     public function like(Recipe $recipe)
     {
         if (!Auth::check()) {
-            return redirect()->route('continue.with')->with('error', 'You need to login to like this blog.');
+            return redirect()->route('continue.with')->with('error', 'You need to login to like this re$recipe.');
         }
         $like = $recipe->likes()->where('user_id', Auth::id())->first();
         

@@ -9,10 +9,16 @@
     </div>
     <div class="sidebarNavItems">
         <ul>
-            <li class="{{ Request::is('dashboard') ? 'activeNavLink' : '' }}">
+            <li class="{{ Request::is('admin/dashboard') ? 'activeNavLink' : '' }}">
                 <a href="{{ url('/admin/dashboard') }}">
-                <img src="{{ asset('home-agreement.png') }}" alt="HomeIcon">
+                <img src="{{ asset('db.png') }}" alt="HomeIcon">
                     <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('/') ? 'activeNavLink' : '' }}">
+                <a href="{{ url('/') }}">
+                <img src="{{ asset('home-agreement.png') }}" alt="HomeIcon">
+                    <span>Home</span>
                 </a>
             </li>
             <h3 class="sidebarSubHeading store">Home</h3>
@@ -79,12 +85,12 @@
                     <span>Foodiety AI</span>
                 </a>
             </li>
-            <li class="{{ Request::is('videos') ? 'activeNavLink' : '' }}">
+            {{-- <li class="{{ Request::is('videos') ? 'activeNavLink' : '' }}">
                 <a href="{{ route('videos.index')}}" class="nav-link">
                     <img src="{{ asset('streaming.png') }}" alt="Blog Icon" class="nav-icon">
                     <span>Videos</span>
                 </a>
-            </li>
+            </li> --}}
 
 
             <li class="{{ Request::is('messages') ? 'activeNavLink' : '' }}">

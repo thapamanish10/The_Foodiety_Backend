@@ -1,3 +1,23 @@
+@section('meta')
+@if(isset($recipe) && isset($shareLinks))
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@YourTwitterHandle">
+    <meta name="twitter:title" content="{{ $recipe->name }}">
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($recipe->desc), 100) }}">
+    <meta name="twitter:image" content="{{ $shareLinks['image_url'] }}">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    
+    <!-- Open Graph (also used by Twitter as fallback) -->
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ $recipe->name }}" />
+    <meta property="og:description" content="{{ Str::limit(strip_tags($recipe->desc), 100) }}" />
+    <meta property="og:image" content="{{ $shareLinks['image_url'] }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+@endif
+@endsection
 @extends('Frontend.layouts.main')
 
 @section('content')
@@ -19,11 +39,10 @@
                                 <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $recipe->name }}">
                             </div>
                         @endforeach
-                        <!-- Clone first image for infinite effect -->
+                    <!-- Clone first image for infinite effect -->
                         @if ($recipe->images->count() > 1)
                             <div class="carousel-slide">
-                                <img src="{{ asset('storage/' . $recipe->images->first()->path) }}"
-                                    alt="{{ $recipe->name }}">
+                                <img src="{{ url('storage/' . $recipe->images->first()->path) }}" alt="{{ $recipe->name }}">
                             </div>
                         @endif
                     </div>
@@ -42,91 +61,30 @@
             </p>
             <div class="main-blog-detail-div-info">
                 <div class="main-blog-detail-div-info-sec">
-                    <div class="main-blog-detail-div-info-sub-sec share-social-links">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
-                            target="_blank">
+                    <!-- Facebook -->
+                    {{-- <div class="main-blog-detail-div-info-sub-sec share-social-links">
+                        <a href="{{ $shareLinks['facebook'] ?? '#' }}" target="_blank">
                             <img src="{{ asset('facebook-app-symbol.png') }}" alt="Share on Facebook">
                         </a>
-                    </div>
+                    </div> --}}
+
+                    <!-- Twitter -->
                     <div class="main-blog-detail-div-info-sub-sec share-social-links">
-                        {{-- <a href="#" onclick="shareRecipe('{{ $recipe->title }}')">
-                            <img src="{{ asset('in.png') }}" alt="Share Recipe">
+                        <a href="{{ $shareLinks['twitter'] ?? '#' }}" target="_blank">
+                            <img src="{{ asset('tw.png') }}" alt="Share on Twitter">
                         </a>
-
-                        <script>
-                        function shareRecipe(recipeTitle) {
-                            // Try using the Web Share API first (works on mobile devices)
-                            if (navigator.share) {
-                                navigator.share({
-                                    title: recipeTitle,
-                                    text: `Check out this "${recipeTitle}" recipe!`,
-                                    url: window.location.href,
-                                })
-                                .catch(err => console.log('Error sharing:', err));
-                            } 
-                            // Fallback for desktop browsers
-                            else {
-                                const currentUrl = encodeURIComponent(window.location.href);
-                                const message = encodeURIComponent(`Check out this "${recipeTitle}" recipe!`);
-                                
-                                // Open Instagram with a suggested message (may not work in all cases)
-                                window.open(`https://www.instagram.com/direct/inbox/?text=${message}%20${currentUrl}`, '_blank');
-                                
-                                // Alternative: Copy link to clipboard with a prompt
-                                navigator.clipboard.writeText(`${recipeTitle}: ${window.location.href}`)
-                                    .then(() => alert('Link copied! Paste it in Instagram DMs to share.'))
-                                    .catch(err => console.error('Could not copy text: ', err));
-                            }
-                        }
-                        </script> --}}
-                        <a href="#" onclick="shareRecipe('{{ $recipe->title }}')">
-                            <img src="{{ asset('in.png') }}" alt="Share to Instagram">
-                        </a>
-
-                        <script>
-                        function shareRecipe(recipeTitle) {
-                            const currentUrl = window.location.href;
-                            const shareText = `Check out this "${recipeTitle}" recipe! ${currentUrl}`;
-                            
-                            // Try Web Share API first (mobile devices)
-                            if (navigator.share) {
-                                navigator.share({
-                                    title: recipeTitle,
-                                    text: shareText,
-                                    url: currentUrl,
-                                })
-                                .catch(err => {
-                                    // If Web Share fails, try Instagram directly
-                                    shareToInstagram(recipeTitle, currentUrl);
-                                });
-                            } 
-                            else {
-                                // Directly try Instagram sharing
-                                shareToInstagram(recipeTitle, currentUrl);
-                            }
-                        }
-
-                        function shareToInstagram(recipeTitle, url) {
-                            const encodedText = encodeURIComponent(`Check out this "${recipeTitle}" recipe!`);
-                            const encodedUrl = encodeURIComponent(url);
-                            
-                            // Try to open Instagram app first
-                            window.location.href = `instagram://sharing?text=${encodedText}%0A%0A${encodedUrl}`;
-                            
-                            // Fallback to web if app isn't installed
-                            setTimeout(() => {
-                                window.open(`https://www.instagram.com/?text=${encodedText}%0A%0A${encodedUrl}`, '_blank');
-                                
-                                // Ultimate fallback - copy to clipboard
-                                navigator.clipboard.writeText(`${recipeTitle}: ${url}`)
-                                    .then(() => alert('Link copied! Open Instagram and paste it in a DM or story.'))
-                                    .catch(err => console.error('Copy failed:', err));
-                            }, 300);
-                        }
-                        </script>
                     </div>
-                    <div class="main-blog-detail-div-info-sub-sec share-social-links"
-                        onclick="copyToClipboard('{{ url()->current() }}')">
+
+                    <!-- WhatsApp (New) -->
+                    <div class="main-blog-detail-div-info-sub-sec share-social-links">
+                        <a href="{{ $shareLinks['whatsapp'] ?? '#' }}" target="_blank">
+                            <img src="{{ asset('wa2.png') }}" alt="Share on WhatsApp">
+                        </a>
+                    </div>
+
+                    <!-- Copy Link -->
+                    <div class="main-blog-detail-div-info-sub-sec share-social-links" 
+                        onclick="copyToClipboard('{{ $shareLinks['copy_link'] ?? '#' }}')">
                         <img src="{{ asset('link.png') }}" alt="Copy link">
                     </div>
                 </div>

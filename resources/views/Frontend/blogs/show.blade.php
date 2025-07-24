@@ -1,3 +1,23 @@
+@section('meta')
+@if(isset($blog) && isset($shareLinks))
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@YourTwitterHandle">
+    <meta name="twitter:title" content="{{ $blog->name }}">
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($blog->desc), 100) }}">
+    <meta name="twitter:image" content="{{ $shareLinks['image_url'] }}">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    
+    <!-- Open Graph (also used by Twitter as fallback) -->
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ $blog->name }}" />
+    <meta property="og:description" content="{{ Str::limit(strip_tags($blog->desc), 100) }}" />
+    <meta property="og:image" content="{{ $shareLinks['image_url'] }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+@endif
+@endsection
 @extends('Frontend.layouts.main')
 
 @section('content')
@@ -44,19 +64,30 @@
             </p>
             <div class="main-blog-detail-div-info">
                 <div class="main-blog-detail-div-info-sec">
-                    <div class="main-blog-detail-div-info-sub-sec share-social-links">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
-                            target="_blank">
+                    <!-- Facebook -->
+                    {{-- <div class="main-blog-detail-div-info-sub-sec share-social-links">
+                        <a href="{{ $shareLinks['facebook'] ?? '#' }}" target="_blank">
                             <img src="{{ asset('facebook-app-symbol.png') }}" alt="Share on Facebook">
                         </a>
-                    </div>
+                    </div> --}}
+
+                    <!-- Twitter -->
                     <div class="main-blog-detail-div-info-sub-sec share-social-links">
-                        <a href="https://www.instagram.com/?url={{ urlencode(url()->current()) }}" target="_blank" title="Share on Instagram">
-                            <img src="{{ url('instagram (3).png') }}" alt="Share on Instagram">
+                        <a href="{{ $shareLinks['twitter'] ?? '#' }}" target="_blank">
+                            <img src="{{ asset('tw.png') }}" alt="Share on Twitter">
                         </a>
                     </div>
-                    <div class="main-blog-detail-div-info-sub-sec share-social-links"
-                        onclick="copyToClipboard('{{ url()->current() }}')">
+
+                    <!-- WhatsApp (New) -->
+                    <div class="main-blog-detail-div-info-sub-sec share-social-links">
+                        <a href="{{ $shareLinks['whatsapp'] ?? '#' }}" target="_blank">
+                            <img src="{{ asset('wa2.png') }}" alt="Share on WhatsApp">
+                        </a>
+                    </div>
+
+                    <!-- Copy Link -->
+                    <div class="main-blog-detail-div-info-sub-sec share-social-links" 
+                        onclick="copyToClipboard('{{ $shareLinks['copy_link'] ?? '#' }}')">
                         <img src="{{ asset('link.png') }}" alt="Copy link">
                     </div>
                 </div>

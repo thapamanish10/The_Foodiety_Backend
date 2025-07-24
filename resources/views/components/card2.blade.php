@@ -1,4 +1,4 @@
-@props(['blog', 'views', 'comments', 'likes', 'query' => null])
+@props(['blog', 'views', 'comments', 'likes', 'query' => null, 'shareLinks' => null])
 
 <div class="card2">
     <a href="{{ route('home.blogs.show', ['blog' => $blog->id . '-0-' . $blog->name]) }}"></a>
@@ -23,7 +23,7 @@
 
     <div class="card2-content">
         <div class="card2-content-sub">
-            <x-user-info/>
+            <x-user-info :shareLinks="$shareLinks"/>
             <h2 class="card2-heading">
                 @if ($query)
                     {!! Str::highlight($blog->name, $query) !!}

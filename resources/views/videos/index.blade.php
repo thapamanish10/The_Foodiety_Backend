@@ -5,6 +5,7 @@
         <div class="container-heading container-heading-section">
             <h3>Videos Info:</h3>
             <div class="form-group-buttons">
+                <a href="{{ route('galleries.index') }}" class="create-btn"><strong style="margin-right: .5rem"></strong>Return</a>
                 <a href="{{ route('videos.create') }}" class="create-btn"><strong style="margin-right: .5rem">+ </strong>Create
                     Videos</a>
             </div>

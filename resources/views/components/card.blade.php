@@ -1,7 +1,7 @@
 @props(['blog', 'views', 'comments', 'likes', 'type'])
 <div class="card">
     <a
-        href="{{ $type === 'restaurant'
+        href="{{ $type === 'recipe'
             ? route('home.recipes.show', ['recipe' => $blog->id . '-0-' . Str::slug($blog->name)])
             : route('home.blogs.show', ['blog' => $blog->id . '-0-' . Str::slug($blog->name)]) }}">
     </a>

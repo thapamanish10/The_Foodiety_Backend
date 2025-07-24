@@ -9,10 +9,12 @@ use Illuminate\View\Component;
 class VideoCard extends Component
 {
     public $video;
+    public $type;
 
-    public function __construct($video)
+    public function __construct($video, $type= null)
     {
         $this->video = $video;
+        $this->type = $type;
     }
 
     /**
