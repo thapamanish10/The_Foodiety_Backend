@@ -9,6 +9,7 @@
         @empty
             <span class="no-restaurants">No blogs found</span>
         @endforelse
+        <x-pagination :paginator="$restaurants" />
     </section>
 @endsection
 

@@ -23,7 +23,7 @@ class RestaurantController extends Controller
     }
     public function homePageRestaurants()
     {
-       $restaurants = Restaurant::with('images')->latest()->take(6)->get();
+       $restaurants = Restaurant::with('images')->paginate(2);
         
         return view('Frontend.restaurants.index', compact('restaurants'));
     }
@@ -48,7 +48,7 @@ class RestaurantController extends Controller
     }
     public function index()
     {
-        $restaurants = Restaurant::latest()->paginate(10);
+        $restaurants = Restaurant::latest()->paginate(7);
         return view('restaurants.index', compact('restaurants'));
     }
 

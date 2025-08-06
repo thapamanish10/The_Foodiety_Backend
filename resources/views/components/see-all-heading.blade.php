@@ -1,5 +1,5 @@
 <section class="see-all-div">
-    <h3 class="see-all-div-heading">Recent Posts</h3>
+    <h3 class="see-all-div-heading">Recent {{ $type }}</h3>
     <p class="see-all-div-desc"><a href="{{ route($route) }}">See All</a></p>
 </section>
 <style>

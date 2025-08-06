@@ -52,6 +52,7 @@
         @empty
             <span class="no-blogs">No blogs found</span>
         @endforelse
+        <x-pagination :paginator="$blogs" />
     </section>
 @endsection
 
@@ -59,7 +60,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
     .blog-index-div {
         width: 55%;
-        margin: auto;
+        margin:  auto;
     }
 
     .no-blogs {

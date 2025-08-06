@@ -10,14 +10,9 @@ use Illuminate\Support\Str;
 
 class VideoController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth')->except(['index', 'show']);
-    // }
-
     public function index()
     {
-        $videos = Video::latest()->get();
+        $videos = Video::latest()->paginate(7);
         return view('videos.index', compact('videos'));
     }
 

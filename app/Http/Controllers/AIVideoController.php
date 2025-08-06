@@ -12,7 +12,7 @@ class AIVideoController extends Controller
 {
     public function index()
     {
-        $videos = AI_Video::latest()->get();
+        $videos = AI_Video::latest()->paginate(7);
         return view('ais-videos.index', compact('videos'));
     }
 

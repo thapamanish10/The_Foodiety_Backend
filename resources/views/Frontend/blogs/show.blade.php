@@ -117,7 +117,7 @@
             </div>
         </div>
         <x-add-comment :comments="$blog->comments" :blog_id="$blog->id" />
-        <x-see-all-heading route="home.blogs.index" />
+        <x-see-all-heading route="home.blogs.index" type="Blogs" />
         @include('Frontend.blogs.recent')
     </section>
 @endsection

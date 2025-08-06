@@ -55,5 +55,6 @@
                 </tbody>
             </table>
         </div>
+        <x-pagination :paginator="$ais" />
     </div>
 @endsection

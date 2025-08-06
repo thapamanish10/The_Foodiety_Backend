@@ -9,9 +9,11 @@ use Illuminate\View\Component;
 class SeeAllHeading extends Component
 {
     public $route;
-    public function __construct($route)
+    public $type;
+    public function __construct($route, $type="Recipes")
     {
         $this->route = $route;
+        $this->type = $type;
     }
 
     /**

@@ -47,7 +47,12 @@
         justify-content: center;
         padding: 0 1rem;
     }
-
+    .card-body{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
     .card3-content-user-info {
         width: 100%;
         display: flex;

@@ -134,13 +134,6 @@
         font-weight: 400;
         text-align: justify;
         color: #5f5f5f;
-        display: -webkit-box;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        line-height: 1.5;
-        max-height: calc(1.5em * 5);
-        position: relative;
     }
 
     .recipes-card-desc::after {
@@ -198,79 +191,5 @@
         font-weight: 500;
         font-weight: normal;
         color: #5f5f5f;
-    }
-
-    @media (max-width: 600px) {
-        .recipes-card {
-            position: relative;
-            width: 100%;
-            margin: auto;
-            min-height: 650px;
-            height: 650px;
-            max-height: 650px;
-            border: 1px solid #dddddd93;
-            display: block;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .recipes-card-image {
-            width: 100%;
-            min-width: 100%;
-            height: 50%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .recipes-content {
-            height: 100%;
-            padding: 0;
-            position: relative;
-            width: 95%;
-            margin: 1rem auto;
-
-        }
-
-        .recipes-card-heading {
-            width: 95%;
-            margin: 1rem auto;
-            padding: 0;
-            font-family: "Playfair Display", serif !important;
-            font-size: 24px;
-            font-weight: 400;
-            color: #5f5f5f;
-        }
-
-        .recipes-card-desc {
-            width: 95%;
-            margin: 1rem auto;
-            padding: 0 0;
-            font-size: 14px;
-            font-weight: 400;
-            text-align: justify;
-            color: #5f5f5f;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 1.5;
-            max-height: calc(1.5em * 3);
-            position: relative;
-        }
-
-        .recipes-card-info {
-            position: absolute;
-            left: 5%;
-            bottom: 3%;
-            width: 95%;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 0 0 0;
-            border-top: 1px solid #dddddd93;
-            z-index: 5;
-        }
     }
 </style>

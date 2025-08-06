@@ -75,7 +75,9 @@
         outline: 0;
         cursor: pointer;
     }
-
+    .card2:hover .card2-heading{
+        color: #ffde59;
+    }
     .card2 {
         position: relative;
         width: 100%;

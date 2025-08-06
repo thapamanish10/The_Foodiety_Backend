@@ -22,14 +22,14 @@ class BlogController extends Controller
         $query = Blog::withCount(['likes', 'comments', 'views', 'images'])
                     ->with(['categories'])
                     ->orderBy('created_at', 'desc');
-        
+
         if ($request->has('categories')) {
             $query->whereHas('categories', function($q) use ($request) {
                 $q->whereIn('slug', $request->categories);
             });
         }
         
-        $blogs = $query->get();
+        $blogs = $query->paginate(7); // Changed from $items to $blogs
         $categories = Category::all(); 
         
         return view('Frontend.blogs.index', compact('blogs', 'categories'));
@@ -59,7 +59,7 @@ class BlogController extends Controller
     {
         $blogs = Blog::withCount(['likes', 'comments', 'views', 'images'])
                     ->orderBy('created_at', 'desc')
-                    ->get();
+                    ->paginate(7);
         
         return view('pages.blog.index', compact('blogs'));
     }

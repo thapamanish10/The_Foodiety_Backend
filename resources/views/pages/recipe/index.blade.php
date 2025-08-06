@@ -77,5 +77,6 @@
                 </tbody>
             </table>
         </div>
+        <x-pagination :paginator="$recipes" />
     </div>
 @endsection

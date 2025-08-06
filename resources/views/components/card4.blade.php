@@ -37,13 +37,13 @@
     <div class="card4-body">
         <div class="card4-content-sub">
             <x-user-info/>
-            <h2 class="card4-heading">
+            <div class="card4-heading">
                 {{ $restaurant->name }}
-            </h2>
+            </div>
 
-            <p class="card4-desc">
-                {!! Str::limit($restaurant->desc, 200) !!}
-            </p>
+            <div class="card4-desc">
+                {!! Str::limit($restaurant->desc, 150) !!}
+            </div>
         </div>
         <div class="card4-info">
             <div class="card4-info-sec">
@@ -95,6 +95,7 @@
                 margin-bottom: 1rem;
                 position: relative;
             }
+
 
             .card4 a {
                 position: absolute;
@@ -244,18 +245,6 @@
                 flex-grow: 1;
             }
 
-            .card4-desc::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                height: 1.5em;
-                background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white 90%);
-            }
-
-
-
             .card4-info-sec {
                 display: flex;
                 align-items: center;
@@ -295,6 +284,36 @@
 
             .like-button.liked img {
                 animation: heartBeat 0.5s;
+            }
+
+            @media (max-width: 600px) {
+                .card4 {
+                    width: 100%;
+                    height: max-content;
+                    max-height: 800px;
+                    border: 1px solid #e5e5e5;
+                    background: #fff;
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 1rem;
+                    position: relative;
+                }
+                .card4:nth-child(even) {
+                    flex-direction: row-reverse;
+                    flex-direction: column
+                }
+                .card4-carousel {
+                    height: 340px;
+                    width: 100%;
+                    position: relative;
+                }
+                .card4-body {
+                    width: 100%;
+                    background: #ffffff;
+                    padding: 2rem 0 1rem 0;
+                    z-index: 1000;
+                }
             }
         </style>
     @endpush

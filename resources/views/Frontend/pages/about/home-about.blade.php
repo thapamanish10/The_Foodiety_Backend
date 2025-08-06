@@ -5,7 +5,7 @@
         </section>
         <section class="about-articel-section">
             <section><div class="our-story">OUR STORY</div>
-            <div>{!! Str::limit($about->desc, 800) !!}</div></section>
+            <div class="our-story-descriptions">{!! Str::limit($about->desc, 1200) !!}</div></section>
             <section><a href="{{ route('home.business.show', ['busines' => $about->id."-%-".$about->name]) }}">More About Us</a></section>
         </section>
     </artical>
@@ -33,7 +33,10 @@
         padding: .5rem 0;
         margin: 0;
     }
-
+    .about-articel-section section:first-child{
+        max-height: 90%;
+        overflow: hidden;
+    }
     .about-artical {
         max-width: 65%;
         margin:  auto;
@@ -66,11 +69,11 @@
     }
     .about-articel-section{
         flex-basis: 50%;
-        height: 100%;
         overflow: hidden;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
+        padding: 1rem 0;
     }
 
 

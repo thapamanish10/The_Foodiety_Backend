@@ -28,7 +28,7 @@ class RecipeController extends Controller
             });
         }
         
-        $recipes = $query->get();
+        $recipes = $query->paginate(3);
         $categories = Category::all();
         
         return view('Frontend.recipes.index', compact('recipes', 'categories'));
@@ -59,7 +59,7 @@ class RecipeController extends Controller
     {
         $recipes = Recipe::withCount(['likes', 'comments', 'views', 'images'])
                     ->orderBy('created_at', 'desc')
-                    ->get();
+                    ->paginate(7);
         
         return view('pages.recipe.index', compact('recipes'));
     }

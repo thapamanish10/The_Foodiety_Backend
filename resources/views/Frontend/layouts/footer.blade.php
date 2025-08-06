@@ -8,7 +8,7 @@
     <style>
         .footer {
             width: 100%;
-            margin: 0 auto;
+            margin: 3rem auto 0;
             background-color: #000000;
             padding: 30px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -90,40 +90,44 @@
         }
     </style>
 </head>
-
+@php
+    $abouts = App\Models\About::all();
+@endphp
 <body>
-    <div class="footer">
-        <div class="footer-main-section">
-            <section class="footer-section">
-                <img src="{{ url('/foodiety.png') }}" alt="">
-                <p class="intro-text">
-                    Step into the captivating world of our room, where every corner holds a new adventure waiting to be
-                    discovered.
-                </p>
-            </section>
-            <section class="footer-section">
-                <div class="contact-info">
-                    <h2>Contact Info</h2>
-                    <span class="phone">+977 9812345678</span>
-                    <a href="https://www.himalayafores.com" class="email">Himalayafores@gmail.com</a>
-                </div>
-            </section>
-            <section class="footer-section">
-                <div class="explore-links">
-                    <h2>EXPLORE</h2>
-                    <a href="#">Home</a>
-                    <a href="#">Services</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Blog</a>
-                </div>
-            </section>
+    @foreach ($abouts as $about)
+        <div class="footer">
+            <div class="footer-main-section">
+                <section class="footer-section">
+                    <img src="{{ url('/foodiety.png') }}" alt="">
+                    <p class="intro-text">
+                        Step into the captivating world of our room, where every corner holds a new adventure waiting to be
+                        discovered.
+                    </p>
+                </section>
+                <section class="footer-section">
+                    <div class="contact-info">
+                        <h2>Contact Info</h2>
+                        <span class="phone">+977 {{ $about->number }}</span>
+                        <a href="https://www.himalayafores.com" class="email">{{ $about->email }}</a>
+                    </div>
+                </section>
+                <section class="footer-section">
+                    <div class="explore-links">
+                        <h2>EXPLORE</h2>
+                        <a href="#">Home</a>
+                        <a href="{{ route('home.services.index') }}">Services</a>
+                        <a href="{{ route('home.contact.index') }}">Contact Us</a>
+                        <a href="{{ route("home.recipes.index") }}">Recipes</a>
+                        <a href="{{ route('home.blogs.index') }}">Blog</a>
+                    </div>
+                </section>
+            </div>
+            <div class="divider"></div>
+            <div class="copyright">
+                Copyright © 2025 All Right Reserved by The Foodiety
+            </div>
         </div>
-        <div class="divider"></div>
-        <div class="copyright">
-            Copyright 2024 All Right Reserved by Foodiety
-        </div>
-    </div>
+    @endforeach
 </body>
 
 </html>

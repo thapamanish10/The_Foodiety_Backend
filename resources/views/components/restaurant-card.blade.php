@@ -104,6 +104,7 @@
         height: 100%;
         width: 100%;
         display: block;
+        object-fit: cover;
     }
 
     .carousel-prev,

@@ -10,12 +10,6 @@
                     Videos</a>
             </div>
         </div>
-
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="table">
             <table>
                 <thead>
@@ -59,5 +53,6 @@
                 </tbody>
             </table>
         </div>
+        <x-pagination :paginator="$videos" />
     </div>
 @endsection

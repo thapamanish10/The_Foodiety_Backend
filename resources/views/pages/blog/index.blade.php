@@ -9,7 +9,6 @@
                     Create Blogs</a>
             </div>
         </div>
-
         <div class="table">
             <table>
                 <thead>
@@ -78,5 +77,6 @@
                 </tbody>
             </table>
         </div>
+        <x-pagination :paginator="$blogs" />
     </div>
 @endsection

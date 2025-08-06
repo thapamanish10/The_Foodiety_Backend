@@ -34,6 +34,7 @@
         @empty
             <span class="no-recipes">No recipes found</span>
         @endforelse
+        <x-pagination :paginator="$recipes" />
     </section>
 @endsection
 
@@ -96,25 +97,25 @@
         height: 0;
     }
 
-.custom-checkbox-label {
-        display: inline-block;
-        padding: .5rem 1.5rem;
-        border-top: 1px solid #bebebe28;
-        border-left: 1px solid #bebebe28;
-        border-right: 1px solid #bebebe28;
-        border-bottom: 2px solid #bebebe28;
-        background-color:  transparent;
-        color: #5f5f5f;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        user-select: none;
-        text-decoration: none;
-        font-family: "Playfair Display", serif;
-        white-space: nowrap;
-        border-radius: .4rem;
-    }
+    .custom-checkbox-label {
+            display: inline-block;
+            padding: .5rem 1.5rem;
+            border-top: 1px solid #bebebe28;
+            border-left: 1px solid #bebebe28;
+            border-right: 1px solid #bebebe28;
+            border-bottom: 2px solid #bebebe28;
+            background-color:  transparent;
+            color: #5f5f5f;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            text-decoration: none;
+            font-family: "Playfair Display", serif;
+            white-space: nowrap;
+            border-radius: .4rem;
+        }
 
     .custom-checkbox-input:checked + .custom-checkbox-label {
         color: #5f5f5f;
@@ -153,10 +154,28 @@
             border-radius: 8px;
         }
         .category-checkboxes {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
             padding: 15px;
             gap: 5px;
+        }
+        .custom-checkbox-label {
+            display: inline-block;
+            padding: .5rem .5rem;
+            border-top: 1px solid #bebebe28;
+            border-left: 1px solid #bebebe28;
+            border-right: 1px solid #bebebe28;
+            border-bottom: 2px solid #bebebe28;
+            background-color:  transparent;
+            color: #5f5f5f;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            text-decoration: none;
+            font-family: "Playfair Display", serif;
+            white-space: nowrap;
+            border-radius: .4rem;
         }
     }
 </style>

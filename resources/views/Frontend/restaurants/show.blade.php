@@ -234,8 +234,8 @@
         </div>
     </div >
     <x-add-comment :comments="$restaurant->comments" :blog_id="$restaurant->id" type="restaurant"/>
-        <x-see-all-heading route="home.blogs.index" />
-        @include('Frontend.blogs.recent')
+        {{-- <x-see-all-heading route="home.blogs.index" />
+        @include('Frontend.blogs.recent') --}}
 </section >
 @endsection
 

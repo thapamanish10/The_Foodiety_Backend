@@ -55,31 +55,6 @@
                 </tbody>
             </table>
         </div>
-
-        {{-- <div class="row">
-            @foreach ($galleries as $gallery)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('storage/' . $gallery->image) }}" class="card-img-top"
-                            alt="{{ $gallery->name }}" width="100">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $gallery->name }}</h5>
-                            @if ($gallery->description)
-                                <p class="card-text">{{ Str::limit($gallery->description, 100) }}</p>
-                            @endif
-                            <a href="{{ route('galleries.show', $gallery) }}" class="btn btn-info">View</a>
-                            <a href="{{ route('galleries.download', $gallery) }}" class="btn btn-success">Download</a>
-                            <a href="{{ route('galleries.edit', $gallery) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('galleries.destroy', $gallery) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div> --}}
+        <x-pagination :paginator="$galleries" />
     </div>
 @endsection

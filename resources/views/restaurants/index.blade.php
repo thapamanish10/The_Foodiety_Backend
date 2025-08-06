@@ -9,7 +9,6 @@
                     Create Restaurant</a>
             </div>
         </div>
-
         <div class="table">
             <table>
                 <thead>
@@ -66,7 +65,6 @@
                 </tbody>
             </table>
         </div>
-
-        {{ $restaurants->links() }}
+        <x-pagination :paginator="$restaurants" />
     </div>
 @endsection

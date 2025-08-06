@@ -39,5 +39,6 @@
                 @endforeach
             </tbody>
         </table>
+        <x-pagination :paginator="$categories" />
     </div>
 @endsection

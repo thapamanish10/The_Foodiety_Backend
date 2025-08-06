@@ -27,7 +27,7 @@ class AIController extends Controller
     }
     public function index()
     {
-        $ais = AI::latest()->get();
+        $ais = AI::latest()->paginate(7);
         return view('ais.index', compact('ais'));
     }
 

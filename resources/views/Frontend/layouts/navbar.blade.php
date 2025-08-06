@@ -250,7 +250,7 @@
     .navbar {
     position: fixed; /* Changed from relative to fixed */
     width: 100%;
-    z-index: 1000;
+    z-index: 10000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     font-family: "Raleway", sans-serif;
     transition: all 0.3s ease; /* Add smooth transition */
