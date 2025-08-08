@@ -16,11 +16,11 @@ class ServiceController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->get();
         
-        return view('Frontend.Services.index', compact('Services'));
+        return view('Frontend.services.index', compact('Services'));
     }
     public function homePageServicesDetail(Service $service)
     {
-        return view('Frontend.Services.show',[
+        return view('Frontend.services.show',[
             'service' => $service,
         ]);
     }
