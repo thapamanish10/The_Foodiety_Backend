@@ -6,7 +6,7 @@
         <section class="about-articel-section">
             <section><div class="our-story">OUR STORY</div>
             <div class="our-story-descriptions">{!! Str::limit($about->desc, 1200) !!}</div></section>
-            <section><a href="{{ route('home.business.show', ['busines' => $about->id."-%-".$about->name]) }}">More About Us</a></section>
+            <section><a href="{{ route('home.business.show', ['busines' => $about->id]) }}">More About Us</a></section>
         </section>
     </artical>
 @endforeach
