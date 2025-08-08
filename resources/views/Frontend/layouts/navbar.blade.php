@@ -101,7 +101,9 @@
             <a class="{{ Request::is('home/contact') ? 'activeNavLink' : '' }}" href="{{ route('home.contact.index') }}">Contact</a>
             <a href="#" class="follow-trigger" id="followTrigger">Follow</a>
             @auth
-                <a href="{{ route('dashboard') }}">Dashboard</a>
+                @if (Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin')
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                @endif
                 <div class="logoutButton">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
