@@ -6,8 +6,8 @@
     @stack('styles')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url('the-foodiety-logo1.png') }}">
-    <title>The Foodiety</title>
+    <title>The Foodiety - {{ config('app.name', 'The Foodiety') }}</title>
+    <link rel="icon" href="{{ asset('the-foodiety-logo1.png') }}" type="image/png">
 </head>
 <style>
 body, html {
