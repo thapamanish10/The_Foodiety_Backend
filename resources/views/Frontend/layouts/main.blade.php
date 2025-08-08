@@ -4,6 +4,10 @@
 <head>
     @include('Frontend.layouts.head')
     @stack('styles')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url('the-foodiety-logo1.png') }}">
+    <title>The Foodiety</title>
 </head>
 <style>
 body, html {

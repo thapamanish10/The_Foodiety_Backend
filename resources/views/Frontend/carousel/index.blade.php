@@ -162,7 +162,7 @@
             }
             
             // Set timeout for next slide
-            setTimeout(showSlides, 10000);
+            setTimeout(showSlides, 4000);
         }
 
         function currentSlide(n) {
