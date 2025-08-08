@@ -101,6 +101,7 @@
             <a class="{{ Request::is('home/contact') ? 'activeNavLink' : '' }}" href="{{ route('home.contact.index') }}">Contact</a>
             <a href="#" class="follow-trigger" id="followTrigger">Follow</a>
             @auth
+                <a href="{{ route('dashboard') }}">Dashboard</a>
                 <div class="logoutButton">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -111,7 +112,7 @@
                     </a>
                 </div>
             @else
-                <a href="{{ route('continue.with') }}">SIGN UP</a>
+                <a href="{{ route('continue.with') }}">Sign Up</a>
             @endauth
         </div>
     </div>
