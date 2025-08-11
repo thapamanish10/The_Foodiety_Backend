@@ -34,8 +34,7 @@ class VideoController extends Controller
         $videoPath = $request->file('video_path')->store('videos', 'public');
         
         // Store thumbnail file using public disk
-        $thumbnailPath = $request->file('thumbnail_path')->store('thumbnails', 'public');
-    
+        $thumbnailPath = $request->file('thumbnail_path')->store('gallery', 'public');
         Video::create([
             'name' => $validated['name'],
             'desc' => $validated['desc'],
@@ -70,11 +69,11 @@ class VideoController extends Controller
         }
 
         if ($request->hasFile('thumbnail_path')) {
-            // Delete old thumbnail
+            // Delete old image
             Storage::disk('public')->delete($video->thumbnail_path);
-
-            // Store new thumbnail
-            $data['thumbnail_path'] = $request->file('thumbnail_path')->store('thumbnails', 'public');
+            
+            // Store new image
+            $data['thumbnail_path'] = $request->file('thumbnail_path')->store('gallery', 'public');
         }
 
         $video->update($data);
