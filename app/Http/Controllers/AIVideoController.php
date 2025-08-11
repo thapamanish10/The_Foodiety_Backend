@@ -45,17 +45,17 @@ class AIVideoController extends Controller
         return redirect()->route('ai-videos.index')->with('success', 'Video uploaded successfully.');
     }
 
-    public function show(AI_Video $video)
+    public function show(AI_Video $ai_video)
     {
         return view('ais-videos.show', compact('video'));
     }
 
-    public function edit(AI_Video $video)
+    public function edit(AI_Video $ai_video)
     {
         return view('ais-videos.edit', compact('video'));
     }
 
-    public function update(Request $request, AI_Video $video)
+    public function update(Request $request, AI_Video $ai_video)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -68,7 +68,7 @@ class AIVideoController extends Controller
 
         if ($request->hasFile('video_path')) {
             // Delete old video
-            Storage::disk('public')->delete($video->video_path);
+            Storage::disk('public')->delete($ai_video->video_path);
 
             // Store new video
             $data['video_path'] = $request->file('video_path')->store('gallery', 'public');
@@ -76,35 +76,35 @@ class AIVideoController extends Controller
 
         if ($request->hasFile('thumbnail_path')) {
             // Delete old image
-            Storage::disk('public')->delete($video->thumbnail_path);
+            Storage::disk('public')->delete($ai_video->thumbnail_path);
             
             // Store new image
             $data['thumbnail_path'] = $request->file('thumbnail_path')->store('gallery', 'public');
         }
 
-        $video->update($data);
+        $ai_video->update($data);
 
         return redirect()->route('ai-videos.index')->with('success', 'Video updated successfully.');
     }
 
-    public function destroy(AI_Video $video)
+    public function destroy(AI_Video $ai_video)
     {
         Storage::delete([
-            'public/' . $video->video_path,
-            'public/' . $video->thumbnail_path
+            'public/' . $ai_video->video_path,
+            'public/' . $ai_video->thumbnail_path
         ]);
-        $video->delete();
+        $ai_video->delete();
 
         return redirect()->route('ai-videos.index')->with('success', 'Video deleted successfully.');
     }
 
-    public function download(AI_Video $video)
+    public function download(AI_Video $ai_video)
     {
         if (!auth()->check()) {
             return redirect()->route('continue.with')->with('error', 'Please login first to download videos.');
         }
         DB::table('video_downloads')->insert([
-            'video_id' => $video->id,
+            'video_id' => $ai_video->id,
             'user_id' => auth()->id(),
             'ip_address' => request()->ip(),
             'user_agent' => request()->userAgent(),
@@ -112,14 +112,14 @@ class AIVideoController extends Controller
             'updated_at' => now()
         ]);
 
-        $path = storage_path('app/public/' . $video->video_path);
+        $path = storage_path('app/public/' . $ai_video->video_path);
         
         if (!file_exists($path)) {
             return back()->with('error', 'The requested video does not exist.');
         }
 
         $extension = pathinfo($path, PATHINFO_EXTENSION);
-        $downloadName = Str::slug($video->name) . '.' . $extension;
+        $downloadName = Str::slug($ai_video->name) . '.' . $extension;
 
         return response()->download($path, $downloadName);
     }

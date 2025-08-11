@@ -146,7 +146,16 @@ Route::resource('videos', VideoController::class);
 Route::get('videos/{video}/download', [VideoController::class, 'download'])
      ->name('videos.download');
      
-Route::resource('ai-videos', AIVideoController::class);
+// Equivalent to Route::resource('ai-videos', AIVideoController::class);
+
+// Index - List all AI videos
+Route::get('ai-videos', [AIVideoController::class, 'index'])->name('ai-videos.index');
+Route::get('ai-videos/create', [AIVideoController::class, 'create'])->name('ai-videos.create');
+Route::post('ai-videos', [AIVideoController::class, 'store'])->name('ai-videos.store');
+Route::get('ai-videos/{ai_video}', [AIVideoController::class, 'show'])->name('ai-videos.show');
+Route::get('ai-videos/{ai_video}/edit', [AIVideoController::class, 'edit'])->name('ai-videos.edit');
+Route::match(['PUT', 'PATCH'], 'ai-videos/{ai_video}', [AIVideoController::class, 'update'])->name('ai-videos.update');
+Route::delete('ai-videos/{ai_video}', [AIVideoController::class, 'destroy'])->name('ai-videos.destroy');
 Route::get('ai-videos/{video}/download', [AIVideoController::class, 'download'])
      ->name('ai-videos.download');
 
