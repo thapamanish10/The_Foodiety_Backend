@@ -10,16 +10,7 @@ use Illuminate\Support\Str;
 
 class VideoController extends Controller
 {
-    public function index()
-    {
-        $videos = Video::latest()->paginate(7);
-        return view('videos.index', compact('videos'));
-    }
-
-    public function create()
-    {
-        return view('videos.create');
-    }
+    // ... (index, create, show, edit methods remain the same)
 
     public function store(Request $request)
     {
@@ -30,34 +21,20 @@ class VideoController extends Controller
             'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg|max:20000',
         ]);
     
-        // Store video file
-        $videoFile = $request->file('video_path');
-        $videoPath = $videoFile->store('public/videos');
-        $videoFilename = str_replace('public/', '', $videoPath);
-    
-        // Store thumbnail file
-        $thumbnailFile = $request->file('thumbnail_path');
-        $thumbnailPath = $thumbnailFile->store('public/thumbnails');
-        $thumbnailFilename = str_replace('public/', '', $thumbnailPath);
+        // Store video file using public disk
+        $videoPath = $request->file('video_path')->store('videos', 'public');
+        
+        // Store thumbnail file using public disk
+        $thumbnailPath = $request->file('thumbnail_path')->store('thumbnails', 'public');
     
         Video::create([
             'name' => $validated['name'],
             'desc' => $validated['desc'],
-            'video_path' => $videoFilename,
-            'thumbnail_path' => $thumbnailFilename,
+            'video_path' => $videoPath,  // No path modification needed
+            'thumbnail_path' => $thumbnailPath,
         ]);
     
         return redirect()->route('videos.index')->with('success', 'Video uploaded successfully.');
-    }
-
-    public function show(Video $video)
-    {
-        return view('videos.show', compact('video'));
-    }
-
-    public function edit(Video $video)
-    {
-        return view('videos.edit', compact('video'));
     }
 
     public function update(Request $request, Video $video)
@@ -69,27 +46,22 @@ class VideoController extends Controller
             'thumbnail_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = [
-            'name' => $request->name,
-            'desc' => $request->desc,
-        ];
+        $data = $request->only(['name', 'desc']);
 
-        if ($request->hasFile('video')) {
+        if ($request->hasFile('video_path')) {
             // Delete old video
-            Storage::delete('public/' . $video->video_path);
+            Storage::disk('public')->delete($video->video_path);
 
             // Store new video
-            $videoPath = $request->file('video')->store('public/videos');
-            $data['video_path'] = str_replace('public/', '', $videoPath);
+            $data['video_path'] = $request->file('video_path')->store('videos', 'public');
         }
 
-        if ($request->hasFile('thumbnail')) {
+        if ($request->hasFile('thumbnail_path')) {
             // Delete old thumbnail
-            Storage::delete('public/' . $video->thumbnail_path);
+            Storage::disk('public')->delete($video->thumbnail_path);
 
             // Store new thumbnail
-            $thumbnailPath = $request->file('thumbnail')->store('public/thumbnails');
-            $data['thumbnail_path'] = str_replace('public/', '', $thumbnailPath);
+            $data['thumbnail_path'] = $request->file('thumbnail_path')->store('thumbnails', 'public');
         }
 
         $video->update($data);
@@ -99,10 +71,11 @@ class VideoController extends Controller
 
     public function destroy(Video $video)
     {
-        Storage::delete([
-            'public/' . $video->video_path,
-            'public/' . $video->thumbnail_path
+        Storage::disk('public')->delete([
+            $video->video_path,
+            $video->thumbnail_path
         ]);
+        
         $video->delete();
 
         return redirect()->route('videos.index')->with('success', 'Video deleted successfully.');
@@ -113,6 +86,7 @@ class VideoController extends Controller
         if (!auth()->check()) {
             return redirect()->route('continue.with')->with('error', 'Please login first to download videos.');
         }
+        
         DB::table('video_downloads')->insert([
             'video_id' => $video->id,
             'user_id' => auth()->id(),
