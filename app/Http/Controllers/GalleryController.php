@@ -39,25 +39,26 @@ class GalleryController extends Controller
     {
         return view('galleries.create');
     }
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:20000',
+    ]);
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:20000',
-        ]);
+    // Store in 'public/gallery' (accessible via web)
+    $imagePath = $request->file('image')->store('gallery', 'public');
 
-        $imagePath = $request->file('image')->store('public/gallery');
+    Gallery::create([
+        'name' => $request->name,
+        'description' => $request->description,
+        'image' => $imagePath, // No need to modify path
+    ]);
 
-        Gallery::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'image' => str_replace('public/', '', $imagePath),
-        ]);
-
-        return redirect()->route('galleries.index')->with('success', 'Gallery item created successfully.');
-    }
+    return redirect()->route('galleries.index')
+        ->with('success', 'Gallery item created successfully.');
+}
 
     public function show(Gallery $gallery)
     {
@@ -69,30 +70,29 @@ class GalleryController extends Controller
         return view('galleries.edit', compact('gallery'));
     }
 
-    public function update(Request $request, Gallery $gallery)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20000',
-        ]);
+public function update(Request $request, Gallery $gallery)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20000',
+    ]);
 
-        $data = [
-            'name' => $request->name,
-            'description' => $request->description,
-        ];
+    $data = $request->only(['name', 'description']);
 
-        if ($request->hasFile('image')) {
-            Storage::delete('public/' . $gallery->image);
-            
-            $imagePath = $request->file('image')->store('public/gallery');
-            $data['image'] = str_replace('public/', '', $imagePath);
-        }
-
-        $gallery->update($data);
-
-        return redirect()->route('galleries.index')->with('success', 'Gallery item updated successfully.');
+    if ($request->hasFile('image')) {
+        // Delete old image
+        Storage::disk('public')->delete($gallery->image);
+        
+        // Store new image
+        $data['image'] = $request->file('image')->store('gallery', 'public');
     }
+
+    $gallery->update($data);
+
+    return redirect()->route('galleries.index')
+        ->with('success', 'Gallery item updated successfully.');
+}
 
     public function destroy(Gallery $gallery)
     {
