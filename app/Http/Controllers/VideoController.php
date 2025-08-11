@@ -10,7 +10,16 @@ use Illuminate\Support\Str;
 
 class VideoController extends Controller
 {
-    // ... (index, create, show, edit methods remain the same)
+    public function index()
+    {
+        $videos = Video::latest()->paginate(7);
+        return view('videos.index', compact('videos'));
+    }
+
+    public function create()
+    {
+        return view('videos.create');
+    }
 
     public function store(Request $request)
     {
