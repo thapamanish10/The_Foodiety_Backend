@@ -35,12 +35,12 @@
                             <td>{!! Str::limit($video->desc, 60) !!}</td>
                             <td> {{ $video->created_at->format('M d, Y') }}</td>
                             <td>
-                                <a href="{{ route('videos.show', $video) }}" class="btn btn-outline-primary"><img
+                                <a href="{{ route('ai-videos.show', $video) }}" class="btn btn-outline-primary"><img
                                         src="{{ url('show.png') }}" alt=""></a>
                                 @auth
-                                    <a href="{{ route('videos.edit', $video) }}" class="btn btn-outline-secondary"><img
+                                    <a href="{{ route('ai-videos.edit', $video) }}" class="btn btn-outline-secondary"><img
                                             src="{{ url('edit.png') }}" alt=""></a>
-                                    <form action="{{ route('videos.destroy', $video) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('ai-videos.destroy', $video) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-outline-danger"
