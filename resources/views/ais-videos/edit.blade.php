@@ -7,20 +7,20 @@
             <h3>Fill up the Information:</h3>
             <p>Edit information about the Video.</p>
         </div>
-        <form method="POST" action="{{ route('ai-videos.update', $video) }}" enctype="multipart/form-data" id="blogForm">
+        <form method="POST" action="{{ route('ai-videos.update', $ai_video) }}" enctype="multipart/form-data" id="blogForm">
             @csrf
             @method('PUT')
 
             <div class="form-group">
                 <label for="name" class="form-label"> Name : *</label>
                 <input type="text" class="form-control" id="name" name="name"
-                    value="{{ old('name', $video->name) }}" required>
+                    value="{{ old('name', $ai_video->name) }}" required>
             </div>
 
             <div class="form-group mb-3">
                 <label for="desc" class="form-label">Video Desc : *</label>
                 <input type="text" class="form-control" id="desc" name="desc"
-                    value=" {{ old('desc', $video->desc) }}" required>
+                    value=" {{ old('desc', $ai_video->desc) }}" required>
             </div>
             {{-- Video upload section --}}
             <label for="thumbnail_path" class="form-label">Video : *</label>
@@ -29,7 +29,7 @@
                     style="display: none;">
                 <div id="videoPreviews" class="mt-2 d-flex flex-wrap gap-2"></div>
                 <video controls style="height: 533px; width:300px">
-                    <source src="{{ asset('storage/' . $video->video_path) }}" type="video/mp4">
+                    <source src="{{ asset('storage/' . $ai_video->video_path) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="image-upload-icon" onclick="document.getElementById('video').click();">
@@ -44,7 +44,7 @@
                 <input type="file" class="form-control" id="image" name="thumbnail" accept="image/*"
                     style="display: none;">
                 <div id="imagePreviews" class="mt-2 d-flex flex-wrap gap-2"></div>
-                <img src="{{ asset('storage/' . $video->thumbnail_path) }}" alt="Current thumbnail"
+                <img src="{{ asset('storage/' . $ai_video->thumbnail_path) }}" alt="Current thumbnail"
                     style="max-height: 150px;">
                 <div class="image-upload-icon" onclick="document.getElementById('image').click();">
                     <img src="{{ asset('assets/upload.png') }}" class="uploadimage" alt="" id="customButton">
