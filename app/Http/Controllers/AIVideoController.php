@@ -42,7 +42,7 @@ class AIVideoController extends Controller
             'thumbnail_path' => $thumbnailPath,
         ]);
     
-        return redirect()->route('videos.index')->with('success', 'Video uploaded successfully.');
+        return redirect()->route('ai-videos.index')->with('success', 'Video uploaded successfully.');
     }
 
     public function show(AI_Video $video)
@@ -84,7 +84,7 @@ class AIVideoController extends Controller
 
         $video->update($data);
 
-        return redirect()->route('videos.index')->with('success', 'Video updated successfully.');
+        return redirect()->route('ai-videos.index')->with('success', 'Video updated successfully.');
     }
 
     public function destroy(AI_Video $video)
