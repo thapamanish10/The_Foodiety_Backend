@@ -30,24 +30,19 @@ class AIVideoController extends Controller
             'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg|max:20000',
         ]);
     
-        // Store video file
-        $videoFile = $request->file('video_path');
-        $videoPath = $videoFile->store('gallery', 'public');
-        $videoFilename = str_replace('public/', '', $videoPath);
-    
-        // Store thumbnail file
-        $thumbnailFile = $request->file('thumbnail_path');
-        $thumbnailPath = $thumbnailFile->store('public/thumbnails');
-        $thumbnailFilename = str_replace('public/', '', $thumbnailPath);
-    
+        // Store video file using public disk
+        $videoPath = $request->file('video_path')->store('gallery', 'public');
+        
+        // Store thumbnail file using public disk
+        $thumbnailPath = $request->file('thumbnail_path')->store('gallery', 'public');
         AI_Video::create([
             'name' => $validated['name'],
             'desc' => $validated['desc'],
-            'video_path' => $videoFilename,
-            'thumbnail_path' => $thumbnailFilename,
+            'video_path' => $videoPath,  // No path modification needed
+            'thumbnail_path' => $thumbnailPath,
         ]);
     
-        return redirect()->route('ai-videos.index')->with('success', 'Video uploaded successfully.');
+        return redirect()->route('videos.index')->with('success', 'Video uploaded successfully.');
     }
 
     public function show(AI_Video $video)
@@ -69,32 +64,27 @@ class AIVideoController extends Controller
             'thumbnail_path' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = [
-            'name' => $request->name,
-            'desc' => $request->desc,
-        ];
+        $data = $request->only(['name', 'desc']);
 
-        if ($request->hasFile('video')) {
+        if ($request->hasFile('video_path')) {
             // Delete old video
-            Storage::delete('public/' . $video->video_path);
+            Storage::disk('public')->delete($video->video_path);
 
             // Store new video
-            $videoPath = $request->file('video')->store('gallery', 'public');
-            $data['video_path'] = str_replace('public/', '', $videoPath);
+            $data['video_path'] = $request->file('video_path')->store('gallery', 'public');
         }
 
-        if ($request->hasFile('thumbnail')) {
-            // Delete old thumbnail
-            Storage::delete('public/' . $video->thumbnail_path);
-
-            // Store new thumbnail
-            $thumbnailPath = $request->file('thumbnail')->store('public/thumbnails');
-            $data['thumbnail_path'] = str_replace('public/', '', $thumbnailPath);
+        if ($request->hasFile('thumbnail_path')) {
+            // Delete old image
+            Storage::disk('public')->delete($video->thumbnail_path);
+            
+            // Store new image
+            $data['thumbnail_path'] = $request->file('thumbnail_path')->store('gallery', 'public');
         }
 
         $video->update($data);
 
-        return redirect()->route('ai-videos.index')->with('success', 'Video updated successfully.');
+        return redirect()->route('videos.index')->with('success', 'Video updated successfully.');
     }
 
     public function destroy(AI_Video $video)
