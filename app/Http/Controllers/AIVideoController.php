@@ -47,12 +47,12 @@ class AIVideoController extends Controller
 
     public function show(AI_Video $ai_video)
     {
-        return view('ais-videos.show', compact('video'));
+        return view('ais-videos.show', compact('ai_video'));
     }
 
     public function edit(AI_Video $ai_video)
     {
-        return view('ais-videos.edit', compact('video'));
+        return view('ais-videos.edit', compact('ai_video'));
     }
 
     public function update(Request $request, AI_Video $ai_video)
