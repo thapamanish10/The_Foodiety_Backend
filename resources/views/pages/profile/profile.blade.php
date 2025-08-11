@@ -55,11 +55,11 @@
                                 <div class="row">
                                     <div class="formGroup">
                                         <label for="name">NAME:<span class="imp">*</span></label>
-                                        <input type="text" name="name" id="name" value={{ old('name', $user->name)}} required autofocus>
+                                        {{-- <input type="text" name="name" id="name" value={{ old('name', $user->name)}} required autofocus> --}}
                                     </div>
                                     <div class="formGroup">
                                         <label for="email">EMAIL ADDRESS:<span class="imp">*</span></label>
-                                        <input type="text" name="email" id="email" value="{{ old('email', $user->email) }}" required autofocus>
+                                        {{-- <input type="text" name="email" id="email" value="{{ old('email', $user->email) }}" required autofocus> --}}
                                     </div>
                                 </div>
                             </div>
