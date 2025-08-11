@@ -32,7 +32,7 @@ class AIVideoController extends Controller
     
         // Store video file
         $videoFile = $request->file('video_path');
-        $videoPath = $videoFile->store('public/videos');
+        $videoPath = $videoFile->store('gallery', 'public');
         $videoFilename = str_replace('public/', '', $videoPath);
     
         // Store thumbnail file
@@ -79,7 +79,7 @@ class AIVideoController extends Controller
             Storage::delete('public/' . $video->video_path);
 
             // Store new video
-            $videoPath = $request->file('video')->store('public/videos');
+            $videoPath = $request->file('video')->store('gallery', 'public');
             $data['video_path'] = str_replace('public/', '', $videoPath);
         }
 

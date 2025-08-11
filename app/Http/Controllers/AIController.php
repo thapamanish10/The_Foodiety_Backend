@@ -44,7 +44,7 @@ class AIController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:20000',
         ]);
 
-        $imagePath = $request->file('image')->store('public/ai');
+        $imagePath = $request->file('image')->store('gallery', 'public');
 
         AI::create([
             'name' => $request->name,
@@ -81,7 +81,7 @@ class AIController extends Controller
         if ($request->hasFile('image')) {
             Storage::delete('public/' . $ai->image);
             
-            $imagePath = $request->file('image')->store('public/ai');
+            $imagePath = $request->file('image')->store('gallery', 'public');
             $data['image'] = str_replace('public/', '', $imagePath);
         }
 
