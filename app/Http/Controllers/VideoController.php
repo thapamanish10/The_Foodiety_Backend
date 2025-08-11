@@ -46,6 +46,10 @@ class VideoController extends Controller
         return redirect()->route('videos.index')->with('success', 'Video uploaded successfully.');
     }
 
+    public function edit(Video $video)
+    {
+        return view('videos.edit', compact('video'));
+    }
     public function update(Request $request, Video $video)
     {
         $request->validate([
