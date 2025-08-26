@@ -34,9 +34,9 @@
             </div>
             <div class="recipes-card-desc">
                 @if ($query)
-                    {!! Str::highlight(Str::limit($recipe->desc2, 700), $query) !!}
+                    {!! Str::highlight(Str::limit($recipe->desc2, 500), $query) !!}
                 @else
-                    {!! Str::limit($recipe->desc2, 700) !!}
+                    {!! Str::limit($recipe->desc2, 500) !!}
                 @endif
             </div>
         </div>

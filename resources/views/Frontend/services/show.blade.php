@@ -208,6 +208,66 @@
             width: 25px;
             background: #ffde59;
         }
+
+        @media (max-width: 600px) {
+            .services-main-div{
+                width: 90%;
+                margin-top: 1rem;
+            }
+            .services-main-div-section {
+                width: 100%;
+                height: max-content;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 1rem;
+                overflow: hidden;
+                background: #dddddd38;
+            }
+            .services-main-sub-section-right {
+                width: 100%;
+                height: 100%;
+            }
+
+            .services-main-sub-section-left {
+                width: 100%;
+                flex-direction: column;
+                padding: 2rem 1rem;
+            }
+            .services-main-sub-section-left p {
+                width: 90%;
+                text-align: justify;
+            }
+            .main-blog-detail-div-card-image {
+                width: 100%;
+                height: 230px;
+                position: relative;
+                overflow: hidden;
+                margin: 2rem 0;
+            }
+            .row {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .what-we-offer {
+                width: 100%;
+            }
+            .what-we-offer h3 {
+                width: 100%;
+                display: flex;
+                align-items: flex-start !important;
+                justify-content: flex-start;
+                font-size: 25px;
+                padding: 0 0;
+                font-weight: 600;
+                font-family: "Playfair Display", serif !important;
+                color: #5f5f5f;
+            }
+
+        }
     </style>
     <x-main-heading title="Foodiety Services Details" />
     <section class="services-main-div">

@@ -28,4 +28,9 @@
         font-family: "Playfair Display", serif !important;
         text-decoration: none;
     }
+    @media (max-width: 600px) {
+        .see-all-div {
+            width: 90%;
+        }
+    }
 </style>

@@ -88,6 +88,20 @@
             font-size: 14px;
             color: #fff;
         }
+
+        @media (max-width: 600px) {
+            .footer-main-section {
+                max-width: 90%;
+                margin: auto;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+
     </style>
 </head>
 @php

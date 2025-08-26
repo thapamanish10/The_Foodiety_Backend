@@ -3,10 +3,6 @@
 <section class="main-sub-heading">
     <div class="main-sub-heading-section">
         <p>All Posts</p>
-        {{-- <p>Christmas</p>
-        <p>Thanksgiving</p>
-        <p>Halloween</p>
-        <p>Easter</p> --}}
     </div>
     <div class="main-sub-heading-section">
         <div class="main-sub-heading-section-search-box">
@@ -112,7 +108,7 @@
     }
 
     .main-sub-heading-section {
-        width: 50%;
+        width: max-content;
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -161,13 +157,21 @@
         .main-sub-heading {
             display: flex;
             align-items: flex-end;
-            margin: 0 .5rem;
+            margin: 0 1.5rem;
         }
 
         .main-sub-heading-section {
-            width: 100%;
             align-items: flex-start;
             padding: 1rem 0;
         }
+
+            .main-sub-heading-section-search-box input {
+                width: 200px;
+                padding: 3px 5px;
+                border: none;
+                outline: none;
+                font-size: 14px;
+                font-family: "Playfair Display", serif;
+            }
     }
 </style>

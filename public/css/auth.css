@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Noto Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
 }
 .authContainer {
     width: 100%;
@@ -27,7 +27,7 @@
 }
 a {
     text-decoration: none;
-    color: #000;
+    color: #5f5f5f;
 }
 .authHeading {
     flex: 1;
@@ -47,7 +47,7 @@ a {
 .authHeadingText {
     font-size: 25px;
     font-weight: 900;
-    color: #232429;
+    color: #5f5f5f;
 }
 .authFormContainer {
     width: 100%;
@@ -60,11 +60,11 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #5b627431;
+    border: 1px solid #5f5f5f48;
     height: 40px;
     gap: 12px;
     margin: 0.6rem 0;
-    border-radius: 0.6rem;
+    border-radius: 0.4rem;
     padding: 0 10px;
 }
 .inputBox {
@@ -85,8 +85,9 @@ a {
 }
 .authFormGroup label {
     width: 100%;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
+    color: #5f5f5f;
 }
 .authFormGroup input {
     width: 100%;
@@ -97,10 +98,11 @@ a {
     padding: 0 15px;
     border: 0;
     outline: 0;
+    color: #5f5f5f;
     border-left: 2px solid #5b627431;
 }
 .authFormGroup:focus-within {
-    border: 2px solid #ffde599f;
+    border-color: #ffde59;
 }
 
 .authFormRememberME {
@@ -124,14 +126,14 @@ a {
     justify-content: center;
     height: 45px;
     font-size: 16px;
-    font-weight: 700;
-    text-transform: capitalize;
+    font-weight: 600;
     background: #ffde59;
-    color: #232429;
+    color: #5f5f5f;
     border: 0;
     outline: 0;
     border-radius: 0.6rem;
     cursor: pointer;
+    font-family: "Raleway", sans-serif;
 }
 .authFormGroupButton button:active {
     opacity: 0.7;
@@ -145,5 +147,4 @@ a {
 }
 .authNavigation span {
     text-decoration: underline;
-    color: #5b6274;
 }

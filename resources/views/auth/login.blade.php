@@ -52,7 +52,7 @@
                 <div class="authFormGroupButton">
                     <button type="submit" class="">Log in</button>
                 </div>
-                <a href="{{ route('register') }}" class="authNavigation">Don't have an account? <span>Sign Up here</span></a>
+                <a href="{{ route('register') }}" class="authNavigation">Don't have an account? <span>Sign up</span></a>
             </div>
             </form>
         </div>

@@ -108,8 +108,8 @@ class AboutController extends Controller
             'desc' => 'required|string',
             'number' => 'required|string|max:20',
             'email' => 'required|email|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:10240', // 10MB
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:10240', // 10MB
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:102400', // 10MB
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:102400', // 10MB
             'opt_number' => 'nullable|string|max:20',
             'facebook' => 'nullable|url|max:255',
             'instagram' => 'nullable|url|max:255',

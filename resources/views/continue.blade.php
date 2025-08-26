@@ -34,6 +34,9 @@
                     <span>Already have an account? </span>
                     <a href="{{ route('login') }}">Log In</a>
                 </div>
+                <div class="sign-up-link back-to-home">
+                    <a href="{{ url('/') }}"> <span>Back to home </span></a>
+                </div>
             </div>
         </div>
     </section>
@@ -162,6 +165,21 @@
             height: 20px;
             background: #ffffff;
         }
+        .back-to-home{
+            display: none;
+        }
+    @media (max-width: 600px) {
+        .sign-up-link {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: max-content;
+            gap: 1rem;
+        }
+                .back-to-home{
+            display: block;
+        }
+    }
     </style>
 </body>
 

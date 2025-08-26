@@ -198,6 +198,32 @@
             width: 25px;
             background: #ffde59;
         }
+        @media (max-width: 600px) {
+            .about-artical-main-container{
+                max-width: 90%;
+            }
+            .main-blog-detail-div-card-image {
+                width: 100%;
+                height: 210px;
+                position: relative;
+                overflow: hidden;
+                margin: 2rem 0;
+            }
+            .about-artical{
+                width: 100%;
+            }
+            h1{
+                font-size: 28px;
+                font-weight: bold;
+                font-family: "Playfair Display", serif;
+                color: #5f5f5f;
+            }
+            h2, h3, h4, h5, h6{
+                font-weight: bold;
+                font-family: "Playfair Display", serif;
+                color: #5f5f5f;
+            }
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

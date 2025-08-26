@@ -38,7 +38,6 @@
                 <a class="{{ Request::is('home/business') ? 'activeNavLink' : '' }}" href="{{ route('home.business.show', $about->id."-".$about->name) }}">About</a>
                 @endforeach
                 <a class="{{ Request::is('home/contact') ? 'activeNavLink' : '' }}" href="{{ route('home.contact.index') }}">Contact</a>
-                <a href="#" class="follow-trigger" id="mobileFollowTrigger">Follow</a>
             </div>
             
             <!-- Mobile Follow Section -->
@@ -63,19 +62,6 @@
                             <a href="{{ $about->threads }}"><img src="{{ url('td.png') }}" alt="Threads"></a>
                         @endif
                     </div>
-                </div>
-                <div class="mobile-topbar-section">
-                    @if ($about->number)
-                        <a href="{{ $about->number }}" class="contact-link">
-                            <img src="{{ url('wa.png') }}" alt="WhatsApp">
-                            <span>{{ $about->number }}</span>
-                        </a>
-                    @endif
-                    @if ($about->opt_number)
-                        <a href="{{ $about->opt_number }}" class="contact-link">
-                            <span>{{ $about->opt_number }}</span>
-                        </a>
-                    @endif
                 </div>
             </div>
             @endforeach
@@ -341,7 +327,7 @@
         padding: 0.5rem 0;
         text-decoration: none;
         color: #5f5f5f;
-        border-bottom: 2px solid #eee;
+        border-bottom: 1px solid #eee;
         font-size: 15px;
         font-weight: 600 !important;
         text-transform: uppercase;

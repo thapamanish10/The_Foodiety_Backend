@@ -1,7 +1,7 @@
 @props(['restaurant', 'views', 'comments', 'likes', 'query' => null])
 
 <div class="restaurant-card">
-    <a href="{{ route('home.restaurants.show', ['restaurant' => $restaurant->id . '-0-' . $restaurant->name]) }}"></a>
+    {{-- <a href="{{ route('home.restaurants.show', ['restaurant' => $restaurant->id . '-0-' . $restaurant->name]) }}"></a> --}}
     <div class="restaurant-card-sub-card">
         <!-- Image Carousel -->
         <div class="restaurant-card-card-image">
@@ -339,79 +339,34 @@
     }
 
     /* Mobile Styles */
-    /* @media (max-width: 600px) {
-        .restaurant-card {
+    @media (max-width: 600px) {
+       .restaurant-card{
             position: relative;
             width: 100%;
             margin: 0 auto 2rem;
-            min-height: 520px;
-            height: 520px;
-            max-height: 520px;
+            min-height: 600px;
+            height: 600px;
+            max-height: 600px;
             border: 1px solid #dddddd93;
             display: flex;
-            flex-direction: column;
             align-items: stretch;
             overflow: hidden;
             background: white;
         }
-
         .restaurant-card-card-image {
-            width: 50%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .restaurant-card-content {
-            height: 50%;
-            padding: .5rem;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .restaurant-card-heading {
-            width: 95%;
-            margin: 1rem auto;
-            font-family: "Playfair Display", serif;
-            font-weight: 400;
-            color: #5f5f5f;
-            font-size: 1.5rem;
-            line-height: 1.3;
-        }
-
-        .restaurant-card-content-sub {
-            height: 80%;
-        }
-
-        .restaurant-card-content-sub p {
-            width: 95%;
-            margin: 0.5rem auto;
-            font-size: 15px;
-            text-align: justify;
-            color: #5f5f5f;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 1.5;
-            max-height: calc(1.5em * 2);
+            height: 40%;
             position: relative;
-            flex-grow: 1;
+            overflow: hidden;
         }
-
-        .restaurant-card-info {
-            height: 20%;
-            width: 95%;
-            margin: auto;
+        .restaurant-card-content {
+            width: 100%;
+            height: 60%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            border-top: 1px solid #dddddd93;
-            z-index: 5;
-            margin-top: auto;
-        }
-    } */
+            flex-direction: column;
+}
+    }
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

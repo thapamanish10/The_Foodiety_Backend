@@ -34,8 +34,10 @@
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
         .recent-blog-container {
+            width: 90%;
+            margin: auto;
             grid-template-columns: repeat(2, 1fr);
             gap: .5rem;
             padding: 0;

@@ -22,9 +22,6 @@
 
 @section('content')
     <section class="main-blog-detail-div">
-        <br>
-        <br>
-        <br>
         <x-main-sub-heading />
         <div class="main-blog-detail-div-card">
             <x-user-info/>
@@ -62,6 +59,7 @@
             <p class="main-blog-detail-div-desc">
                 {!! $blog->desc2 !!}
             </p>
+            <br>
             <div class="main-blog-detail-div-info">
                 <div class="main-blog-detail-div-info-sec">
                     <!-- Facebook -->
@@ -205,6 +203,7 @@
         text-align: justify !important;
         color: #5f5f5f;
         line-height: 1.5;
+
     }
 
     .main-blog-detail-div-info {
@@ -274,6 +273,13 @@
         .main-blog-detail-div-card {
             padding: 1.5rem;
             border: 1px solid #ddd;
+        }
+        .main-blog-detail-div-card-image {
+            width: 100%;
+            height: 235px;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
         }
     }
 </style>

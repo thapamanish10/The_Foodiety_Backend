@@ -51,10 +51,33 @@
 
         @media (max-width: 600px) {
             .gallery-main-div-card-body {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(1, 1fr);
                 gap: .5rem;
-                padding: .5rem;
+                padding: 1.5rem;
             }
+
+            .gallery-main-div-card-body-image-card {
+                flex: 1;
+                width: auto;
+                min-width: auto;
+                max-width: auto;
+                height: auto;
+                min-height: 200px;
+                max-height: auto;
+                overflow: hidden;
+                cursor: pointer;
+                position: relative;
+            }
+            .gallery-main-div-card-body-image-card-info {
+                width: 100%;
+                position: absolute;
+                bottom: -70px;
+                left: -12px;
+                padding: 2rem;
+                background: linear-gradient(180deg, #26272700, #1f1f1fcb);
+                transition: 0.6s ease-in-out;
+            }
+
         }
     </style>
 @endsection

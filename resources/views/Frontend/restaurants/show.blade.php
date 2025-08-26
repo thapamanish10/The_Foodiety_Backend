@@ -535,7 +535,27 @@
             border: 1px solid #ddd;
         }
     }
-    
+    @media (max-width: 600px) {
+        .row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: column;
+            padding: 2rem 0;
+        }
+        .ratings-section {
+            width: 100%;
+            margin-bottom: 30px;
+            border: 1px solid transparent;
+            padding: 0;
+        }
+        .location-section {
+            width: 100%;
+            margin-bottom: 30px;
+            border: 1px solid transparent;
+            padding: 0;
+        }
+    }
     /* Responsive Design */
     @media (max-width: 768px) {
         .image-carousel {
